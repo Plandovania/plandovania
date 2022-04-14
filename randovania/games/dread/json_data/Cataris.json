@@ -16885,12 +16885,41 @@
                             }
                         },
                         "Dock to EMMI Zone Tower West": {
-                            "type": "resource",
+                            "type": "or",
                             "data": {
-                                "type": "events",
-                                "name": "CatarisTransportDaironWideBeamBlock",
-                                "amount": 1,
-                                "negate": false
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "events",
+                                            "name": "CatarisTransportDaironWideBeamBlock",
+                                            "amount": 1,
+                                            "negate": false
+                                        }
+                                    },
+                                    {
+                                        "type": "and",
+                                        "data": {
+                                            "comment": "Shine Sink Clip through platform above where the Wide Beam Block slides",
+                                            "items": [
+                                                {
+                                                    "type": "template",
+                                                    "data": "Can SSC"
+                                                },
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "tricks",
+                                                        "name": "SSC",
+                                                        "amount": 3,
+                                                        "negate": false
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
                             }
                         },
                         "Pickup (Missile Tank)": {
