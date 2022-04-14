@@ -405,7 +405,7 @@
                         },
                         "Ceiling Tunnel": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -682,7 +682,7 @@
                     "connections": {
                         "Pickup (Energy Part)": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         },
                         "Right Alcove": {
                             "type": "and",
@@ -8678,7 +8678,7 @@
                                 "items": [
                                     {
                                         "type": "template",
-                                        "data": "Lay Bomb"
+                                        "data": "Destroy Bomb Block"
                                     },
                                     {
                                         "type": "resource",
@@ -8925,7 +8925,7 @@
                     "connections": {
                         "Corner": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -8954,7 +8954,7 @@
                     "connections": {
                         "Tile Group (BOMB WEIGHT)": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -10287,7 +10287,7 @@
                     "connections": {
                         "Tunnel to Escue Eyedoor Room": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -10375,7 +10375,7 @@
                         },
                         "Pickup (Energy Part)": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },

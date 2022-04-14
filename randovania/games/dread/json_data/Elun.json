@@ -640,18 +640,6 @@
                                 "items": []
                             }
                         },
-                        "Pickup (Energy Tank)": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": [
-                                    {
-                                        "type": "template",
-                                        "data": "Lay Bomb"
-                                    }
-                                ]
-                            }
-                        },
                         "Tile Group (POWERBEAM)": {
                             "type": "and",
                             "data": {
@@ -762,16 +750,8 @@
                     "major_location": false,
                     "connections": {
                         "Door to Chozo Soldier Arena": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": [
-                                    {
-                                        "type": "template",
-                                        "data": "Lay Bomb"
-                                    }
-                                ]
-                            }
+                            "type": "template",
+                            "data": "Destroy Bomb Block"
                         },
                         "Tile Group (BOMB) 3": {
                             "type": "and",
@@ -996,21 +976,8 @@
                             }
                         },
                         "Tile Group (BOMB) 3": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": [
-                                    {
-                                        "type": "resource",
-                                        "data": {
-                                            "type": "items",
-                                            "name": "Morph",
-                                            "amount": 1,
-                                            "negate": false
-                                        }
-                                    }
-                                ]
-                            }
+                            "type": "template",
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -3300,7 +3267,7 @@
                                 "items": [
                                     {
                                         "type": "template",
-                                        "data": "Lay Bomb"
+                                        "data": "Destroy Bomb Block"
                                     }
                                 ]
                             }

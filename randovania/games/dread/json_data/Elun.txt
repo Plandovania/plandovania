@@ -152,8 +152,6 @@ Extra - asset_id: collision_camera_003
   * Extra - right_shield_def: None
   > Door to Purple Drapes
       Trivial
-  > Pickup (Energy Tank)
-      Lay Bomb
   > Tile Group (POWERBEAM)
       Trivial
   > Tile Group (BOMB) 1
@@ -179,7 +177,7 @@ Extra - asset_id: collision_camera_003
   * Extra - actor_name: item_energytank_000
   * Extra - actor_def: actordef:actors/items/item_energytank/charclasses/item_energytank.bmsad
   > Door to Chozo Soldier Arena
-      Lay Bomb
+      Destroy Bomb Block
   > Tile Group (BOMB) 3
       Morph Ball
 
@@ -245,7 +243,7 @@ Extra - asset_id: collision_camera_003
   > Door to Chozo Soldier Arena
       Trivial
   > Tile Group (BOMB) 3
-      Morph Ball
+      Destroy Bomb Block
 
 > Tile Group (BOMB) 1; Heals? False
   * Layers: default
@@ -755,7 +753,7 @@ Extra - asset_id: collision_camera_009
   * Layers: default
   * Morph Ball Tunnel to Horizontal Bomb Maze/Tunnel to Vertical Bomb Maze (Lower)
   > Tile Group (BOMB WEIGHT)
-      Lay Bomb
+      Destroy Bomb Block
 
 > Tunnel to Spider Magnet Room; Heals? False
   * Layers: default

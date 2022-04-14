@@ -8625,7 +8625,7 @@
                                 "items": [
                                     {
                                         "type": "template",
-                                        "data": "Lay Bomb"
+                                        "data": "Destroy Bomb Block"
                                     },
                                     {
                                         "type": "resource",
@@ -8634,6 +8634,26 @@
                                             "name": "MissileAmmo",
                                             "amount": 1,
                                             "negate": false
+                                        }
+                                    },
+                                    {
+                                        "type": "or",
+                                        "data": {
+                                            "comment": "Methods to get up into the tunnel after breaking the bomb block (e.g. if player only has PBs, they need another way to get up there)",
+                                            "items": [
+                                                {
+                                                    "type": "template",
+                                                    "data": "Use Spin Boost"
+                                                },
+                                                {
+                                                    "type": "template",
+                                                    "data": "Lay Bomb"
+                                                },
+                                                {
+                                                    "type": "template",
+                                                    "data": "Ballspark"
+                                                }
+                                            ]
                                         }
                                     }
                                 ]

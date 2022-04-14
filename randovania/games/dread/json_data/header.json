@@ -1917,6 +1917,26 @@
                     ]
                 }
             },
+            "Destroy Bomb Block": {
+                "type": "or",
+                "data": {
+                    "comment": null,
+                    "items": [
+                        {
+                            "type": "template",
+                            "data": "Lay Bomb"
+                        },
+                        {
+                            "type": "template",
+                            "data": "Lay Cross Comb"
+                        },
+                        {
+                            "type": "template",
+                            "data": "Lay Power Bomb"
+                        }
+                    ]
+                }
+            },
             "Perform Water Bomb Jump": {
                 "type": "and",
                 "data": {
@@ -2349,8 +2369,20 @@
                     "Morph Ball Launcher": {
                         "extra": {},
                         "requirement": {
-                            "type": "template",
-                            "data": "Lay Bomb"
+                            "type": "or",
+                            "data": {
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Lay Bomb"
+                                    },
+                                    {
+                                        "type": "template",
+                                        "data": "Lay Cross Comb"
+                                    }
+                                ]
+                            }
                         },
                         "lock": null
                     },
