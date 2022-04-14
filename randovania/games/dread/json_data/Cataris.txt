@@ -1230,6 +1230,12 @@ Extra - asset_id: collision_camera_015
       Any of the following:
           Varia Suit
           Heat/Cold Runs (Intermediate) and Heat Damage ≥ 10
+  > Event - Blue Teleport Blob from other side (breakablemag012)
+      All of the following:
+          Shinesink Clip (Expert) and Can SSC
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
 
 > Center Room; Heals? False
   * Layers: default
