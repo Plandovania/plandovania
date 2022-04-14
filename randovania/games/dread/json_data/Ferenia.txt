@@ -369,6 +369,8 @@ Extra - asset_id: collision_camera_007
   * Extra - right_shield_def: None
   > Door to Cold Room (Small)
       Trivial
+  > Teleporter to Burenia - Teleport to Ferenia
+      Shinesink Clip (Expert) and Can SSC
   > Tunnel to Separate Tunnels Room (Upper)
       Morph Ball
 

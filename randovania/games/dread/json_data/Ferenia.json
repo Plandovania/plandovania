@@ -1867,6 +1867,27 @@
                                 "items": []
                             }
                         },
+                        "Teleporter to Burenia - Teleport to Ferenia": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "tricks",
+                                            "name": "SSC",
+                                            "amount": 4,
+                                            "negate": false
+                                        }
+                                    },
+                                    {
+                                        "type": "template",
+                                        "data": "Can SSC"
+                                    }
+                                ]
+                            }
+                        },
                         "Tunnel to Separate Tunnels Room (Upper)": {
                             "type": "resource",
                             "data": {
