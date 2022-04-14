@@ -1310,7 +1310,7 @@ Extra - asset_id: collision_camera_010
           Gravity Suit
           Space Jump or Speed Booster or Simple IBJ
   > Dock to Main Hub Tower Bottom
-      Shinesink Clip (Expert) and Can SSC
+      Gravity Suit and Shinesink Clip (Expert) and Can SSC
 
 > Event - Lower Magnet Wall; Heals? False
   * Layers: default
