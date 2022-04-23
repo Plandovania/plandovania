@@ -14515,6 +14515,36 @@
                                 "comment": null,
                                 "items": []
                             }
+                        },
+                        "Tunnel to Gravity Suit Room Access (Upper)": {
+                            "type": "and",
+                            "data": {
+                                "comment": "Shinesink Clip through floor to access Lower Burenia without Plasma/PBs",
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Can SSC"
+                                    },
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "tricks",
+                                            "name": "SSC",
+                                            "amount": 4,
+                                            "negate": false
+                                        }
+                                    },
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "events",
+                                            "name": "s040_aqua:default:db_reg_aq_004",
+                                            "amount": 1,
+                                            "negate": false
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     }
                 },

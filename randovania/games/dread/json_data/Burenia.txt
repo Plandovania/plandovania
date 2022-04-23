@@ -2712,6 +2712,10 @@ the blast shield issue.
       Trivial
   > Pickup (Gravity Suit)
       Trivial
+  > Tunnel to Gravity Suit Room Access (Upper)
+      All of the following:
+          # Shinesink Clip through floor to access Lower Burenia without Plasma/PBs
+          After Burenia - db_reg_aq_004 and Shinesink Clip (Expert) and Can SSC
 
 > Tunnel to Gravity Suit Room Access (Upper); Heals? False
   * Layers: default
