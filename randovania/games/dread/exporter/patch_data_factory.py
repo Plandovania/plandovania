@@ -281,7 +281,8 @@ class DreadPatchDataFactory(BasePatchDataFactory):
             },
             "lua": {
                 "custom_init": {
-                    "enable_death_counter": c.show_death_counter
+                    "enable_death_counter": c.show_death_counter,
+                    "show_debug_logs": c.show_debug_logs
                 },
             },
         }
