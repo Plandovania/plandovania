@@ -25313,6 +25313,27 @@
                     "pickup_index": 24,
                     "major_location": false,
                     "connections": {
+                        "Pickup (Screw Attack)": {
+                            "type": "and",
+                            "data": {
+                                "comment": "SA without SA",
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Can SSC"
+                                    },
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "tricks",
+                                            "name": "SSC",
+                                            "amount": 4,
+                                            "negate": false
+                                        }
+                                    }
+                                ]
+                            }
+                        },
                         "Next to Upper Tank": {
                             "type": "and",
                             "data": {
@@ -25572,6 +25593,27 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
+                        "Door to Freezer (doorgrapplegrapple)": {
+                            "type": "and",
+                            "data": {
+                                "comment": "Hypothermia SSC",
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Can SSC"
+                                    },
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "tricks",
+                                            "name": "SSC",
+                                            "amount": 5,
+                                            "negate": false
+                                        }
+                                    }
+                                ]
+                            }
+                        },
                         "Start Point 2": {
                             "type": "resource",
                             "data": {
