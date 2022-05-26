@@ -1076,16 +1076,10 @@ Extra - asset_id: collision_camera_015
   * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('POWERBOMB',)
-  > Teleporter to Artaria - Screw Attack Room
-      All of the following:
-          After Cataris - Blue Teleport Blob
-          Any of the following:
-              Varia Suit
-              Heat/Cold Runs (Intermediate) and Heat Damage ≥ 30
   > Right Room
       Trivial
-  > Event - East Blob, above
-      Wave Beam
+  > Above Teleporter
+      Trivial
 
 > Tile Group (POWERBEAM) 2; Heals? False
   * Layers: default
@@ -1230,9 +1224,9 @@ Extra - asset_id: collision_camera_015
       Any of the following:
           Varia Suit
           Heat/Cold Runs (Intermediate) and Heat Damage ≥ 10
-  > Event - Blue Teleport Blob from other side (breakablemag012)
+  > Above Teleporter
       All of the following:
-          Shinesink Clip (Expert) and Can SSC
+          Shinesink Clip (Hypermode) and Can SSC
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
@@ -1281,8 +1275,27 @@ Extra - asset_id: collision_camera_015
 > Event - East Blob, above; Heals? False
   * Layers: default
   * Event Cataris - Blue Teleport Blob
+  > Above Teleporter
+      Trivial
+
+> Above Teleporter; Heals? False
+  * Layers: default
+  > Teleporter to Artaria - Screw Attack Room
+      All of the following:
+          After Cataris - Blue Teleport Blob
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 30
   > Tile Group (POWERBOMB)
       Trivial
+  > Event - East Blob, above
+      All of the following:
+          Any of the following:
+              Wave Beam or Pseudo-Wave Beam (Advanced)
+              Pseudo-Wave Beam (Intermediate) and Shoot Diffusion Beam
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
 
 ----------------
 Total Recharge Station North
@@ -3694,6 +3707,8 @@ Extra - asset_id: collision_camera_045
   * Extra - right_shield_def: None
   > Door to Lava Button East (Cloak)
       Trivial
+  > Pickup (Missile Tank)
+      Shinesink Clip (Expert) and Can SSC
 
 > Door to Lava Button East (Charge); Heals? False
   * Layers: default
