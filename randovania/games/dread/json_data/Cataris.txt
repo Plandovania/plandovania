@@ -1230,6 +1230,9 @@ Extra - asset_id: collision_camera_015
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
+          Any of the following:
+              Phantom Cloak and Speedbooster Conservation (Beginner)
+              Morph Ball and Speedbooster Conservation (Intermediate)
 
 > Center Room; Heals? False
   * Layers: default

@@ -25593,7 +25593,7 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Door to Freezer (doorgrapplegrapple)": {
+                        "Door to Freezer (Grapple)": {
                             "type": "and",
                             "data": {
                                 "comment": "Hypothermia SSC",
