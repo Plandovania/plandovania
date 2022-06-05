@@ -223,6 +223,8 @@ Dock Weaknesses
           After Artaria - Thermal Device
       No lock
 
+  > Dock Rando: Disabled
+
 
 > Tunnel
   * Slide Tunnel
@@ -266,6 +268,8 @@ Dock Weaknesses
           Morph Ball and After Ghavoran - Central Unit
       No lock
 
+  > Dock Rando: Disabled
+
 
 > Dock
   * Open Passage
@@ -290,4 +294,6 @@ Dock Weaknesses
       Open:
           Trivial
       No lock
+
+  > Dock Rando: Disabled
 
