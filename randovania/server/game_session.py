@@ -139,16 +139,19 @@ def _get_preset(preset_json: dict) -> VersionedPreset:
 
 
 def _emit_session_meta_update(session: GameSession):
+    logger().debug("game_session_meta_update for session %d (%s)", session.id, session.name)
     flask_socketio.emit("game_session_meta_update", session.create_session_entry(), room=f"game-session-{session.id}",
                         namespace="/")
 
 
 def _emit_session_actions_update(session: GameSession):
+    logger().debug("game_session_actions_update for session %d (%s)", session.id, session.name)
     flask_socketio.emit("game_session_actions_update", session.describe_actions(), room=f"game-session-{session.id}",
                         namespace="/")
 
 
 def _emit_session_audit_update(session: GameSession):
+    logger().debug("game_session_audit_update for session %d (%s)", session.id, session.name)
     flask_socketio.emit("game_session_audit_update", session.get_audit_log(), room=f"game-session-{session.id}",
                         namespace="/")
 

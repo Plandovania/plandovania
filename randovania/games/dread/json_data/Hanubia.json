@@ -5,7 +5,8 @@
         "map_min_x": 50,
         "map_max_x": 243,
         "map_min_y": 101,
-        "map_max_y": 119
+        "map_max_y": 119,
+        "scenario_id": "s080_shipyard"
     },
     "areas": {
         "Transport to Ferenia": {
@@ -318,7 +319,7 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Event - Breakable (Pull Grapple Block)": {
+                        "Event - Grapple Block": {
                             "type": "resource",
                             "data": {
                                 "type": "items",
@@ -429,7 +430,7 @@
                         }
                     }
                 },
-                "Event - Breakable (Pull Grapple Block)": {
+                "Event - Grapple Block": {
                     "node_type": "event",
                     "heal": false,
                     "coordinates": {
@@ -483,15 +484,6 @@
                         ]
                     },
                     "connections": {
-                        "Tile Group (SCREWATTACK) 1": {
-                            "type": "resource",
-                            "data": {
-                                "type": "items",
-                                "name": "Morph",
-                                "amount": 1,
-                                "negate": false
-                            }
-                        },
                         "Tile Group (BOMB) 3": {
                             "type": "resource",
                             "data": {
@@ -672,7 +664,7 @@
                                 "items": []
                             }
                         },
-                        "Event - Breakable (Pull Grapple Block)": {
+                        "Event - Grapple Block": {
                             "type": "template",
                             "data": "Break/Move Grapple Block from Behind"
                         }
@@ -764,7 +756,7 @@
                     "coordinates": {
                         "x": 1231.574701516618,
                         "y": -2261.0196837689577,
-                        "z": 0
+                        "z": 0.0
                     },
                     "description": "",
                     "layers": [
@@ -1101,9 +1093,12 @@
                                 "items": []
                             }
                         },
-                        "Event - Breakable (Glass Tube)": {
-                            "type": "template",
-                            "data": "Lay Power Bomb"
+                        "Inside breakable tube": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": []
+                            }
                         },
                         "Ammo Recharge": {
                             "type": "and",
@@ -1160,7 +1155,7 @@
                         }
                     }
                 },
-                "Event - Breakable (Glass Tube)": {
+                "Event - Glass Tube": {
                     "node_type": "event",
                     "heal": false,
                     "coordinates": {
@@ -1210,37 +1205,7 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Event - Breakable (Glass Tube)": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": [
-                                    {
-                                        "type": "template",
-                                        "data": "Lay Bomb"
-                                    },
-                                    {
-                                        "type": "resource",
-                                        "data": {
-                                            "type": "items",
-                                            "name": "Space",
-                                            "amount": 1,
-                                            "negate": false
-                                        }
-                                    },
-                                    {
-                                        "type": "resource",
-                                        "data": {
-                                            "type": "events",
-                                            "name": "Escape",
-                                            "amount": 1,
-                                            "negate": false
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        "Under Tile Groups at room top": {
+                        "Inside breakable tube": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -1276,41 +1241,15 @@
                                                         "amount": 1,
                                                         "negate": false
                                                     }
+                                                },
+                                                {
+                                                    "type": "template",
+                                                    "data": "Simple IBJ"
                                                 }
                                             ]
                                         }
                                     }
                                 ]
-                            }
-                        }
-                    }
-                },
-                "Under Tile Groups at room top": {
-                    "node_type": "generic",
-                    "heal": false,
-                    "coordinates": {
-                        "x": -3352.155887230514,
-                        "y": 2024.5992260917633,
-                        "z": 0
-                    },
-                    "description": "",
-                    "layers": [
-                        "default"
-                    ],
-                    "extra": {},
-                    "connections": {
-                        "Tile Group (SCREWATTACK)": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": []
-                            }
-                        },
-                        "Tile Group (SPEEDBOOST)": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": []
                             }
                         }
                     }
@@ -1321,7 +1260,7 @@
                     "coordinates": {
                         "x": -5596.04754007739,
                         "y": 2102.874516307352,
-                        "z": 0
+                        "z": 0.0
                     },
                     "description": "",
                     "layers": [
@@ -1336,6 +1275,27 @@
                                 "name": "Escape",
                                 "amount": 1,
                                 "negate": true
+                            }
+                        },
+                        "Event - Glass Tube": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Lay Power Bomb"
+                                    },
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "items",
+                                            "name": "Speed",
+                                            "amount": 1,
+                                            "negate": false
+                                        }
+                                    }
+                                ]
                             }
                         },
                         "Dock to Ship Room": {
@@ -1353,13 +1313,6 @@
                                 "comment": null,
                                 "items": []
                             }
-                        },
-                        "Tile Group (SPEEDBOOST)": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": []
-                            }
                         }
                     }
                 },
@@ -1369,7 +1322,7 @@
                     "coordinates": {
                         "x": -3182.5594250967383,
                         "y": -949.8618021006077,
-                        "z": 0
+                        "z": 0.0
                     },
                     "description": "",
                     "layers": [
@@ -1386,6 +1339,10 @@
                                 "negate": true
                             }
                         },
+                        "Event - Glass Tube": {
+                            "type": "template",
+                            "data": "Lay Power Bomb"
+                        },
                         "Dock to Escape Room 3": {
                             "type": "resource",
                             "data": {
@@ -1395,7 +1352,33 @@
                                 "negate": false
                             }
                         },
-                        "Under Tile Groups at room top": {
+                        "Next to Hyper Block": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "events",
+                                            "name": "s080_shipyard:default:block_pbtube",
+                                            "amount": 1,
+                                            "negate": false
+                                        }
+                                    },
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "items",
+                                            "name": "Speed",
+                                            "amount": 1,
+                                            "negate": false
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "Tile Group (SCREWATTACK)": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -1424,13 +1407,8 @@
                                                     }
                                                 },
                                                 {
-                                                    "type": "resource",
-                                                    "data": {
-                                                        "type": "items",
-                                                        "name": "Speed",
-                                                        "amount": 1,
-                                                        "negate": false
-                                                    }
+                                                    "type": "template",
+                                                    "data": "Simple IBJ"
                                                 }
                                             ]
                                         }
@@ -1548,7 +1526,7 @@
                         ]
                     },
                     "connections": {
-                        "Event - Breakable (Glass Tube)": {
+                        "Event - Glass Tube": {
                             "type": "template",
                             "data": "Lay Power Bomb"
                         },
@@ -1557,57 +1535,6 @@
                             "data": {
                                 "comment": null,
                                 "items": []
-                            }
-                        },
-                        "Inside breakable tube": {
-                            "type": "resource",
-                            "data": {
-                                "type": "events",
-                                "name": "s080_shipyard:default:block_pbtube",
-                                "amount": 1,
-                                "negate": false
-                            }
-                        }
-                    }
-                },
-                "Tile Group (SPEEDBOOST)": {
-                    "node_type": "configurable_node",
-                    "heal": false,
-                    "coordinates": {
-                        "x": -3800.0,
-                        "y": 2400.0,
-                        "z": 0.0
-                    },
-                    "description": "",
-                    "layers": [
-                        "default"
-                    ],
-                    "extra": {
-                        "actor_name": "breakabletilegroup_032",
-                        "actor_def": "actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad",
-                        "tile_types": [
-                            "SPEEDBOOST"
-                        ]
-                    },
-                    "connections": {
-                        "Event - Breakable (Glass Tube)": {
-                            "type": "template",
-                            "data": "Lay Power Bomb"
-                        },
-                        "Next to Hyper Block": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": []
-                            }
-                        },
-                        "Inside breakable tube": {
-                            "type": "resource",
-                            "data": {
-                                "type": "events",
-                                "name": "s080_shipyard:default:block_pbtube",
-                                "amount": 1,
-                                "negate": false
                             }
                         }
                     }
@@ -1615,7 +1542,7 @@
             }
         },
         "Gold Chozo Warrior Arena": {
-            "default_node": "Gold Chozo Fight",
+            "default_node": "Start Point",
             "valid_starting_location": true,
             "extra": {
                 "total_boundings": {
@@ -1675,12 +1602,18 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Gold Chozo Fight": {
-                            "type": "and",
+                        "Door to Transport to Itorash": {
+                            "type": "resource",
                             "data": {
-                                "comment": "TODO: fight requirements",
-                                "items": []
+                                "type": "events",
+                                "name": "GoldChozoFight",
+                                "amount": 1,
+                                "negate": false
                             }
+                        },
+                        "Event - Gold Chozo Fight": {
+                            "type": "template",
+                            "data": "Fight Gold Chozo-X"
                         }
                     }
                 },
@@ -1714,21 +1647,27 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Gold Chozo Fight": {
-                            "type": "and",
+                        "Door to Total Recharge Station North": {
+                            "type": "resource",
                             "data": {
-                                "comment": null,
-                                "items": []
+                                "type": "events",
+                                "name": "GoldChozoFight",
+                                "amount": 1,
+                                "negate": false
                             }
+                        },
+                        "Event - Gold Chozo Fight": {
+                            "type": "template",
+                            "data": "Fight Gold Chozo-X"
                         }
                     }
                 },
-                "Gold Chozo Fight": {
+                "Start Point": {
                     "node_type": "generic",
                     "heal": false,
                     "coordinates": {
-                        "x": 5250.0,
-                        "y": 3350.0,
+                        "x": 4814.039621016365,
+                        "y": 3418.6339299533,
                         "z": 0.0
                     },
                     "description": "",
@@ -1740,13 +1679,30 @@
                         "start_point_actor_def": "actordef:actors/logic/startpoint/charclasses/startpoint.bmsad"
                     },
                     "connections": {
-                        "Door to Total Recharge Station North": {
+                        "Door to Transport to Itorash": {
                             "type": "and",
                             "data": {
                                 "comment": null,
                                 "items": []
                             }
-                        },
+                        }
+                    }
+                },
+                "Event - Gold Chozo Fight": {
+                    "node_type": "event",
+                    "heal": false,
+                    "coordinates": {
+                        "x": 5255.04,
+                        "y": 3446.2,
+                        "z": 0.0
+                    },
+                    "description": "",
+                    "layers": [
+                        "default"
+                    ],
+                    "extra": {},
+                    "event_name": "GoldChozoFight",
+                    "connections": {
                         "Door to Transport to Itorash": {
                             "type": "and",
                             "data": {
@@ -1819,7 +1775,7 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Event - Pull Grapple Block (grapplepulloff1x2_001)": {
+                        "Event - Grapple Block": {
                             "type": "resource",
                             "data": {
                                 "type": "items",
@@ -1925,7 +1881,7 @@
                         }
                     }
                 },
-                "Event - Pull Grapple Block (grapplepulloff1x2_001)": {
+                "Event - Grapple Block": {
                     "node_type": "event",
                     "heal": false,
                     "coordinates": {
@@ -2382,7 +2338,24 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Tile Group (BOMB)": {
+                        "Door to Navigation Station (Top)": {
+                            "type": "and",
+                            "data": {
+                                "comment": "Temporary. Will likely need removed with door rando",
+                                "items": [
+                                    {
+                                        "type": "resource",
+                                        "data": {
+                                            "type": "items",
+                                            "name": "Wave",
+                                            "amount": 1,
+                                            "negate": false
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "Tile Group (BOMB) 1": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -2449,13 +2422,11 @@
                     "pickup_index": 135,
                     "major_location": false,
                     "connections": {
-                        "Tile Group (BOMB SPEEDBOOST)": {
-                            "type": "resource",
+                        "Tile Group (BOMB) 2": {
+                            "type": "and",
                             "data": {
-                                "type": "items",
-                                "name": "Morph",
-                                "amount": 1,
-                                "negate": false
+                                "comment": null,
+                                "items": []
                             }
                         }
                     }
@@ -2490,14 +2461,14 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Start Point 2": {
+                        "Door to Navigation Station (Top)": {
                             "type": "and",
                             "data": {
                                 "comment": null,
                                 "items": []
                             }
                         },
-                        "Tile Group (BOMB SPEEDBOOST)": {
+                        "Tile Group (BOMB) 2": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -2537,6 +2508,13 @@
                     "override_default_lock_requirement": null,
                     "connections": {
                         "Start Point 2": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": []
+                            }
+                        },
+                        "Tile Group (BOMB) 2": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -2596,7 +2574,7 @@
                         }
                     }
                 },
-                "Event - Pull Grapple Block (grapplepulloff1x2)": {
+                "Event - Grapple Block": {
                     "node_type": "event",
                     "heal": false,
                     "coordinates": {
@@ -2673,7 +2651,7 @@
                                 ]
                             }
                         },
-                        "Event - Pull Grapple Block (grapplepulloff1x2)": {
+                        "Event - Grapple Block": {
                             "type": "resource",
                             "data": {
                                 "type": "items",
@@ -2682,7 +2660,7 @@
                                 "negate": false
                             }
                         },
-                        "Tile Group (BOMB)": {
+                        "Tile Group (BOMB) 1": {
                             "type": "resource",
                             "data": {
                                 "type": "items",
@@ -2710,13 +2688,6 @@
                         "start_point_actor_def": "actordef:actors/logic/startpoint/charclasses/startpoint.bmsad"
                     },
                     "connections": {
-                        "Door from Tank Room": {
-                            "type": "and",
-                            "data": {
-                                "comment": null,
-                                "items": []
-                            }
-                        },
                         "Door to Navigation Station (Top)": {
                             "type": "and",
                             "data": {
@@ -2726,7 +2697,7 @@
                         }
                     }
                 },
-                "Tile Group (BOMB)": {
+                "Tile Group (BOMB) 1": {
                     "node_type": "configurable_node",
                     "heal": false,
                     "coordinates": {
@@ -2759,12 +2730,12 @@
                         }
                     }
                 },
-                "Tile Group (BOMB SPEEDBOOST)": {
+                "Tile Group (BOMB) 2": {
                     "node_type": "configurable_node",
                     "heal": false,
                     "coordinates": {
-                        "x": 3100.0,
-                        "y": -500.0,
+                        "x": 3400.0,
+                        "y": -250.0,
                         "z": 0.0
                     },
                     "description": "",
@@ -2775,18 +2746,46 @@
                         "actor_name": "breakabletilegroup_046",
                         "actor_def": "actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad",
                         "tile_types": [
-                            "BOMB",
-                            "SPEEDBOOST"
+                            "BOMB"
                         ]
                     },
                     "connections": {
                         "Pickup (Power Bomb Tank)": {
-                            "type": "resource",
+                            "type": "and",
                             "data": {
-                                "type": "items",
-                                "name": "Morph",
-                                "amount": 1,
-                                "negate": false
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Ballspark"
+                                    },
+                                    {
+                                        "type": "or",
+                                        "data": {
+                                            "comment": "Temporary until door rando. Wave likely removed at that point",
+                                            "items": [
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Wave",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "events",
+                                                        "name": "HanubiaTankSpeed",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
                             }
                         },
                         "Door from Tank Room": {
@@ -3003,6 +3002,13 @@
                                 "comment": null,
                                 "items": []
                             }
+                        },
+                        "Event - Prepare Speedboost": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": []
+                            }
                         }
                     }
                 },
@@ -3070,6 +3076,30 @@
                             }
                         },
                         "Tile Group (BOMB)": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": []
+                            }
+                        }
+                    }
+                },
+                "Event - Prepare Speedboost": {
+                    "node_type": "event",
+                    "heal": false,
+                    "coordinates": {
+                        "x": 4800.0,
+                        "y": -100.0,
+                        "z": 0.0
+                    },
+                    "description": "",
+                    "layers": [
+                        "default"
+                    ],
+                    "extra": {},
+                    "event_name": "HanubiaTankSpeed",
+                    "connections": {
+                        "Door to Speedboost Puzzle Room": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -3458,6 +3488,69 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
+                        "Tunnel to EMMI Zone Exit West": {
+                            "type": "or",
+                            "data": {
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "and",
+                                        "data": {
+                                            "comment": null,
+                                            "items": [
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Speed",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "or",
+                                                    "data": {
+                                                        "comment": null,
+                                                        "items": [
+                                                            {
+                                                                "type": "and",
+                                                                "data": {
+                                                                    "comment": null,
+                                                                    "items": [
+                                                                        {
+                                                                            "type": "template",
+                                                                            "data": "Use Spin Boost"
+                                                                        },
+                                                                        {
+                                                                            "type": "resource",
+                                                                            "data": {
+                                                                                "type": "tricks",
+                                                                                "name": "Speedbooster",
+                                                                                "amount": 1,
+                                                                                "negate": false
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "tricks",
+                                                                    "name": "Speedbooster",
+                                                                    "amount": 3,
+                                                                    "negate": false
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
                         "Start Point": {
                             "type": "and",
                             "data": {
@@ -3557,32 +3650,6 @@
                                         }
                                     },
                                     {
-                                        "type": "and",
-                                        "data": {
-                                            "comment": null,
-                                            "items": [
-                                                {
-                                                    "type": "resource",
-                                                    "data": {
-                                                        "type": "tricks",
-                                                        "name": "Speedbooster",
-                                                        "amount": 1,
-                                                        "negate": false
-                                                    }
-                                                },
-                                                {
-                                                    "type": "resource",
-                                                    "data": {
-                                                        "type": "items",
-                                                        "name": "Speed",
-                                                        "amount": 1,
-                                                        "negate": false
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    {
                                         "type": "template",
                                         "data": "Simple IBJ"
                                     }
@@ -3632,7 +3699,7 @@
                 "asset_id": "collision_camera_013"
             },
             "nodes": {
-                "Dock to Total Recharge Station East (dooremmy_002)": {
+                "Dock to Total Recharge Station East (Upper)": {
                     "node_type": "dock",
                     "heal": false,
                     "coordinates": {
@@ -3652,13 +3719,13 @@
                     "default_connection": {
                         "world_name": "Hanubia",
                         "area_name": "Total Recharge Station East",
-                        "node_name": "Dock to EMMI Zone Exit East (dooremmy_002)"
+                        "node_name": "Dock to EMMI Zone Exit East (Upper)"
                     },
                     "default_dock_weakness": "EMMI Door",
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Event - Break PB Tube (block_pbtube_2)": {
+                        "Event - Break EMMI Zone Exit East PB Tube": {
                             "type": "template",
                             "data": "Lay Power Bomb"
                         },
@@ -3673,7 +3740,7 @@
                         }
                     }
                 },
-                "Dock to Total Recharge Station East (dooremmy_003)": {
+                "Dock to Total Recharge Station East (Lower)": {
                     "node_type": "dock",
                     "heal": false,
                     "coordinates": {
@@ -3693,7 +3760,7 @@
                     "default_connection": {
                         "world_name": "Hanubia",
                         "area_name": "Total Recharge Station East",
-                        "node_name": "Dock to EMMI Zone Exit East (dooremmy_003)"
+                        "node_name": "Dock to EMMI Zone Exit East (Lower)"
                     },
                     "default_dock_weakness": "EMMI Door",
                     "override_default_open_requirement": null,
@@ -3708,7 +3775,7 @@
                         }
                     }
                 },
-                "Event - Break PB Tube (block_pbtube_2)": {
+                "Event - Break EMMI Zone Exit East PB Tube": {
                     "node_type": "event",
                     "heal": false,
                     "coordinates": {
@@ -3726,7 +3793,7 @@
                     },
                     "event_name": "s080_shipyard:default:block_pbtube_2",
                     "connections": {
-                        "Dock to Total Recharge Station East (dooremmy_002)": {
+                        "Dock to Total Recharge Station East (Upper)": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -3765,7 +3832,7 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Dock to Total Recharge Station East (dooremmy_002)": {
+                        "Dock to Total Recharge Station East (Upper)": {
                             "type": "resource",
                             "data": {
                                 "type": "events",
@@ -3773,10 +3840,6 @@
                                 "amount": 1,
                                 "negate": false
                             }
-                        },
-                        "Event - Break PB Tube (block_pbtube_2)": {
-                            "type": "template",
-                            "data": "Lay Power Bomb"
                         }
                     }
                 },
@@ -3803,7 +3866,7 @@
                     "override_default_open_requirement": null,
                     "override_default_lock_requirement": null,
                     "connections": {
-                        "Dock to Total Recharge Station East (dooremmy_003)": {
+                        "Dock to Total Recharge Station East (Lower)": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -3916,7 +3979,7 @@
                         }
                     }
                 },
-                "Event - Red Chozo Warrior Fight": {
+                "Event - Red Chozo Fight": {
                     "node_type": "event",
                     "heal": false,
                     "coordinates": {
@@ -3956,7 +4019,8 @@
                         "pickup_type": "emmi",
                         "actor_def": "actors/characters/emmyshipyard/charclasses/emmyshipyard.bmsad",
                         "string_key": "GUI_ITEM_ACQUIRED_POWER_BOMB",
-                        "callback_function": "OnEmmyShipyardAbilityObtained"
+                        "callback_function": "OnEmmyShipyardAbilityObtained",
+                        "boss_hint_name": "E.M.M.I.-07PB"
                     },
                     "pickup_index": 137,
                     "major_location": true,
@@ -4005,12 +4069,9 @@
                                 "negate": false
                             }
                         },
-                        "Event - Red Chozo Warrior Fight": {
-                            "type": "and",
-                            "data": {
-                                "comment": "TODO: fight requirements",
-                                "items": []
-                            }
+                        "Event - Red Chozo Fight": {
+                            "type": "template",
+                            "data": "Fight Red Chozo-X"
                         }
                     }
                 }
@@ -4051,7 +4112,7 @@
                 "asset_id": "collision_camera_015"
             },
             "nodes": {
-                "Dock to EMMI Zone Exit East (dooremmy_002)": {
+                "Dock to EMMI Zone Exit East (Upper)": {
                     "node_type": "dock",
                     "heal": false,
                     "coordinates": {
@@ -4071,7 +4132,7 @@
                     "default_connection": {
                         "world_name": "Hanubia",
                         "area_name": "EMMI Zone Exit East",
-                        "node_name": "Dock to Total Recharge Station East (dooremmy_002)"
+                        "node_name": "Dock to Total Recharge Station East (Upper)"
                     },
                     "default_dock_weakness": "EMMI Door",
                     "override_default_open_requirement": null,
@@ -4086,7 +4147,7 @@
                         }
                     }
                 },
-                "Dock to EMMI Zone Exit East (dooremmy_003)": {
+                "Dock to EMMI Zone Exit East (Lower)": {
                     "node_type": "dock",
                     "heal": false,
                     "coordinates": {
@@ -4106,7 +4167,7 @@
                     "default_connection": {
                         "world_name": "Hanubia",
                         "area_name": "EMMI Zone Exit East",
-                        "node_name": "Dock to Total Recharge Station East (dooremmy_003)"
+                        "node_name": "Dock to Total Recharge Station East (Lower)"
                     },
                     "default_dock_weakness": "EMMI Door",
                     "override_default_open_requirement": null,
@@ -4179,7 +4240,7 @@
                         "start_point_actor_def": "actordef:actors/props/weightactivatedplatform_total/charclasses/weightactivatedplatform_total.bmsad"
                     },
                     "connections": {
-                        "Dock to EMMI Zone Exit East (dooremmy_003)": {
+                        "Dock to EMMI Zone Exit East (Lower)": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -4208,7 +4269,7 @@
                         ]
                     },
                     "connections": {
-                        "Dock to EMMI Zone Exit East (dooremmy_003)": {
+                        "Dock to EMMI Zone Exit East (Lower)": {
                             "type": "resource",
                             "data": {
                                 "type": "events",
@@ -4218,10 +4279,19 @@
                             }
                         },
                         "Tile Group (POWERBOMB) 2": {
-                            "type": "and",
+                            "type": "or",
                             "data": {
                                 "comment": null,
-                                "items": []
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Use Spin Boost"
+                                    },
+                                    {
+                                        "type": "template",
+                                        "data": "Simple IBJ"
+                                    }
+                                ]
                             }
                         },
                         "Tile Group (POWERBOMB) 3": {
@@ -4255,7 +4325,7 @@
                         ]
                     },
                     "connections": {
-                        "Dock to EMMI Zone Exit East (dooremmy_002)": {
+                        "Dock to EMMI Zone Exit East (Upper)": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -4291,7 +4361,7 @@
                         ]
                     },
                     "connections": {
-                        "Dock to EMMI Zone Exit East (dooremmy_003)": {
+                        "Dock to EMMI Zone Exit East (Lower)": {
                             "type": "and",
                             "data": {
                                 "comment": null,
@@ -4864,6 +4934,32 @@
                                                 }
                                             ]
                                         }
+                                    },
+                                    {
+                                        "type": "and",
+                                        "data": {
+                                            "comment": null,
+                                            "items": [
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "tricks",
+                                                        "name": "SWJ",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Morph",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                }
+                                            ]
+                                        }
                                     }
                                 ]
                             }
@@ -5182,8 +5278,11 @@
                             }
                         },
                         "Tile Group (SCREWATTACK) 1": {
-                            "type": "template",
-                            "data": "Use Spin Boost"
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": []
+                            }
                         }
                     }
                 },
@@ -5619,7 +5718,7 @@
                     "coordinates": {
                         "x": 13700.103071531643,
                         "y": -8278.62296433725,
-                        "z": 0
+                        "z": 0.0
                     },
                     "description": "",
                     "layers": [
@@ -5653,12 +5752,24 @@
                                         }
                                     },
                                     {
-                                        "type": "resource",
+                                        "type": "and",
                                         "data": {
-                                            "type": "items",
-                                            "name": "Speed",
-                                            "amount": 1,
-                                            "negate": false
+                                            "comment": null,
+                                            "items": [
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Speed",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "template",
+                                                    "data": "Use Spin Boost"
+                                                }
+                                            ]
                                         }
                                     },
                                     {

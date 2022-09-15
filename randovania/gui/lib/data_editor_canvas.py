@@ -60,6 +60,7 @@ class DataEditorCanvas(QtWidgets.QWidget):
     world: World | None = None
     area: Area | None = None
     highlighted_node: Node | None = None
+    connected_node: Node | None = None
     _background_image: QtGui.QImage | None = None
     world_bounds: BoundsFloat
     area_bounds: BoundsFloat
@@ -72,7 +73,7 @@ class DataEditorCanvas(QtWidgets.QWidget):
     border_y: float = 75
     canvas_size: QSizeF
 
-    _next_node_location: NodeLocation = NodeLocation(0, 0, 0)
+    _next_node_location: NodeLocation = NodeLocation(0.0, 0.0, 0.0)
     CreateNodeRequest = Signal(NodeLocation)
     MoveNodeRequest = Signal(Node, NodeLocation)
     SelectNodeRequest = Signal(Node)
@@ -167,7 +168,7 @@ class DataEditorCanvas(QtWidgets.QWidget):
         else:
             min_x, min_y = math.inf, math.inf
             max_x, max_y = -math.inf, -math.inf
-            for node in area.nodes:
+            for node in area.actual_nodes:
                 if node.location is None:
                     continue
                 min_x = min(min_x, node.location.x)
@@ -204,6 +205,10 @@ class DataEditorCanvas(QtWidgets.QWidget):
         self.highlighted_node = node
         self.update()
 
+    def set_connected_node(self, node: Node | None):
+        self.connected_node = node
+        self.update()
+
     def set_state(self, state: State | None):
         self.state = state
         self.highlighted_node = state.node
@@ -235,7 +240,7 @@ class DataEditorCanvas(QtWidgets.QWidget):
     def _nodes_at_position(self, qt_local_position: QPointF):
         return [
             node
-            for node in self.area.nodes
+            for node in self.area.actual_nodes
             if node.location is not None and (
                     self.game_loc_to_qt_local(node.location) - qt_local_position).manhattanLength() < 10
         ]
@@ -369,7 +374,7 @@ class DataEditorCanvas(QtWidgets.QWidget):
     def qt_local_to_game_loc(self, pos: QPointF) -> NodeLocation:
         return NodeLocation((pos.x() / self.scale) + self.area_bounds.min_x,
                             self.area_bounds.max_y - (pos.y() / self.scale),
-                            0)
+                            0.0)
 
     def get_area_canvas_offset(self):
         return QPointF(
@@ -384,6 +389,7 @@ class DataEditorCanvas(QtWidgets.QWidget):
         self._update_scale_variables()
 
         painter = QtGui.QPainter(self)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
         painter.setPen(QtGui.Qt.white)
         painter.setFont(QtGui.QFont("Arial", 10))
 
@@ -420,18 +426,23 @@ class DataEditorCanvas(QtWidgets.QWidget):
             ]
             painter.drawPolygon(points, QtGui.Qt.FillRule.OddEvenFill)
 
-        def draw_connections_from(source_node: Node):
+        pen_widget = painter.pen().width()
+
+        def draw_connections_from(source_node: Node, highlighted_target: Node | None):
             if source_node.location is None:
                 return
 
             for target_node, requirement in area.connections[source_node].items():
-                if target_node.location is None:
+                if target_node.location is None or target_node.is_derived_node:
                     continue
 
                 if not self.is_connection_visible(requirement):
                     painter.setPen(QtGui.Qt.darkGray)
                 elif source_node == self.highlighted_node or self.state is not None:
-                    painter.setPen(QtGui.Qt.white)
+                    if highlighted_target is target_node:
+                        painter.setPen(QtGui.QPen(QtGui.QColor(255, 200, 255), pen_widget + 2))
+                    else:
+                        painter.setPen(QtGui.Qt.white)
                 else:
                     painter.setPen(QtGui.Qt.gray)
 
@@ -465,16 +476,16 @@ class DataEditorCanvas(QtWidgets.QWidget):
         painter.setBrush(brush)
 
         if self._show_all_connections_action.isChecked() or self.visible_nodes is not None:
-            for node in area.nodes:
+            for node in area.actual_nodes:
                 if node != self.highlighted_node:
-                    draw_connections_from(node)
+                    draw_connections_from(node, None)
 
         if self.highlighted_node is not None and self.highlighted_node in area.nodes:
-            draw_connections_from(self.highlighted_node)
+            draw_connections_from(self.highlighted_node, self.connected_node)
 
         painter.setPen(QtGui.Qt.white)
 
-        for node in area.nodes:
+        for node in area.actual_nodes:
             if node.location is None:
                 continue
 

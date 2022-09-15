@@ -85,16 +85,12 @@ class GamePresetDescriber:
                 major_items.maximum_random_starting_items,
             )
 
-        template_strings["Logic Settings"].append(configuration.trick_level.pretty_description)
+        template_strings["Logic Settings"].append(configuration.trick_level.pretty_description(game_description))
         template_strings["Logic Settings"].append(
             f"Dangerous Actions: {configuration.logical_resource_action.long_name}")
 
         if randomization_mode != RandomizationMode.FULL:
             template_strings["Item Placement"].append(f"Randomization Mode: {randomization_mode.value}")
-        if configuration.multi_pickup_placement:
-            template_strings["Item Placement"].append("Multi-pickup placement")
-            if configuration.multi_pickup_new_weighting:
-                template_strings["Item Placement"].append("New multi-pickup weighting")
 
         # Starting Items
         if random_starting_items != "0":
@@ -128,10 +124,10 @@ class GamePresetDescriber:
 
         template_strings["Gameplay"].append(f"Starting Location: {starting_location}")
 
-        # Dock Rando
+        # Dock Locks
         dock_mode = configuration.dock_rando.mode
         if dock_mode != DockRandoMode.VANILLA:
-            template_strings["Door Rando"].append(f"Mode: {dock_mode.long_name} ({dock_mode.description})")
+            template_strings["Door Locks"].append(f"Mode: {dock_mode.long_name} ({dock_mode.description})")
 
         return template_strings
 

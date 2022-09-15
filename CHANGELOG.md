@@ -5,10 +5,75 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.5.0] - 2022-07-01
+## [5.1.0] - 2022-10-01
+
+- Nothing yet.
+
+### Cave Story
+
+- Nothing.
+
+### Metroid Dread
+
+- Nothing.
+
+### Metroid Prime
+
+- Nothing.
+
+### Metroid Prime 2: Echoes
+
+- Nothing.
+
+## [5.0.1] - 2022-09-??
+
+- Fixed: The README and front page now lists Metroid Dread as a supported game.
+
+### Metroid Dread
+
+- Fixed: The differences tab no longer mentions Kraid and Corpius checkpoints being removed, as that's not a thing.
+- Fixed: Missing credits in Randovania itself for SkyTheLucario's new map icons.
+
+## [5.0.0] - 2022-09-10
+
+- **Major** - Added: Metroid Dread has been added with full single-player support.
+- **Major** - Added: An installer is now provided for Windows. With it rdvgame files are associated to open with Randovania, for ease of use. A shortcut for opening just the auto tracker is also provided.
+- **Major** - Changed: The UI has been significantly revamped, with each game having their own section and an easy to use selector.
+- Changed: The multi-pickup placement, using the new weighting, is now the default mode. The old behavior has been removed.
+- Changed: Error messages when a permalink is incompatible have been improved with more details.
+- Changed: The Customize Preset dialog now creates each tab as you click then. This means the dialog is now faster to first open, but there's a short delay when opening certain tabs.
+- Changed: Progressive items now have their proper count as the simplified shuffled option.
+- Fixed: Hints can now once again be placed during generation.
+- Fixed: Exceptions when exporting a game now use the improved error dialog.
+- Fixed: Gracefully handle unsupported old versions of the preferences file.
+- Fixed: Excluding all copies of a progressive item, or the non-progressive equivalent, no longer hides them from the editor.
+- Fixed: Changing the selected backend while it's being used should no longer cause issues.
+- Fixed: Unexpected exceptions during generation now properly display an error message.
+- Fixed: Trick usage in preset summary now ignores tricks that are hidden from the UI.
+- Fixed: /database-inspect command no longer shows EventPickup nodes.
+- Fixed: Data Editor is now correctly named Data Editor instead of Data Visualizer.
+
+### Cave Story
+
+- The hints fix affects Cave Story.
+
+### Metroid Prime
+
+- **Major** - Added: Enemy Attribute Rando. Enemy stat values such as speed and scale can be randomized within a range you specify.
+
+### Metroid Prime 2: Echoes
+
+- The hints fix affects Metroid Prime 2: Echoes.
+
+## [4.5.1] - 2022-08-03
+
+- Fixed: The History and Audit Log are now properly updated when joining a game session.
+- Fixed: Your connection state is properly updated when joining a game session.
+
+## [4.5.0] - 2022-08-01
 
 - Added: Preferences are now saved separately for each version. This means newer Randovania versions don't break the preferences of older versions. 
-- Added: Exporting presets now fills in default file name
+- Added: Exporting presets now fills in default file name.
 - Added: Logging messages when receiving events from the server.
 - Changed: Internal changes to server for hopefully less expired sessions.
 - Fixed: The discord bot no longer includes the lock nodes.
@@ -27,33 +92,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Metroid Prime
 
-- **Major** - Added: Door rando. Door locks can now be randomized, with many options to fine-tune your experience.
+- **Major** - Added: Door lock rando. Door locks can now be randomized, with many options to fine-tune your experience. This feature is incompatible with multiworld.
+- **Major** - Added: Option to show icons on the map for each uncollected item in the game under "Customize Cosmetic Options..."
 
 #### Patcher Changes
 
-- Fixed: Exporting with `QoL Cosmetic = False`
+- Fixed: Exporting with `QoL Cosmetic` disabled
+- Fixed: Zoid's deadname appearing in credits
 - Changed: Patches now consume fewer layers on average
 
 #### Logic Database
 
-- Added: Advancing through rooms containing Trooper Pirates now requires either the proper beam(s), basic defensive capabilities (varies slightly by room), or Combat (Intermediate), except where noted. Rooms affected:
-    - Elite Control
-    - Elite Research
-    - Ore Processing - Climbing the room vanilla now requires Power Beam. Ore Processing climb without Power Beam now requires Combat (Advanced).
-    - Central Dynamo
-    - Omega Research
-    - Mine Security Station
-    - Metroid Quarantine B - The Standable Terrain method of traversing the room now requires Combat (Advanced) without Plasma Beam.
-    - Phazon Processing Center - This room is only affected after picking up the item in Plasma Processing.
-- Added: Advancing through rooms containing Scatter Bombus now requires Morph Ball, Wave Beam, Movement tricks, or basic defensive capabilities. Rooms affected:
-    - Ice Ruins Access
-    - Canyon Entryway
-    - Temple Entryway
-    - Hydra Lab Entryway
-    - West Tower Entrance
-    - Aether Lab Entryway
-    - Lower Edge Tunnel
-    - Lake Tunnel
+- Fixed: Phazon Mining Tunnel now accounts only for Bombs when coming from Fungal Hall B
+- Fixed: The Central Dynamo drone event is now accounted for to go through Dynamo Access
+- Added: Beginner Wall Boost to lock onto the spider track in Metroid Quarantine A
+- Added: Advancing through rooms containing Trooper Pirates now requires either the proper beam(s), basic defensive capabilities (varies slightly by room), or Combat (Intermediate) where appropriate
+- Added: Advancing through rooms containing Scatter Bombus now requires Morph Ball, Wave Beam, Movement tricks, or basic defensive capabilities
 
 ### Metroid Prime 2: Echoes
 
