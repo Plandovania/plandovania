@@ -155,7 +155,7 @@ def test_decode(patches_with_data, default_echoes_configuration):
     encoded, expected = patches_with_data
 
     game = expected.game
-    pool = pool_creator.calculate_pool_results(default_echoes_configuration, game.resource_database)
+    pool = pool_creator.calculate_pool_results(default_echoes_configuration, game)
 
     # Run
     decoded = game_patches_serializer.decode_single(0, {0: pool}, game, encoded, default_echoes_configuration)
@@ -210,7 +210,6 @@ async def test_round_trip_generated_patches(default_preset):
     preset = dataclasses.replace(
         default_preset,
         uuid=uuid.UUID('b41fde84-1f57-4b79-8cd6-3e5a78077fa6'),
-        base_preset_uuid=default_preset.uuid,
         configuration=dataclasses.replace(
             default_preset.configuration,
             trick_level=TrickLevelConfiguration(

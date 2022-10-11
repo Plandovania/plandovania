@@ -57,8 +57,11 @@ Extra - asset_id: collision_camera_001
       Trivial
   > Wide Beam Block - Adjacent
       Any of the following:
-          Grapple Beam or Spider Magnet or Simple IBJ or Use Spin Boost
+          Spider Magnet or Simple IBJ or Use Spin Boost
           Flash Shift and Walljump (Beginner)
+          Grapple Beam and Movement (Beginner)
+  > Event - Speed Booster blocks Destroyed
+      Speed Booster
 
 > Door to Transport to Cataris; Heals? False
   * Layers: default
@@ -69,12 +72,16 @@ Extra - asset_id: collision_camera_001
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
+  > Event - Push Wide Beam Block
+      Wave Beam and Push Wide Beam Block
   > Wide Beam Block - Adjacent
       After Dairon - Wide Beam Block Cataris Transport
   > Wide Beam Block - Above
       Any of the following:
-          Grapple Beam or Spider Magnet or Space Jump
-          Flash Shift and Walljump (Beginner)
+          Grapple Beam or Spider Magnet or Space Jump or Simple IBJ
+          All of the following:
+              Speed Booster or Walljump (Beginner)
+              Flash Shift or Use Spin Boost
 
 > Pickup (Missile Tank); Heals? False
   * Layers: default
@@ -105,7 +112,9 @@ Extra - asset_id: collision_camera_001
   > Top Floor
       Any of the following:
           Space Jump or Walljump (Advanced) or Simple IBJ
-          Flash Shift and Walljump (Beginner)
+          All of the following:
+              Walljump (Beginner)
+              Flash Shift or Use Spin Boost
 
 > Tile Group (POWERBEAM); Heals? False
   * Layers: default
@@ -131,8 +140,14 @@ Extra - asset_id: collision_camera_001
       Trivial
   > Door to Transport to Cataris
       After Dairon - Wide Beam Block Cataris Transport
+  > Tile Group (POWERBEAM)
+      Any of the following:
+          Space Jump or Simple IBJ
+          Walljump (Beginner) and Use Spin Boost
   > Event - Push Wide Beam Block
-      Push Wide Beam Block
+      Any of the following:
+          Push Wide Beam Block
+          Diffusion Abuse (Intermediate) and Shoot Diffusion Beam
 
 > Wide Beam Block - Above; Heals? False
   * Layers: default
@@ -140,10 +155,18 @@ Extra - asset_id: collision_camera_001
       Trivial
   > Tile Group (POWERBEAM)
       Trivial
+  > Wide Beam Block - Adjacent
+      After Dairon - Teleport To Artaria Speed Blocks Destroyed
   > Top Floor
       After Dairon - Teleport To Artaria Speed Blocks Destroyed
   > Event - Speed Booster blocks Destroyed
-      Speed Booster
+      All of the following:
+          Speed Booster
+          Any of the following:
+              Grapple Beam or Spider Magnet or Space Jump or Simple IBJ
+              All of the following:
+                  Walljump (Beginner)
+                  Flash Shift or Use Spin Boost
 
 > Top Floor; Heals? False
   * Layers: default
@@ -177,7 +200,9 @@ Extra - asset_id: collision_camera_002
   > Dock to EMMI Zone Exit East
       After Dairon - Wide Beam Block by Save Room
   > Above Crumble Blocks
-      Spider Magnet or Walljump (Beginner) or Simple IBJ or Use Spin Boost
+      Trivial
+  > Event - Push Wide Beam Block
+      Wave Beam and Movement (Beginner) and Push Wide Beam Block
 
 > Dock to EMMI Zone Exit East; Heals? False
   * Layers: default
@@ -187,7 +212,9 @@ Extra - asset_id: collision_camera_002
   > Door to Save Station East
       After Dairon - Wide Beam Block by Save Room
   > Event - Push Wide Beam Block
-      Push Wide Beam Block
+      Any of the following:
+          Push Wide Beam Block
+          Diffusion Abuse (Intermediate) and Shoot Diffusion Beam
 
 > Tile Group (WEIGHT); Heals? False
   * Layers: default
@@ -223,7 +250,9 @@ Extra - asset_id: collision_camera_002
 > Above Crumble Blocks; Heals? False
   * Layers: default
   > Door to Save Station East
-      Grapple Beam or Spider Magnet or Walljump (Beginner)
+      Any of the following:
+          Spider Magnet or Space Jump or Walljump (Beginner) or Simple IBJ
+          Grapple Beam and Movement (Beginner)
   > Tile Group (WEIGHT)
       Trivial
   > Tile Group (BOMB)
@@ -253,7 +282,7 @@ Extra - asset_id: collision_camera_003
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Elevator to Ferenia - East Transport to Darion
       After Dairon - Pull Grapple Block below Ferenia Elevator
-  > Event - Pull Grapple Block
+  > Event - Grapple Block
       Grapple Beam
 
 > Elevator to Ferenia - East Transport to Darion; Heals? False; Spawn Point
@@ -267,8 +296,10 @@ Extra - asset_id: collision_camera_003
   * Extra - start_point_actor_def: actordef:actors/props/weightactivatedplatform_elevator/charclasses/weightactivatedplatform_elevator.bmsad
   > Dock to EMMI Zone Exit East
       After Dairon - Pull Grapple Block below Ferenia Elevator
+  > Event - Grapple Block
+      Break/Move Grapple Block from Behind
 
-> Event - Pull Grapple Block; Heals? False
+> Event - Grapple Block; Heals? False
   * Layers: default
   * Event Dairon - Pull Grapple Block below Ferenia Elevator
   > Dock to EMMI Zone Exit East
@@ -288,8 +319,12 @@ Extra - asset_id: collision_camera_004
   > Pickup (Missile Tank)
       All of the following:
           Morph Ball
-          Grapple Beam or Space Jump or Speed Booster or Simple IBJ
-  > Event - Blob (db_reg_b1_005)
+          Any of the following:
+              Grapple Beam or Space Jump or Speed Booster or Simple IBJ
+              All of the following:
+                  Flash Shift
+                  Lay Cross Bomb or Use Spin Boost
+  > Event - Blob
       Lay Bomb or Shoot Beam
   > Dock to Hub Access
       Trivial
@@ -304,10 +339,10 @@ Extra - asset_id: collision_camera_004
   * Extra - right_shield_entity: Root:pScenario:rEntitiesLayer:dctSublayers:default:dctActors:doorwidebeam_002
   * Extra - right_shield_def: actordef:actors/props/doorwidebeam/charclasses/doorwidebeam.bmsad
   > Dock to Yellow EMMI Introduction
-      After Dairon - db_reg_b1_005
+      Flash Shift or After Dairon - Big Hub Blob
   > Door to Total Recharge Station East
       Trivial
-  > Event - Blob (db_reg_b1_005)
+  > Event - Blob
       Shoot Diffusion or Wave
 
 > Door to Total Recharge Station East; Heals? False
@@ -332,17 +367,17 @@ Extra - asset_id: collision_camera_004
   > Dock to Yellow EMMI Introduction
       Trivial
 
-> Event - Blob (db_reg_b1_005); Heals? False
+> Event - Blob; Heals? False
   * Layers: default
-  * Event Dairon - db_reg_b1_005
+  * Event Dairon - Big Hub Blob
   * Extra - actor_name: db_reg_b1_005
   * Extra - actor_def: actordef:actors/props/db_reg_b1_004/charclasses/db_reg_b1_004.bmsad
   > Door to Wide Beam Room
       Trivial
 
-> Event - Pull Grapple Block (grapplepulloff1x2_007); Heals? False
+> Event - Grapple Block; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2_007
+  * Event Dairon - Big Hub Grapple Block
   * Extra - actor_name: grapplepulloff1x2_007
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
   > Dock to Hub Access
@@ -363,7 +398,7 @@ Extra - asset_id: collision_camera_004
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('BOMB',)
   > Dock to Hub Access
-      Morph Ball and After Dairon - grapplepulloff1x2_007
+      Morph Ball and After Dairon - Big Hub Grapple Block
   > Tunnel to Hub Access
       Morph Ball
 
@@ -371,15 +406,17 @@ Extra - asset_id: collision_camera_004
   * Layers: default
   * Open Passage to Hub Access/Dock to Big Hub
   > Dock to Yellow EMMI Introduction
-      After Dairon - Wide Beam Block Hub or Simple IBJ or Use Spin Boost
+      Speed Booster or After Dairon - Wide Beam Block Hub or Simple IBJ or Use Spin Boost
   > Door to Total Recharge Station East
       Trivial
-  > Event - Pull Grapple Block (grapplepulloff1x2_007)
+  > Event - Grapple Block
       Grapple Beam
   > Tile Group (BOMB)
-      Morph Ball and After Dairon - grapplepulloff1x2_007
+      Morph Ball and After Dairon - Big Hub Grapple Block
   > Event - Push Wide Beam Block
-      Push Wide Beam Block
+      Any of the following:
+          Push Wide Beam Block
+          Diffusion Abuse (Intermediate) and Shoot Diffusion Beam
 
 > Tunnel to Hub Access; Heals? False
   * Layers: default
@@ -403,22 +440,22 @@ Extra - asset_id: collision_camera_005
   * EMMI Door to Hub Access/Dock to EMMI Zone Exit East
   * Extra - actor_name: dooremmy_001
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
-  > Door from Yellow EMMI Introduction
+  > Door to Yellow EMMI Introduction
       Trivial
-  > Tile Group (SPEEDBOOST)
-      Trivial
+  > Event - Ferenia Transport Speed Blocks Destroyed
+      Speed Booster
 
 > Dock to East Transport to Ferenia; Heals? False
   * Layers: default
   * EMMI Door to East Transport to Ferenia/Dock to EMMI Zone Exit East
   * Extra - actor_name: dooremmy_002
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
-  > Tile Group (SPEEDBOOST)
-      Trivial
+  > Dock to Hub Access
+      After Dairon - Ferenia Transport Speed Blocks Destroyed
 
-> Door from Yellow EMMI Introduction; Heals? False
+> Door to Yellow EMMI Introduction; Heals? False
   * Layers: default
-  * Access Closed to Yellow EMMI Introduction/Door to EMMI Zone Exit East
+  * Access Locked to Yellow EMMI Introduction/Door to EMMI Zone Exit East
   * Extra - actor_name: doorchargeclosed_000
   * Extra - actor_def: actordef:actors/props/doorchargeclosed/charclasses/doorchargeclosed.bmsad
   * Extra - left_shield_entity: {EMPTY}
@@ -428,15 +465,9 @@ Extra - asset_id: collision_camera_005
   > Dock to Hub Access
       Trivial
 
-> Tile Group (SPEEDBOOST); Heals? False
+> Event - Ferenia Transport Speed Blocks Destroyed; Heals? False
   * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_025
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Dock to Hub Access
-      Trivial
+  * Event Dairon - Ferenia Transport Speed Blocks Destroyed
   > Dock to East Transport to Ferenia
       Trivial
 
@@ -469,7 +500,7 @@ Extra - asset_id: collision_camera_006
 
 > Door to Teleport to Cataris; Heals? False
   * Layers: default
-  * Power Beam Door to Teleport to Cataris/Door to Wide Beam Room
+  * Missile Door to Teleport to Cataris/Door to Wide Beam Room
   * Extra - actor_name: doorpowerpower_021
   * Extra - actor_def: actordef:actors/props/doorpowerpower/charclasses/doorpowerpower.bmsad
   * Extra - left_shield_entity: Root:pScenario:rEntitiesLayer:dctSublayers:default:dctActors:doorshieldmissile_000
@@ -486,7 +517,7 @@ Extra - asset_id: collision_camera_006
   > Pickup (Wide Beam)
       Trivial
   > Door to Teleport to Cataris
-      Morph Ball
+      Morph Ball and After Dairon - Power Switch 1
   > Tile Group (POWERBEAM) 4
       Trivial
 
@@ -557,13 +588,11 @@ Extra - asset_id: collision_camera_007
 
 > Event - Electric Generator; Heals? False; Spawn Point
   * Layers: default
-  * Event Dairon - powergenerator_001
+  * Event Dairon - Power Switch 1
   * Extra - actor_name: powergenerator_001
   * Extra - actor_def: actordef:actors/props/powergenerator/charclasses/powergenerator.bmsad
   * Extra - start_point_actor_name: powergenerator_001_platform
   * Extra - start_point_actor_def: actordef:actors/props/weightactivatedplatform_generator/charclasses/weightactivatedplatform_generator.bmsad
-  > Door to Teleport to Cataris
-      Trivial
   > Start Point
       Trivial
 
@@ -572,7 +601,7 @@ Extra - asset_id: collision_camera_007
   * Extra - start_point_actor_name: powergeneratorengine_001
   * Extra - start_point_actor_def: actordef:actors/props/powergeneratorengine/charclasses/powergeneratorengine.bmsad
   > Door to Teleport to Cataris
-      Trivial
+      After Dairon - Power Switch 1
   > Event - Electric Generator
       Trivial
   > Tunnel to Teleport to Cataris
@@ -612,10 +641,12 @@ Extra - asset_id: collision_camera_008
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Door to Wide Beam Room
+      After Dairon - Power Switch 1
+  > Tile Group (POWERBEAM) 1
       Trivial
   > Tile Group (POWERBEAM) 2
       Trivial
-  > Event - Blob through wall (db_dif_b1_001)
+  > Event - Blob, through wall
       Wave Beam
 
 > Door to Power Switch 1; Heals? False
@@ -628,7 +659,7 @@ Extra - asset_id: collision_camera_008
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Door to Wide Beam Room
-      Trivial
+      After Dairon - Power Switch 1
   > Tile Group (POWERBEAM) 1
       Trivial
 
@@ -644,11 +675,11 @@ Extra - asset_id: collision_camera_008
   > Door to Total Recharge Station East
       Trivial
   > Door to Power Switch 1
-      Trivial
+      After Dairon - Power Switch 1
 
-> Event - Blob from shaft (db_dif_b1_001); Heals? False
+> Event - Blob, from teleporter; Heals? False
   * Layers: default
-  * Event Dairon - db_dif_b1_001
+  * Event Dairon - Teleport to Cataris Blob
   * Extra - actor_name: db_dif_b1_001
   * Extra - actor_def: actordef:actors/props/db_dif_b1_001/charclasses/db_dif_b1_001.bmsad
   > Bottom-Left Corner
@@ -663,10 +694,10 @@ Extra - asset_id: collision_camera_008
   * Extra - target_spawn_point: teleport_baselab_000_platform
   * Extra - start_point_actor_name: teleport_magma_000_platform
   * Extra - start_point_actor_def: actordef:actors/props/weightactivatedplatform_teleport/charclasses/weightactivatedplatform_teleport.bmsad
-  > Event - Blob from shaft (db_dif_b1_001)
+  > Event - Blob, from teleporter
       Shoot Diffusion or Wave
   > Bottom-Left Corner
-      After Dairon - db_dif_b1_001
+      After Dairon - Teleport to Cataris Blob
 
 > Tile Group (POWERBEAM) 1; Heals? False
   * Layers: default
@@ -675,10 +706,12 @@ Extra - asset_id: collision_camera_008
   * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('POWERBEAM',)
+  > Door to Total Recharge Station East
+      Trivial
   > Door to Power Switch 1
-      Trivial
+      After Dairon - Power Switch 1
   > Tunnel to Power Switch 1
-      Trivial
+      Can Slide
 
 > Tile Group (POWERBEAM) 2; Heals? False
   * Layers: default
@@ -701,21 +734,23 @@ Extra - asset_id: collision_camera_008
 > Bottom-Left Corner; Heals? False
   * Layers: default
   > Door to Early Grapple Access
-      Morph Ball
-  > Event - Blob from shaft (db_dif_b1_001)
+      Morph Ball and After Dairon - Power Switch 1
+  > Event - Blob, from teleporter
       Shoot Diffusion or Wave
   > Teleporter to Cataris - Teleport to Dairon
       All of the following:
-          After Dairon - db_dif_b1_001
+          After Dairon - Teleport to Cataris Blob
           Any of the following:
               Spider Magnet or Space Jump or Walljump (Beginner) or Simple IBJ
-              Flash Shift and Grapple Beam
+              All of the following:
+                  Grapple Beam
+                  Flash Shift or Movement (Beginner)
   > Tile Group (POWERBEAM) 2
       Trivial
 
-> Event - Blob through wall (db_dif_b1_001); Heals? False
+> Event - Blob, through wall; Heals? False
   * Layers: default
-  * Event Dairon - db_dif_b1_001
+  * Event Dairon - Teleport to Cataris Blob
   > Door to Total Recharge Station East
       Trivial
 
@@ -774,7 +809,7 @@ Extra - asset_id: collision_camera_010
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Tile Group (POWERBEAM)
-      After Dairon - db_hdoor_b1_001
+      Varia Suit and After Dairon - Early Grapple Blob
 
 > Door to Teleport to Cataris; Heals? False
   * Layers: default
@@ -831,7 +866,9 @@ Extra - asset_id: collision_camera_010
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 20
-          Flash Shift or Gravity Suit or Lava Damage ≥ 50
+          Any of the following:
+              Flash Shift or Gravity Suit
+              Heat/Cold Runs (Intermediate) and Lava Damage ≥ 50
   > Center Junction
       All of the following:
           Morph Ball
@@ -839,9 +876,9 @@ Extra - asset_id: collision_camera_010
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
 
-> Event - Breakable (db_hdoor_b1_001); Heals? False
+> Event - Early Grapple Blob; Heals? False
   * Layers: default
-  * Event Dairon - db_hdoor_b1_001
+  * Event Dairon - Early Grapple Blob
   * Extra - actor_name: db_hdoor_b1_001
   * Extra - actor_def: actordef:actors/props/db_hdoor_b1_001/charclasses/db_hdoor_b1_001.bmsad
   > Tile Group (POWERBEAM)
@@ -855,7 +892,7 @@ Extra - asset_id: collision_camera_010
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('POWERBEAM',)
   > Door to Early Grapple Room
-      After Dairon - db_hdoor_b1_001
+      Varia Suit and After Dairon - Early Grapple Blob
   > Pickup (Energy Part)
       All of the following:
           Morph Ball
@@ -868,9 +905,13 @@ Extra - asset_id: collision_camera_010
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 20
-          Flash Shift or Gravity Suit or Lava Damage ≥ 50
-  > Event - Breakable (db_hdoor_b1_001)
-      Lay Bomb or Shoot Beam
+          Any of the following:
+              Flash Shift or Gravity Suit
+              Heat/Cold Runs (Intermediate) and Lava Damage ≥ 50
+  > Event - Early Grapple Blob
+      All of the following:
+          Varia Suit
+          Lay Bomb or Shoot Beam
   > Center Junction
       All of the following:
           Morph Ball
@@ -882,7 +923,7 @@ Extra - asset_id: collision_camera_010
   * Layers: default
   > Door to Teleport to Cataris
       All of the following:
-          Morph Ball and After Dairon - powergenerator_001
+          Morph Ball and After Dairon - Power Switch 1
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 120
@@ -910,7 +951,11 @@ Extra - asset_id: collision_camera_011
   * Extra - actor_name: item_powerbombtank_000
   * Extra - actor_def: actordef:actors/items/item_powerbombtank/charclasses/item_powerbombtank.bmsad
   > Tile Group (WEIGHT) 1
-      Morph Ball
+      All of the following:
+          Morph Ball
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 > Door to Early Grapple Room; Heals? False
   * Layers: default
@@ -922,7 +967,9 @@ Extra - asset_id: collision_camera_011
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Tile Group (POWERBEAM)
-      Varia Suit or Heat Damage ≥ 100
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
   > Ceiling
       All of the following:
           Any of the following:
@@ -932,15 +979,14 @@ Extra - asset_id: collision_camera_011
                   Spider Magnet
                   Any of the following:
                       # Ways to get up there
-                      Grapple Beam or Use Spin Boost
+                      Grapple Beam or Space Jump or Speed Booster or Simple IBJ
               Any of the following:
-                  # Tricks
+                  # Movement Tricks
                   All of the following:
-                      # grapple beam and movement
-                      Grapple Beam and Movement (Intermediate)
-                  All of the following:
-                      # Spin boost and movement
-                      Movement (Beginner) and Use Spin Boost
+                      Movement (Intermediate)
+                      Speed Booster or Simple IBJ
+                  Movement (Beginner) and Use Spin Boost
+                  Grapple Beam and Grapple Movement (Intermediate)
           Any of the following:
               # Varia check
               Varia Suit
@@ -948,13 +994,15 @@ Extra - asset_id: collision_camera_011
                   # heat runs
                   Heat/Cold Runs (Intermediate) and Heat Damage ≥ 300
 
-> Event - Pull Grapple Block (grapplepulloff1x2_006); Heals? False
+> Event - Grapple Block; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2_006
+  * Event Dairon - Transport to Artaria Grapple Block
   * Extra - actor_name: grapplepulloff1x2_006
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
-  > Full samus control
-      Trivial
+  > Elevator to Artaria - Transport to Dairon
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 > Elevator to Artaria - Transport to Dairon; Heals? False; Spawn Point
   * Layers: default
@@ -965,10 +1013,22 @@ Extra - asset_id: collision_camera_011
   * Extra - target_spawn_point: elevator_baselab_000_platform
   * Extra - start_point_actor_name: elevator_cave_000_platform
   * Extra - start_point_actor_def: actordef:actors/props/weightactivatedplatform_elevator/charclasses/weightactivatedplatform_elevator.bmsad
-  > Full samus control
+  > Event - Grapple Block
+      All of the following:
+          Grapple Beam
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Beginner) and Heat Damage ≥ 100
+  > Tile Group (POWERBEAM)
       Any of the following:
-          # Loading time in Heat Room
-          Varia Suit or Heat Damage ≥ 299
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
+  > Tunnel to Hub Access
+      All of the following:
+          After Dairon - Transport to Artaria Grapple Block
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 > Tile Group (POWERBEAM); Heals? False
   * Layers: default
@@ -978,16 +1038,26 @@ Extra - asset_id: collision_camera_011
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('POWERBEAM',)
   > Door to Early Grapple Room
-      Varia Suit or Heat Damage ≥ 100
-  > Full samus control
-      Varia Suit or Heat Damage ≥ 50
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
+  > Elevator to Artaria - Transport to Dairon
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 > Ceiling; Heals? False
   * Layers: default
   > Pickup (Power Bomb Tank)
-      Missiles ≥ 2 and Morph Ball
+      All of the following:
+          Missiles ≥ 2 and Morph Ball
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Beginner) and Heat Damage ≥ 100
   > Door to Early Grapple Room
-      Varia Suit or Heat Damage ≥ 50
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 > Tile Group (WEIGHT) 1; Heals? False
   * Layers: default
@@ -996,7 +1066,9 @@ Extra - asset_id: collision_camera_011
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('WEIGHT',)
   > Tile Group (WEIGHT) 2
-      Varia Suit or Heat Damage ≥ 50
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 > Tile Group (WEIGHT) 2; Heals? False
   * Layers: default
@@ -1005,30 +1077,19 @@ Extra - asset_id: collision_camera_011
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('WEIGHT',)
   > Door to Early Grapple Room
-      Trivial
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 > Tunnel to Hub Access; Heals? False
   * Layers: default
   * Morph Ball Launcher to Hub Access/Dock from Transport to Artaria
-  > Full samus control
-      All of the following:
-          After Dairon - grapplepulloff1x2_006
-          Varia Suit or Heat Damage ≥ 50
-
-> Full samus control; Heals? False
-  * Layers: default
-  > Event - Pull Grapple Block (grapplepulloff1x2_006)
-      All of the following:
-          Grapple Beam
-          Varia Suit or Heat Damage ≥ 100
   > Elevator to Artaria - Transport to Dairon
-      Varia Suit or Heat Damage ≥ 100
-  > Tile Group (POWERBEAM)
-      Varia Suit or Heat Damage ≥ 50
-  > Tunnel to Hub Access
       All of the following:
-          After Dairon - grapplepulloff1x2_006
-          Varia Suit or Heat Damage ≥ 50
+          After Dairon - Transport to Artaria Grapple Block
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Beginner) and Heat Damage ≥ 50
 
 ----------------
 Early Grapple Room
@@ -1040,7 +1101,7 @@ Extra - asset_id: collision_camera_012
   * Pickup 55; Major Location? False
   * Extra - actor_name: item_missiletank_004
   * Extra - actor_def: actordef:actors/items/item_missiletank/charclasses/item_missiletank.bmsad
-  > Tile Group (SPEEDBOOST) 2
+  > Lava Floor with Gravity Suit
       Gravity Suit and Morph Ball
 
 > Door to Early Grapple Access; Heals? False
@@ -1060,10 +1121,12 @@ Extra - asset_id: collision_camera_012
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 400
-          Slide Jump (Beginner) or Walljump (Beginner)
+          Any of the following:
+              Use Spin Boost
+              Slide and Slide Jump (Intermediate)
   > Upper Left Alcove
       All of the following:
-          Morph Ball and After Dairon - grapplepulloff1x2_000
+          Morph Ball and After Dairon - Early Grapple Grapple Block Left
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
@@ -1075,7 +1138,7 @@ Extra - asset_id: collision_camera_012
   * Extra - actor_def: actordef:actors/items/item_missiletank/charclasses/item_missiletank.bmsad
   > Door to Transport to Artaria
       All of the following:
-          Morph Ball and After Dairon - grapplepulloff1x2_001
+          Morph Ball and After Dairon - Early Grapple Grapple Block Right
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 150
@@ -1097,11 +1160,11 @@ Extra - asset_id: collision_camera_012
   * Extra - right_shield_def: None
   > Pickup (Missile Tank Tunnel)
       All of the following:
-          Morph Ball and After Dairon - grapplepulloff1x2_001
+          Morph Ball and After Dairon - Early Grapple Grapple Block Right
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 150
-  > Event - Pull Grapple Block Right (grapplepulloff1x2_001)
+  > Event - Early Grapple Grapple Block Right
       All of the following:
           Grapple Beam
           Any of the following:
@@ -1110,24 +1173,24 @@ Extra - asset_id: collision_camera_012
   > Ledge before Slide Jump
       All of the following:
           Morph Ball
-          Flash Shift or Space Jump
+          Flash Shift or Use Spin Boost
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
   > Lava Floor with Gravity Suit
       Gravity Suit and Morph Ball
 
-> Event - Pull Grapple Block Left (grapplepulloff1x2_000); Heals? False
+> Event - Early Grapple Grapple Block Left; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2_000
+  * Event Dairon - Early Grapple Grapple Block Left
   * Extra - actor_name: grapplepulloff1x2_000
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
   > Upper Left Alcove
       Trivial
 
-> Event - Pull Grapple Block Right (grapplepulloff1x2_001); Heals? False
+> Event - Early Grapple Grapple Block Right; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2_001
+  * Event Dairon - Early Grapple Grapple Block Right
   * Extra - actor_name: grapplepulloff1x2_001
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
   > Door to Transport to Artaria
@@ -1145,36 +1208,21 @@ Extra - asset_id: collision_camera_012
   > Lava Floor with Gravity Suit
       Gravity Suit
 
-> Tile Group (SPEEDBOOST) 1; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_064
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Tile Group (SPEEDBOOST) 2
-      Gravity Suit and Speed Booster
-  > Lava Floor with Gravity Suit
-      Gravity Suit and Speed Booster
-
-> Tile Group (SPEEDBOOST) 2; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_065
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Pickup (Missile Tank Speedboost)
-      Gravity Suit and Morph Ball
-  > Tile Group (SPEEDBOOST) 1
-      Gravity Suit and Speed Booster
-
 > Ledge before Slide Jump; Heals? False
   * Layers: default
+  > Door to Early Grapple Access
+      All of the following:
+          Morph Ball
+          Flash Shift or Movement (Beginner) or Use Spin Boost
+          Any of the following:
+              Varia Suit
+              Heat/Cold Runs (Intermediate) and Heat Damage ≥ 400
   > Door to Transport to Artaria
       All of the following:
           Morph Ball
-          Flash Shift or Space Jump or Slide Jump (Beginner)
+          Any of the following:
+              Flash Shift or Use Spin Boost
+              Slide and Slide Jump (Beginner)
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
@@ -1183,7 +1231,7 @@ Extra - asset_id: collision_camera_012
   * Layers: default
   > Door to Early Grapple Access
       All of the following:
-          Morph Ball and After Dairon - grapplepulloff1x2_000
+          Morph Ball and After Dairon - Early Grapple Grapple Block Left
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 50
@@ -1193,7 +1241,7 @@ Extra - asset_id: collision_camera_012
           Any of the following:
               Varia Suit
               Heat/Cold Runs (Intermediate) and Heat Damage ≥ 150
-  > Event - Pull Grapple Block Left (grapplepulloff1x2_000)
+  > Event - Early Grapple Grapple Block Left
       All of the following:
           Grapple Beam
           Any of the following:
@@ -1202,18 +1250,22 @@ Extra - asset_id: collision_camera_012
 
 > Lava Floor with Gravity Suit; Heals? False
   * Layers: default
+  > Pickup (Missile Tank Speedboost)
+      Gravity Suit and Ballspark
   > Door to Early Grapple Access
-      Gravity Suit and Morph Ball
+      All of the following:
+          Gravity Suit and Morph Ball
+          Speed Booster or Simple IBJ or Use Spin Boost
   > Door to Transport to Artaria
       All of the following:
           Gravity Suit and Morph Ball
-          Space Jump or Simple IBJ
+          Speed Booster or Simple IBJ or Use Spin Boost
   > Tile Group (POWERBEAM)
       Gravity Suit
-  > Tile Group (SPEEDBOOST) 1
-      Gravity Suit and Speed Booster
   > Ledge before Slide Jump
-      Gravity Suit and Speed Booster
+      All of the following:
+          Gravity Suit
+          Speed Booster or Simple IBJ or Use Spin Boost
 
 ----------------
 Heated Room West
@@ -1254,7 +1306,9 @@ Extra - asset_id: collision_camera_013
   * Extra - start_point_actor_name: SP_AccessPoint_4
   * Extra - start_point_actor_def: actordef:actors/logic/startpoint/charclasses/startpoint.bmsad
   > Door to Navigation Station South
-      Trivial
+      Any of the following:
+          Varia Suit
+          Heat/Cold Runs (Beginner) and Heat Damage ≥ 40
 
 ----------------
 Navigation Station South
@@ -1309,7 +1363,7 @@ Extra - asset_id: collision_camera_015
   * Extra - actor_name: dooremmy_006
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Door to Navigation Station South
-      Trivial
+      Morph Ball
   > Life Recharge
       Morph Ball
 
@@ -1325,7 +1379,7 @@ Extra - asset_id: collision_camera_015
   > Dock to Shinespark Tutorial
       All of the following:
           Morph Ball
-          Spider Magnet or Simple IBJ or Use Spin Boost
+          Flash Shift or Grapple Beam or Spider Magnet or Speed Booster or Simple IBJ or Use Spin Boost
 
 > Life Recharge; Heals? True; Spawn Point
   * Layers: default
@@ -1356,10 +1410,10 @@ Extra - asset_id: collision_camera_016
   * EMMI Door to Energy Recharge Station Middle/Dock to Shinespark Tutorial
   * Extra - actor_name: dooremmy_006
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
-  > Tile Group (SPEEDBOOST) 2
-      Trivial
-  > Tile Group (SPEEDBOOST) 3
-      Trivial
+  > Door to EMMI Zone Exit North
+      Speed Booster
+  > Pickup (Energy Tank)
+      Speed Booster
   > Tile Group (POWERBEAM) 2
       Trivial
 
@@ -1368,8 +1422,8 @@ Extra - asset_id: collision_camera_016
   * EMMI Door to Storm Missile Gate Room/Dock to Shinespark Tutorial
   * Extra - actor_name: dooremmy_007
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
-  > Tile Group (SPEEDBOOST) 1
-      Trivial
+  > Dock to Energy Recharge Station Middle
+      Speed Booster
 
 > Door to EMMI Zone Exit North; Heals? False
   * Layers: default
@@ -1382,8 +1436,8 @@ Extra - asset_id: collision_camera_016
   * Extra - right_shield_def: None
   > Dock to Test Chamber Access
       Trivial
-  > Tile Group (SPEEDBOOST) 4
-      Trivial
+  > Dock to Storm Missile Gate Room
+      Speed Booster
   > Tile Group (POWERBEAM) 2
       Trivial
 
@@ -1392,7 +1446,7 @@ Extra - asset_id: collision_camera_016
   * Pickup 71; Major Location? False
   * Extra - actor_name: item_energytank
   * Extra - actor_def: actordef:actors/items/item_energytank/charclasses/item_energytank.bmsad
-  > Tile Group (SPEEDBOOST) 5
+  > Dock to Energy Recharge Station Middle
       Trivial
 
 > Door to EMMI Zone Exit Northwest; Heals? False
@@ -1407,66 +1461,6 @@ Extra - asset_id: collision_camera_016
   > Dock to Test Chamber Access
       Trivial
 
-> Tile Group (POWERBEAM) 1; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_074
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('POWERBEAM',)
-  > Tile Group (SPEEDBOOST) 3
-      Trivial
-  > Tile Group (POWERBEAM) 4
-      Trivial
-
-> Tile Group (SPEEDBOOST) 1; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_019
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Dock to Storm Missile Gate Room
-      Trivial
-  > Tile Group (SPEEDBOOST) 2
-      Trivial
-
-> Tile Group (SPEEDBOOST) 2; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_020
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Dock to Energy Recharge Station Middle
-      Trivial
-  > Tile Group (SPEEDBOOST) 1
-      Trivial
-
-> Tile Group (SPEEDBOOST) 3; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_021
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Dock to Energy Recharge Station Middle
-      Trivial
-  > Tile Group (POWERBEAM) 1
-      Trivial
-
-> Tile Group (SPEEDBOOST) 4; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_022
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to EMMI Zone Exit North
-      Trivial
-  > Tile Group (SPEEDBOOST) 5
-      Trivial
-
 > Tile Group (POWERBEAM) 2; Heals? False
   * Layers: default
   * Configurable Node
@@ -1478,40 +1472,6 @@ Extra - asset_id: collision_camera_016
       Trivial
   > Door to EMMI Zone Exit North
       Grapple Beam or Spider Magnet or Walljump (Beginner) or Simple IBJ or Use Spin Boost
-
-> Tile Group (POWERBEAM) 3; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_038
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('POWERBEAM',)
-
-> Tile Group (SPEEDBOOST) 5; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_039
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Pickup (Energy Tank)
-      Trivial
-  > Tile Group (SPEEDBOOST) 4
-      Trivial
-  > Tile Group (POWERBEAM) 4
-      Trivial
-
-> Tile Group (POWERBEAM) 4; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_067
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('POWERBEAM',)
-  > Tile Group (POWERBEAM) 1
-      Trivial
-  > Tile Group (SPEEDBOOST) 5
-      Trivial
 
 ----------------
 EMMI Zone Exit North
@@ -1527,14 +1487,12 @@ Extra - asset_id: collision_camera_017
       Trivial
   > Door to Shinespark Tutorial
       Trivial
-  > Event - Blob (db_dif_b1_002)
+  > Event - EMMI Zone Exit North Blob
       Shoot Diffusion or Wave
-  > Tile Group (POWERBOMB) 1
-      Trivial
-  > Tile Group (SPEEDBOOST)
-      Trivial
+  > Dock to Yellow EMMI Introduction
+      Speed Booster
   > Lower-Right Corner
-      After Dairon - db_dif_b1_002
+      After Dairon - EMMI Zone Exit North Blob
 
 > Dock to Cross Bomb Puzzle Room; Heals? False
   * Layers: default
@@ -1543,8 +1501,8 @@ Extra - asset_id: collision_camera_017
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Dock to West Transport to Ferenia
       Trivial
-  > Tile Group (POWERBOMB) 2
-      Trivial
+  > Pickup (Power Bomb Tank)
+      Lay Power Bomb
 
 > Door to Shinespark Tutorial; Heals? False
   * Layers: default
@@ -1558,10 +1516,11 @@ Extra - asset_id: collision_camera_017
   > Dock to West Transport to Ferenia
       Any of the following:
           Speed Booster or Simple IBJ or Use Spin Boost
-          All of the following:
-              Walljump (Beginner)
-              Flash Shift or Slide Jump (Beginner)
           Morph Ball and After Dairon - Central Unit
+          Any of the following:
+              # Use a walljump to get up from the ledge
+              Flash Shift
+              Slide and Slide Jump (Beginner)
   > Lower-Right Corner
       Can Slide
 
@@ -1570,60 +1529,22 @@ Extra - asset_id: collision_camera_017
   * Pickup 73; Major Location? False
   * Extra - actor_name: item_powerbombtank_002
   * Extra - actor_def: actordef:actors/items/item_powerbombtank/charclasses/item_powerbombtank.bmsad
-  > Tile Group (POWERBOMB) 1
-      Morph Ball
-  > Tile Group (POWERBOMB) 2
-      Morph Ball
+  > Dock to Cross Bomb Puzzle Room
+      Lay Power Bomb
 
-> Event - Blob (db_dif_b1_002); Heals? False
+> Event - EMMI Zone Exit North Blob; Heals? False
   * Layers: default
-  * Event Dairon - db_dif_b1_002
+  * Event Dairon - EMMI Zone Exit North Blob
   * Extra - actor_name: db_dif_b1_002
   * Extra - actor_def: actordef:actors/props/db_dif_b1_002/charclasses/db_dif_b1_002.bmsad
   > Dock to West Transport to Ferenia
       Trivial
 
-> Tile Group (POWERBOMB) 1; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_003
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('POWERBOMB',)
-  > Dock to West Transport to Ferenia
-      Trivial
-  > Pickup (Power Bomb Tank)
-      Morph Ball
-
-> Tile Group (POWERBOMB) 2; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_004
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('POWERBOMB',)
-  > Dock to Cross Bomb Puzzle Room
-      Trivial
-  > Pickup (Power Bomb Tank)
-      Morph Ball
-
-> Tile Group (SPEEDBOOST); Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_023
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Dock to West Transport to Ferenia
-      Trivial
-  > Dock to Yellow EMMI Introduction
-      Trivial
-
 > Dock to Yellow EMMI Introduction; Heals? False
   * Layers: default
   * Open Passage to Yellow EMMI Introduction/Dock to EMMI Zone Exit North
-  > Tile Group (SPEEDBOOST)
-      Trivial
+  > Dock to West Transport to Ferenia
+      Speed Booster
 
 > Tunnel to Yellow EMMI Introduction; Heals? False
   * Layers: default
@@ -1634,15 +1555,15 @@ Extra - asset_id: collision_camera_017
 > Lower-Right Corner; Heals? False
   * Layers: default
   > Dock to West Transport to Ferenia
-      After Dairon - db_dif_b1_002
+      After Dairon - EMMI Zone Exit North Blob
   > Door to Shinespark Tutorial
       Can Slide
-  > Event - Blob (db_dif_b1_002)
+  > Event - EMMI Zone Exit North Blob
       Shoot Diffusion or Wave
   > Tunnel to Yellow EMMI Introduction
       All of the following:
           Morph Ball
-          Simple IBJ or Use Spin Boost
+          Speed Booster or Simple IBJ or Use Spin Boost
 
 ----------------
 Yellow EMMI Introduction
@@ -1661,7 +1582,7 @@ Extra - asset_id: collision_camera_018
 
 > Door to EMMI Zone Exit East; Heals? False
   * Layers: default
-  * Charge Beam Door to EMMI Zone Exit East/Door from Yellow EMMI Introduction
+  * Charge Beam Door to EMMI Zone Exit East/Door to Yellow EMMI Introduction
   * Extra - actor_name: doorchargeclosed_000
   * Extra - actor_def: actordef:actors/props/doorchargeclosed/charclasses/doorchargeclosed.bmsad
   * Extra - left_shield_entity: {EMPTY}
@@ -1670,10 +1591,10 @@ Extra - asset_id: collision_camera_018
   * Extra - right_shield_def: None
   > Dock to Big Hub
       Morph Ball and After Dairon - Central Unit
-  > Tile Group (SPEEDBOOST)
-      Trivial
+  > Dock to EMMI Zone Exit North
+      Speed Booster and Open Charge Door
   > Lower-Left Area
-      Flash Shift
+      Flash Shift or Movement (Beginner) or Lay Cross Bomb or Use Spin Boost
 
 > Pickup (Energy Part); Heals? False
   * Layers: default
@@ -1682,18 +1603,6 @@ Extra - asset_id: collision_camera_018
   * Extra - actor_def: actordef:actors/items/item_energyfragment/charclasses/item_energyfragment.bmsad
   > Tile Group (WEIGHT)
       Morph Ball
-
-> Tile Group (SPEEDBOOST); Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_024
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to EMMI Zone Exit East
-      Trivial
-  > Dock to EMMI Zone Exit North
-      Trivial
 
 > Tile Group (POWERBEAM) 1; Heals? False
   * Layers: default
@@ -1732,9 +1641,11 @@ Extra - asset_id: collision_camera_018
   * Layers: default
   * Open Passage to EMMI Zone Exit North/Dock to Yellow EMMI Introduction
   > Pickup (Energy Part)
-      Missiles and Lay Bomb
-  > Tile Group (SPEEDBOOST)
-      Trivial
+      All of the following:
+          Missiles
+          Lay Bomb or Lay Power Bomb
+  > Lower-Left Area
+      Speed Booster
 
 > Tunnel to EMMI Zone Exit North; Heals? False
   * Layers: default
@@ -1748,6 +1659,8 @@ Extra - asset_id: collision_camera_018
       Trivial
   > Tile Group (POWERBEAM) 1
       Trivial
+  > Dock to EMMI Zone Exit North
+      Speed Booster
   > Tunnel to EMMI Zone Exit North
       Trivial
 
@@ -1764,6 +1677,8 @@ Extra - asset_id: collision_camera_019
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Door to Navigation Station North (Lower)
       After Dairon - Wide Beam Block Ferenia Elevator
+  > Event - Ferenia Transport Wide Beam Block
+      Morph Ball and Wave Beam and Pseudo-Wave Beam (Intermediate) and Push Wide Beam Block
 
 > Door to Navigation Station North (Lower); Heals? False
   * Layers: default
@@ -1776,8 +1691,10 @@ Extra - asset_id: collision_camera_019
   * Extra - right_shield_def: None
   > Dock to EMMI Zone Exit North
       After Dairon - Wide Beam Block Ferenia Elevator
-  > Event - Push Wide Beam Block
-      Push Wide Beam Block
+  > Event - Ferenia Transport Wide Beam Block
+      Any of the following:
+          Push Wide Beam Block
+          Diffusion Abuse (Intermediate) and Shoot Diffusion Beam
 
 > Door to Navigation Station North (Upper); Heals? False
   * Layers: default
@@ -1803,7 +1720,7 @@ Extra - asset_id: collision_camera_019
   > Door to Navigation Station North (Upper)
       Trivial
 
-> Event - Push Wide Beam Block; Heals? False
+> Event - Ferenia Transport Wide Beam Block; Heals? False
   * Layers: default
   * Event Dairon - Wide Beam Block Ferenia Elevator
   > Door to Navigation Station North (Lower)
@@ -1821,7 +1738,7 @@ Extra - asset_id: collision_camera_020
   * Extra - actor_name: dooremmy_004
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Door to Total Recharge Station West
-      Morph Ball and After Dairon - grapplepulloff1x2_002
+      Morph Ball and After Dairon - Cross Bomb Puzzle Grapple Block
   > Tile Group (WEIGHT) 2
       Morph Ball
 
@@ -1835,12 +1752,24 @@ Extra - asset_id: collision_camera_020
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Dock to EMMI Zone Exit North
-      Morph Ball and After Dairon - grapplepulloff1x2_002
+      Morph Ball and After Dairon - Cross Bomb Puzzle Grapple Block
   > Pickup (Missile Tank)
       All of the following:
-          Missiles ≥ 4 and Lay Bomb
-          Ballspark or Lay Cross Comb
-  > Event - Pull Grapple Block (grapplepulloff1x2_002)
+          Missiles ≥ 4 and Shoot Missile
+          Any of the following:
+              Lay Cross Bomb
+              All of the following:
+                  Disabled Door Lock Randomizer and Ballspark
+                  Any of the following:
+                      Speedbooster Conservation (Intermediate) and Lay Bomb
+                      All of the following:
+                          # https://clips.twitch.tv/SpunkyTiredTarsierLeeroyJenkins-72uq7xr0vk0iDHSJ
+                          After Dairon - Power Switch 2 and Speedbooster Conservation (Advanced) and Lay Power Bomb
+              All of the following:
+                  Cross Bomb Skip (Advanced)
+                  Lay Bomb or Lay Power Bomb
+                  Flash Shift or Use Spin Boost
+  > Event - Grapple Block
       Grapple Beam
 
 > Pickup (Missile Tank); Heals? False
@@ -1851,9 +1780,9 @@ Extra - asset_id: collision_camera_020
   > Tile Group (WEIGHT) 4
       Trivial
 
-> Event - Pull Grapple Block (grapplepulloff1x2_002); Heals? False
+> Event - Grapple Block; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2_002
+  * Event Dairon - Cross Bomb Puzzle Grapple Block
   * Extra - actor_name: grapplepulloff1x2_002
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
   > Door to Total Recharge Station West
@@ -1883,13 +1812,6 @@ Extra - asset_id: collision_camera_020
   * Extra - tile_types: ('WEIGHT',)
   > Tile Group (WEIGHT) 1
       Trivial
-
-> Tile Group (WEIGHT) 3; Heals? False
-  * Layers: default
-  * Extra - actor_name: breakabletilegroup_071
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('WEIGHT',)
 
 > Tile Group (WEIGHT) 4; Heals? False
   * Layers: default
@@ -2041,7 +1963,7 @@ Extra - asset_id: collision_camera_022
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Door to Bomb Room
-      Morph Ball
+      Morph Ball and After Dairon - Power Switch 2
   > Center
       Trivial
 
@@ -2058,7 +1980,7 @@ Extra - asset_id: collision_camera_022
   * Layers: default
   * Morph Ball Tunnel to Power Switch 2/Tunnel to Total Recharge Station West
   > Center
-      After Dairon - db_reg_b1_003
+      After Dairon - Power Switch 2 Blob
 
 > Dock from Bomb Room; Heals? False
   * Layers: default
@@ -2071,11 +1993,11 @@ Extra - asset_id: collision_camera_022
   > Door to Cross Bomb Puzzle Room
       Can Slide
   > Door to Map Station
-      Spider Magnet or Walljump (Beginner) or Simple IBJ or Use Spin Boost
+      Trivial
   > Total Recharge
       Trivial
   > Tunnel to Power Switch 2
-      After Dairon - db_reg_b1_003
+      After Dairon - Power Switch 2 Blob
 
 ----------------
 Map Station
@@ -2094,7 +2016,7 @@ Extra - asset_id: collision_camera_023
   > Door to Freezer
       Trivial
   > Map Station
-      Trivial
+      After Dairon - Power Switch 2
 
 > Door to Freezer; Heals? False
   * Layers: default
@@ -2131,16 +2053,16 @@ Extra - asset_id: collision_camera_024
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Event - Blob (db_reg_b1_003)
-      Shoot Beam
+  > Event - Power Switch 2 Blob
+      Lay Bomb or Shoot Beam
   > Event - Electric Generator
       Trivial
   > Tunnel to Total Recharge Station West
-      Morph Ball and After Dairon - db_reg_b1_003
+      Morph Ball and After Dairon - Power Switch 2 Blob
 
-> Event - Blob (db_reg_b1_003); Heals? False
+> Event - Power Switch 2 Blob; Heals? False
   * Layers: default
-  * Event Dairon - db_reg_b1_003
+  * Event Dairon - Power Switch 2 Blob
   * Extra - actor_name: db_reg_b1_003
   * Extra - actor_def: actordef:actors/props/db_reg_b1_003/charclasses/db_reg_b1_003.bmsad
   > Door to Freezer
@@ -2148,7 +2070,7 @@ Extra - asset_id: collision_camera_024
 
 > Event - Electric Generator; Heals? False; Spawn Point
   * Layers: default
-  * Event Dairon - powergenerator_002
+  * Event Dairon - Power Switch 2
   * Extra - actor_name: powergenerator_002
   * Extra - actor_def: actordef:actors/props/powergenerator/charclasses/powergenerator.bmsad
   * Extra - start_point_actor_name: powergenerator_002_platform
@@ -2165,7 +2087,7 @@ Extra - asset_id: collision_camera_024
   * Layers: default
   * Morph Ball Tunnel to Total Recharge Station West/Tunnel to Power Switch 2
   > Door to Freezer
-      Morph Ball and After Dairon - db_reg_b1_003
+      Morph Ball and After Dairon - Power Switch 2 Blob
 
 ----------------
 Freezer
@@ -2181,24 +2103,24 @@ Extra - asset_id: collision_camera_025
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Door to Power Switch 2
-      All of the following:
-          After Dairon - db_dif_b1_002 and Can Slide
-          Any of the following:
-              Gravity Suit
-              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
   > Freezer Center
       Any of the following:
-          Gravity Suit
+          Gravity Suit or Before Dairon - Power Switch 2
           Heat/Cold Runs (Intermediate) and Cold Damage ≥ 100
   > Beside the Blob
       All of the following:
-          After Dairon - db_reg_b1_002
+          After Dairon - Freezer Right Blob
           Any of the following:
-              Gravity Suit
+              Gravity Suit or Before Dairon - Power Switch 2
               Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
-  > Event - Right Blob from above (db_reg_b1_002)
-      Wave Beam
+  > Event - Right Blob, Above
+      All of the following:
+          Any of the following:
+              Wave Beam
+              Pseudo-Wave Beam (Beginner) and Shoot Diffusion Beam
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
 
 > Door to Power Switch 2; Heals? False
   * Layers: default
@@ -2211,50 +2133,38 @@ Extra - asset_id: collision_camera_025
   * Extra - right_shield_def: None
   > Freezer Center
       Any of the following:
-          Gravity Suit
+          Gravity Suit or Before Dairon - Power Switch 2
           Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
   > Beside the Blob
       All of the following:
           Morph Ball
           Any of the following:
-              Gravity Suit
+              Gravity Suit or Before Dairon - Power Switch 2
               Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
 
-> Door to Energy Recharge Station West (doorpowerpower_028); Heals? False
+> Door to Energy Recharge Station West (Upper); Heals? False
   * Layers: default
-  * Power Beam Door to Energy Recharge Station West/Door to Freezer (doorpowerpower_028)
+  * Power Beam Door to Energy Recharge Station West/Door to Freezer (Upper)
   * Extra - actor_name: doorpowerpower_028
   * Extra - actor_def: actordef:actors/props/doorpowerpower/charclasses/doorpowerpower.bmsad
   * Extra - left_shield_entity: {EMPTY}
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Tile Group (SPEEDBOOST) 4
-      Any of the following:
-          Gravity Suit
-          Heat/Cold Runs (Intermediate) and Cold Damage ≥ 20
+  > Room Top
+      Trivial
 
-> Door to Energy Recharge Station West (doorpowerpower_030); Heals? False
+> Door to Energy Recharge Station West (Lower); Heals? False
   * Layers: default
-  * Power Beam Door to Energy Recharge Station West/Door to Freezer (doorpowerpower_030)
+  * Power Beam Door to Energy Recharge Station West/Door to Freezer (Lower)
   * Extra - actor_name: doorpowerpower_030
   * Extra - actor_def: actordef:actors/props/doorpowerpower/charclasses/doorpowerpower.bmsad
   * Extra - left_shield_entity: {EMPTY}
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Pickup (Missile Tank - Upper)
-      Any of the following:
-          Gravity Suit
-          Heat/Cold Runs (Intermediate) and Cold Damage ≥ 20
-  > Event - Hidden Blob from left (db_reg_b1_001)
-      Lay Bomb or Shoot Beam
-  > Freezer Center
-      All of the following:
-          Morph Ball and After Dairon - Freezer Hidden Left Blob
-          Any of the following:
-              Gravity Suit
-              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 100
+  > Left Blob Alcove
+      Trivial
 
 > Pickup (Missile Tank - Lower); Heals? False
   * Layers: default
@@ -2265,7 +2175,7 @@ Extra - asset_id: collision_camera_025
       All of the following:
           Morph Ball
           Any of the following:
-              Gravity Suit
+              Gravity Suit or Before Dairon - Power Switch 2
               Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
 
 > Pickup (Missile Tank - Upper); Heals? False
@@ -2273,88 +2183,28 @@ Extra - asset_id: collision_camera_025
   * Pickup 76; Major Location? False
   * Extra - actor_name: item_missiletank_006
   * Extra - actor_def: actordef:actors/items/item_missiletank/charclasses/item_missiletank.bmsad
-  > Door to Energy Recharge Station West (doorpowerpower_030)
-      Any of the following:
-          Gravity Suit
-          Heat/Cold Runs (Intermediate) and Cold Damage ≥ 20
+  > Left Blob Alcove
+      All of the following:
+          Morph Ball or After Dairon - Freezer Hidden Blob
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Beginner) and Cold Damage ≥ 20
 
-> Event - Hidden Blob from left (db_reg_b1_001); Heals? False
+> Event - Hidden Blob, Inside; Heals? False
   * Layers: default
-  * Event Dairon - Freezer Hidden Left Blob
+  * Event Dairon - Freezer Hidden Blob
   * Extra - actor_name: db_reg_b1_001
   * Extra - actor_def: actordef:actors/props/db_reg_b1_001/charclasses/db_reg_b1_001.bmsad
-  > Door to Energy Recharge Station West (doorpowerpower_030)
+  > Left Blob Alcove
       Trivial
 
-> Event - Right Blob from right (db_reg_b1_002); Heals? False
+> Event - Right Blob, Below; Heals? False
   * Layers: default
-  * Event Dairon - db_reg_b1_002
+  * Event Dairon - Freezer Right Blob
   * Extra - actor_name: db_reg_b1_002
   * Extra - actor_def: actordef:actors/props/db_reg_b1_002/charclasses/db_reg_b1_002.bmsad
   > Beside the Blob
       Trivial
-
-> Tile Group (SPEEDBOOST) 1; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_015
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Bottom-Left Corner
-      Trivial
-
-> Tile Group (SPEEDBOOST) 2; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_016
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Tile Group (SCREWATTACK)
-      All of the following:
-          Space Jump or Speed Booster or Walljump (Beginner) or Simple IBJ
-          Any of the following:
-              Gravity Suit
-              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 100
-  > Tile Group (WEIGHT)
-      All of the following:
-          Morph Ball
-          Any of the following:
-              Gravity Suit
-              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
-  > Bottom-Left Corner
-      Trivial
-
-> Tile Group (SPEEDBOOST) 3; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_017
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Tile Group (SCREWATTACK)
-      Trivial
-  > Freezer Center
-      Gravity Suit
-
-> Tile Group (SPEEDBOOST) 4; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_018
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to Energy Recharge Station West (doorpowerpower_028)
-      Any of the following:
-          Gravity Suit
-          Heat/Cold Runs (Intermediate) and Cold Damage ≥ 20
-  > Door to Energy Recharge Station West (doorpowerpower_030)
-      All of the following:
-          Morph Ball and After Dairon - db_dif_b1_001
-          Any of the following:
-              Gravity Suit
-              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 100
 
 > Tile Group (SCREWATTACK); Heals? False
   * Layers: default
@@ -2363,14 +2213,22 @@ Extra - asset_id: collision_camera_025
   * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('SCREWATTACK',)
-  > Tile Group (SPEEDBOOST) 2
-      Any of the following:
-          Gravity Suit
-          Heat/Cold Runs (Intermediate) and Cold Damage ≥ 10
-  > Tile Group (SPEEDBOOST) 3
-      Trivial
   > Tile Group (WEIGHT)
-      Morph Ball
+      All of the following:
+          Morph Ball
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 70
+  > Bottom-Left Corner
+      All of the following:
+          Speed Booster
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 100
+  > Freezer Navigation
+      Any of the following:
+          Gravity Suit or Before Dairon - Power Switch 2
+          Heat/Cold Runs (Intermediate) and Cold Damage ≥ 30
 
 > Tile Group (WEIGHT); Heals? False
   * Layers: default
@@ -2378,10 +2236,12 @@ Extra - asset_id: collision_camera_025
   * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('WEIGHT',)
-  > Tile Group (SPEEDBOOST) 1
-      Any of the following:
-          Gravity Suit
-          Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
+  > Bottom-Left Corner
+      All of the following:
+          Speed Booster
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
 
 > Bottom-Left Corner; Heals? False
   * Layers: default
@@ -2389,15 +2249,25 @@ Extra - asset_id: collision_camera_025
       All of the following:
           Morph Ball
           Any of the following:
-              Gravity Suit
+              Gravity Suit or Before Dairon - Power Switch 2
               Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
-  > Tile Group (SPEEDBOOST) 2
-      Trivial
+  > Tile Group (SCREWATTACK)
+      All of the following:
+          Speed Booster
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 100
+  > Tile Group (WEIGHT)
+      All of the following:
+          Ballspark
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 70
 
-> Event - Hidden Blob through wall (db_reg_b1_001); Heals? False
+> Event - Hidden Blob, Outside; Heals? False
   * Layers: default
-  * Event Dairon - Freezer Hidden Left Blob
-  > Freezer Center
+  * Event Dairon - Freezer Hidden Blob
+  > Freezer Navigation
       Trivial
 
 > Freezer Center; Heals? False
@@ -2405,44 +2275,129 @@ Extra - asset_id: collision_camera_025
   > Door to Map Station
       All of the following:
           Any of the following:
-              Gravity Suit
+              Gravity Suit or Before Dairon - Power Switch 2
               Heat/Cold Runs (Intermediate) and Cold Damage ≥ 150
-          Space Jump or Speed Booster or Walljump (Beginner) or Simple IBJ
+          Any of the following:
+              Space Jump or Speed Booster or Simple IBJ
+              All of the following:
+                  Walljump (Beginner)
+                  Flash Shift or Use Spin Boost
+              Morph Ball and Single-wall Wall Jump (Intermediate)
   > Door to Power Switch 2
       Any of the following:
-          # TODO: Implement logic for un-frozen freezer, which adds a few extra requirements for jumping around the pond
           Gravity Suit
+          All of the following:
+              Before Dairon - Power Switch 2
+              Any of the following:
+                  Gravity Suit or Spider Magnet or Space Jump or Use Spin Boost
+                  Grapple Beam and Grapple Movement (Beginner)
+                  Flash Shift and Walljump (Beginner)
           Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
-  > Door to Energy Recharge Station West (doorpowerpower_030)
-      All of the following:
-          Morph Ball and After Dairon - Freezer Hidden Left Blob
-          Any of the following:
-              Gravity Suit
-              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
-          Speed Booster or Walljump (Beginner) or Simple IBJ or Use Spin Boost
-  > Tile Group (SPEEDBOOST) 3
-      Gravity Suit
-  > Tile Group (SPEEDBOOST) 4
-      Gravity Suit and Space Jump
-  > Event - Hidden Blob through wall (db_reg_b1_001)
-      Wave Beam
+  > Freezer Navigation
+      After Dairon - Power Switch 2 or Enabled Highly Dangerous Logic
 
 > Beside the Blob; Heals? False
   * Layers: default
+  > Door to Map Station
+      All of the following:
+          After Dairon - Freezer Right Blob
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 30
   > Door to Power Switch 2
       All of the following:
           Can Slide
           Any of the following:
-              Gravity Suit
+              Gravity Suit or Before Dairon - Power Switch 2
               Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
-  > Event - Right Blob from right (db_reg_b1_002)
-      Shoot Beam
+  > Event - Right Blob, Below
+      All of the following:
+          Shoot Beam
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 30
 
-> Event - Right Blob from above (db_reg_b1_002); Heals? False
+> Event - Right Blob, Above; Heals? False
   * Layers: default
-  * Event Dairon - db_reg_b1_002
+  * Event Dairon - Freezer Right Blob
   > Door to Map Station
       Trivial
+
+> Freezer Navigation; Heals? False
+  * Layers: default
+  * Helper node to connect to the parts of the Freezer we don't want to access
+while disabled
+
+
+  > Tile Group (SCREWATTACK)
+      All of the following:
+          Speed Booster
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 50
+  > Event - Hidden Blob, Outside
+      Wave Beam and Knowledge (Intermediate)
+  > Freezer Center
+      After Dairon - Power Switch 2 or Enabled Highly Dangerous Logic
+  > Event - Freezer Speed Blocks Destroyed
+      All of the following:
+          Speed Booster
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
+          Space Jump or Speedbooster Conservation (Intermediate)
+  > Left Blob Alcove
+      All of the following:
+          Morph Ball and After Dairon - Freezer Hidden Blob
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 200
+
+> Event - Freezer Speed Blocks Destroyed; Heals? False
+  * Layers: default
+  * Event Dairon - Freezer Speed Blocks Destroyed
+  > Room Top
+      Trivial
+
+> Room Top; Heals? False
+  * Layers: default
+  > Door to Energy Recharge Station West (Upper)
+      After Dairon - Power Switch 2
+  > Freezer Navigation
+      All of the following:
+          After Dairon - Freezer Speed Blocks Destroyed
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 30
+  > Left Blob Alcove
+      All of the following:
+          Morph Ball and After Dairon - Freezer Speed Blocks Destroyed and After Dairon - Freezer Hidden Blob
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 120
+
+> Left Blob Alcove; Heals? False
+  * Layers: default
+  > Door to Energy Recharge Station West (Lower)
+      After Dairon - Power Switch 2
+  > Pickup (Missile Tank - Upper)
+      All of the following:
+          After Dairon - Freezer Hidden Blob or Can Slide
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Beginner) and Cold Damage ≥ 30
+  > Event - Hidden Blob, Inside
+      All of the following:
+          Lay Bomb or Shoot Beam
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Beginner) and Cold Damage ≥ 30
+  > Freezer Navigation
+      All of the following:
+          Morph Ball and After Dairon - Freezer Hidden Blob
+          Any of the following:
+              Gravity Suit or Before Dairon - Power Switch 2
+              Heat/Cold Runs (Intermediate) and Cold Damage ≥ 30
 
 ----------------
 Test Chamber Access
@@ -2455,8 +2410,8 @@ Extra - asset_id: collision_camera_026
   * Extra - actor_name: dooremmy_005
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Door to Total Recharge Station West
-      Morph Ball and After Dairon - grapplepulloff1x2
-  > Event - Pull Grapple Block (grapplepulloff1x2)
+      Morph Ball and After Dairon - Test Chamber Grapple Block
+  > Event - Test Chamber Grapple Block Front
       Grapple Beam
 
 > Door to Total Recharge Station West; Heals? False
@@ -2469,13 +2424,15 @@ Extra - asset_id: collision_camera_026
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Dock to Shinespark Tutorial
-      Morph Ball and After Dairon - grapplepulloff1x2
+      Morph Ball and After Dairon - Test Chamber Grapple Block
   > Tunnel to Experiment Z-57 Test Chamber
       Trivial
+  > Event - Test Chamber Grapple Block Back
+      Grapple Beam and Reverse Grapple Block (Beginner)
 
-> Event - Pull Grapple Block (grapplepulloff1x2); Heals? False
+> Event - Test Chamber Grapple Block Front; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2
+  * Event Dairon - Test Chamber Grapple Block
   * Extra - actor_name: grapplepulloff1x2
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
   > Dock to Shinespark Tutorial
@@ -2484,6 +2441,12 @@ Extra - asset_id: collision_camera_026
 > Tunnel to Experiment Z-57 Test Chamber; Heals? False
   * Layers: default
   * Morph Ball Launcher to Experiment Z-57 Test Chamber/Dock from Test Chamber Access
+  > Door to Total Recharge Station West
+      Trivial
+
+> Event - Test Chamber Grapple Block Back; Heals? False
+  * Layers: default
+  * Event Dairon - Test Chamber Grapple Block
   > Door to Total Recharge Station West
       Trivial
 
@@ -2512,7 +2475,7 @@ Extra - asset_id: collision_camera_027
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Dock to Experiment Z-57 Test Chamber
-      Grapple Beam or Spider Magnet or Walljump (Beginner) or Simple IBJ
+      Trivial
   > Tunnel to EMMI Zone Exit West
       Trivial
 
@@ -2593,8 +2556,8 @@ Extra - asset_id: collision_camera_029
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Tile Group (SPEEDBOOST)
-      Morph Ball
+  > Dock to EMMI Zone Exit Northwest
+      Ballspark
 
 > Dock to Hidden Grapple Shortcut Room; Heals? False
   * Layers: default
@@ -2618,23 +2581,11 @@ Extra - asset_id: collision_camera_029
   > Dock to Hidden Grapple Shortcut Room
       Trivial
 
-> Tile Group (SPEEDBOOST); Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_014
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to EMMI Zone Exit Northwest
-      Can Slide
-  > Dock to EMMI Zone Exit Northwest
-      Trivial
-
 > Dock to EMMI Zone Exit Northwest; Heals? False
   * Layers: default
   * Open Passage to EMMI Zone Exit Northwest/Dock to EMMI Zone Exit West
-  > Tile Group (SPEEDBOOST)
-      Trivial
+  > Door to EMMI Zone Exit Northwest
+      Can Slide
 
 > Tunnel to EMMI Zone Exit Northwest; Heals? False
   * Layers: default
@@ -2679,11 +2630,11 @@ Extra - asset_id: collision_camera_030
   > Tile Group (POWERBEAM) 1
       Morph Ball
   > Tile Group (POWERBEAM) 2
-      Morph Ball and After Dairon - grapplepulloff1x2_005
+      Morph Ball and After Dairon - Hidden Shortcut Grapple Block
 
-> Event - Pull Grapple Block (grapplepulloff1x2_005); Heals? False
+> Event - Hidden Shortcut Grapple Block; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2_005
+  * Event Dairon - Hidden Shortcut Grapple Block
   * Extra - actor_name: grapplepulloff1x2_005
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
   > Tile Group (POWERBEAM) 2
@@ -2711,8 +2662,8 @@ Extra - asset_id: collision_camera_030
   > Door to Experiment Z-57 Test Chamber
       Trivial
   > Pickup (Missile Tank)
-      Morph Ball and After Dairon - grapplepulloff1x2_005
-  > Event - Pull Grapple Block (grapplepulloff1x2_005)
+      Morph Ball and After Dairon - Hidden Shortcut Grapple Block
+  > Event - Hidden Shortcut Grapple Block
       Grapple Beam
 
 > Tunnel to Save Station West Tunnels (Bottom); Heals? False
@@ -2828,8 +2779,8 @@ Extra - asset_id: collision_camera_033
   * EMMI Door to Shinespark Tutorial/Dock to Storm Missile Gate Room
   * Extra - actor_name: dooremmy_007
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
-  > Tile Group (BOMB)
-      Trivial
+  > Room Center
+      Lay Bomb or Lay Power Bomb
 
 > Door to Ammo Recharge Station; Heals? False
   * Layers: default
@@ -2840,76 +2791,69 @@ Extra - asset_id: collision_camera_033
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Tile Group (BOMB)
-      Morph Ball
-  > Tile Group (SPEEDBOOST) 1
+  > Tunnel to Ammo Recharge Station
+      After Dairon - Storm Gate Speed Blocks Destroyed and Can Slide
+  > Room Center
       Trivial
-  > Tile Group (SPEEDBOOST) 2
-      Trivial
-  > Dock to Lake Puzzle Room
-      After Dairon - Storm Missile Gate
-  > Event - Storm Missile Gate
-      Activate Storm Missile Locks
 
 > Pickup (Missile+ Tank); Heals? False
   * Layers: default
   * Pickup 68; Major Location? False
   * Extra - actor_name: item_missiletankplus_000
   * Extra - actor_def: actordef:actors/items/item_missiletankplus/charclasses/item_missiletankplus.bmsad
-  > Tile Group (SPEEDBOOST) 2
-      Trivial
-
-> Tile Group (BOMB); Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_005
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('BOMB',)
-  > Dock to Shinespark Tutorial
-      Trivial
-  > Door to Ammo Recharge Station
-      Can Slide
-
-> Tile Group (SPEEDBOOST) 1; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_012
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to Ammo Recharge Station
-      Trivial
-  > Tunnel to Ammo Recharge Station
-      Morph Ball
-
-> Tile Group (SPEEDBOOST) 2; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_013
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to Ammo Recharge Station
-      Trivial
-  > Pickup (Missile+ Tank)
+  > Room Center
       Trivial
 
 > Dock to Lake Puzzle Room; Heals? False
   * Layers: default
   * Open Passage to Lake Puzzle Room/Dock to Storm Missile Gate Room
-  > Door to Ammo Recharge Station
+  > Room Center
       After Dairon - Storm Missile Gate
 
 > Tunnel to Ammo Recharge Station; Heals? False
   * Layers: default
   * Morph Ball Tunnel to Ammo Recharge Station/Tunnel to Storm Missile Gate Room
-  > Tile Group (SPEEDBOOST) 1
-      Morph Ball
+  > Event - Storm Gate Speed Blocks Destroyed
+      Speed Booster and Can Slide
 
 > Event - Storm Missile Gate; Heals? False
   * Layers: default
   * Event Dairon - Storm Missile Gate
+  > Room Center
+      Trivial
+
+> Room Center; Heals? False
+  * Layers: default
+  > Dock to Shinespark Tutorial
+      Lay Bomb or Lay Power Bomb
+  > Door to Ammo Recharge Station
+      Trivial
+  > Pickup (Missile+ Tank)
+      All of the following:
+          Speed Booster
+          Any of the following:
+              Lay Bomb or Lay Power Bomb
+              After Dairon - Storm Gate Speed Blocks Destroyed and Movement (Intermediate)
+  > Dock to Lake Puzzle Room
+      After Dairon - Storm Missile Gate
+  > Event - Storm Missile Gate
+      Activate Storm Missile Locks
+  > Event - Storm Gate Speed Blocks Destroyed
+      All of the following:
+          # You can destroy the blocks from this side by resetting the spark up above after using a bomb, or charging one in the tight space opened up by the storm gate
+          Ballspark
+          Any of the following:
+              All of the following:
+                  # From above
+                  Speedbooster Conservation (Beginner)
+                  Lay Bomb or Lay Power Bomb
+              All of the following:
+                  # From below
+                  After Dairon - Storm Missile Gate and Speedbooster Conservation (Intermediate)
+
+> Event - Storm Gate Speed Blocks Destroyed; Heals? False
+  * Layers: default
+  * Event Dairon - Storm Gate Speed Blocks Destroyed
   > Door to Ammo Recharge Station
       Trivial
 
@@ -2939,8 +2883,8 @@ Extra - asset_id: collision_camera_034
   * Extra - right_shield_def: None
   > Dock to EMMI Zone Exit South
       Trivial
-  > Tile Group (SPEEDBOOST)
-      Morph Ball
+  > Tunnel to Storm Missile Gate Room
+      Speed Booster and Can Slide
 
 > Ammo Recharge; Heals? False; Spawn Point
   * Layers: default
@@ -2951,23 +2895,11 @@ Extra - asset_id: collision_camera_034
   > Dock to EMMI Zone Exit South
       Trivial
 
-> Tile Group (SPEEDBOOST); Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_011
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to Storm Missile Gate Room
-      Morph Ball
-  > Tunnel to Storm Missile Gate Room
-      Morph Ball
-
 > Tunnel to Storm Missile Gate Room; Heals? False
   * Layers: default
   * Morph Ball Tunnel to Storm Missile Gate Room/Tunnel to Ammo Recharge Station
-  > Tile Group (SPEEDBOOST)
-      Morph Ball
+  > Door to Storm Missile Gate Room
+      Speed Booster and Can Slide
 
 ----------------
 Lake Puzzle Room
@@ -2982,20 +2914,13 @@ Extra - asset_id: collision_camera_035
   > Above Grapple Block
       Morph Ball
 
-> Event - Pull Grapple Block (grapplepulloff1x2_003); Heals? False
+> Event - Lake Puzzle Grapple Block; Heals? False
   * Layers: default
-  * Event Dairon - grapplepulloff1x2_003
+  * Event Dairon - Lake Puzzle Grapple Block
   * Extra - actor_name: grapplepulloff1x2_003
   * Extra - actor_def: actordef:actors/props/grapplepulloff1x2/charclasses/grapplepulloff1x2.bmsad
   > Ledge
       Trivial
-
-> Tile Group (WEIGHT); Heals? False
-  * Layers: default
-  * Extra - actor_name: breakabletilegroup_006
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('WEIGHT',)
 
 > Tile Group (POWERBEAM); Heals? False
   * Layers: default
@@ -3010,26 +2935,33 @@ Extra - asset_id: collision_camera_035
   > Pickup (Power Bomb Tank)
       Morph Ball
   > Ledge
-      Morph Ball and After Dairon - grapplepulloff1x2_003
+      All of the following:
+          After Dairon - Lake Puzzle Grapple Block
+          Any of the following:
+              Lay Bomb
+              Power Bombs ≥ 2 and Lay Power Bomb
 
 > Dock to Storm Missile Gate Room; Heals? False
   * Layers: default
   * Open Passage to Storm Missile Gate Room/Dock to Lake Puzzle Room
   > Ledge
       Any of the following:
-          Simple IBJ or Use Spin Boost
+          Walljump (Intermediate) or Simple IBJ or Use Spin Boost
           Flash Shift and Walljump (Beginner)
+          Speed Booster and After Dairon - Storm Missile Gate and Movement (Intermediate)
 
 > Ledge; Heals? False
   * Layers: default
-  > Event - Pull Grapple Block (grapplepulloff1x2_003)
+  > Event - Lake Puzzle Grapple Block
       All of the following:
           Grapple Beam
-          Lay Cross Comb or Lay Power Bomb
+          Any of the following:
+              # Power Bombs require desyncing the beam blocks
+              Lay Cross Bomb or Lay Power Bomb
   > Above Grapple Block
       All of the following:
-          Morph Ball and After Dairon - grapplepulloff1x2_003
-          Cross Bomb or Gravity Suit or Space Jump
+          Morph Ball and After Dairon - Lake Puzzle Grapple Block
+          Cross Bomb or Gravity Suit or Use Spin Boost
   > Dock to Storm Missile Gate Room
       Trivial
 
@@ -3044,9 +2976,7 @@ Extra - asset_id: collision_camera_036
   * Extra - actor_name: dooremmy_010
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Door to EMMI Zone Exit West
-      All of the following:
-          Can Slide
-          Grapple Beam or Morph Ball or Walljump (Beginner) or Simple IBJ or Use Spin Boost
+      Can Slide
 
 > Door to EMMI Zone Exit West; Heals? False
   * Layers: default
@@ -3058,9 +2988,7 @@ Extra - asset_id: collision_camera_036
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Dock to Burenia Upper Transport Access
-      All of the following:
-          Can Slide
-          Grapple Beam or Spider Magnet or Walljump (Beginner) or Simple IBJ or Use Spin Boost
+      Can Slide
   > Tunnel to Central Unit Access
       Trivial
 
@@ -3080,22 +3008,22 @@ Extra - asset_id: collision_camera_037
   * EMMI Door to Ammo Recharge Station/Dock to EMMI Zone Exit South
   * Extra - actor_name: dooremmy_011
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
-  > Tile Group (SPEEDBOOST) 1
-      Trivial
+  > Upper Area
+      Speed Booster
 
 > Dock to Burenia Lower Transport Access; Heals? False
   * Layers: default
   * EMMI Door to Burenia Lower Transport Access/Dock to EMMI Zone Exit South
   * Extra - actor_name: dooremmy_012
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
-  > Door to Central Unit Access (doorchargecharge_000)
+  > Door to Central Unit Access (Charge)
       Morph Ball and After Dairon - Central Unit
   > Submerged Area
       Trivial
 
-> Door to Central Unit Access (doorchargecharge_000); Heals? False
+> Door to Central Unit Access (Charge); Heals? False
   * Layers: default
-  * Charge Beam Door to Central Unit Access/Door to EMMI Zone Exit South (doorchargecharge_000)
+  * Charge Beam Door to Central Unit Access/Door to EMMI Zone Exit South (Charge)
   * Extra - actor_name: doorchargecharge_000
   * Extra - actor_def: actordef:actors/props/doorchargecharge/charclasses/doorchargecharge.bmsad
   * Extra - left_shield_entity: {EMPTY}
@@ -3103,56 +3031,30 @@ Extra - asset_id: collision_camera_037
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Dock to Burenia Lower Transport Access
-      Morph Ball and After Dairon - Central Unit
+      After Dairon - Central Unit and Can Slide
   > Upper Area
-      Grapple Beam or Spider Magnet or Walljump (Beginner) or Simple IBJ or Use Spin Boost
-  > Submerged Area
-      Flash Shift
+      Trivial
 
-> Door to Central Unit Access (doorframe_000); Heals? False
+> Door to Central Unit Access (Open); Heals? False
   * Layers: default
-  * Access Open to Central Unit Access/Door to EMMI Zone Exit South (doorframe_000)
+  * Access Open to Central Unit Access/Door to EMMI Zone Exit South (Open)
   * Extra - actor_name: doorframe_000
   * Extra - actor_def: actordef:actors/props/doorframe/charclasses/doorframe.bmsad
   * Extra - left_shield_entity: {EMPTY}
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Tile Group (SPEEDBOOST) 2
-      Trivial
-
-> Tile Group (SPEEDBOOST) 1; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_002
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Dock to Ammo Recharge Station
-      Trivial
   > Upper Area
-      Trivial
-
-> Tile Group (SPEEDBOOST) 2; Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_010
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Door to Central Unit Access (doorframe_000)
-      Trivial
-  > Upper Area
-      Trivial
+      Speed Booster
 
 > Upper Area; Heals? False
   * Layers: default
-  > Door to Central Unit Access (doorchargecharge_000)
+  > Dock to Ammo Recharge Station
+      Speed Booster
+  > Door to Central Unit Access (Charge)
       Trivial
-  > Tile Group (SPEEDBOOST) 1
-      Trivial
-  > Tile Group (SPEEDBOOST) 2
-      Trivial
+  > Door to Central Unit Access (Open)
+      Speed Booster
   > Submerged Area
       Trivial
   > Tunnel to Central Unit Access
@@ -3161,15 +3063,15 @@ Extra - asset_id: collision_camera_037
 > Submerged Area; Heals? False
   * Layers: default
   > Dock to Burenia Lower Transport Access
-      All of the following:
-          Gravity Suit
-          Walljump (Beginner) or Simple IBJ or Use Spin Boost
-  > Door to Central Unit Access (doorchargecharge_000)
-      Grapple Beam or Gravity Suit or Spider Magnet
+      Gravity Suit
+  > Door to Central Unit Access (Charge)
+      Grapple Beam or Gravity Suit or Spider Magnet or Perform WBJ
 
 > Tunnel to Central Unit Access; Heals? False
   * Layers: default
   * Dairon EMMI Tunnel to Central Unit Access/Tunnel to EMMI Zone Exit South
+  > Upper Area
+      Bomb and Morph Ball and Movement (Hypermode)
 
 ----------------
 Central Unit
@@ -3207,7 +3109,7 @@ Extra - asset_id: collision_camera_039
   * Extra - actor_name: dooremmy_010
   * Extra - actor_def: actordef:actors/props/dooremmy/charclasses/dooremmy.bmsad
   > Door to Upper Transport to Burenia
-      Can Slide
+      Morph Ball
 
 > Door to Upper Transport to Burenia; Heals? False
   * Layers: default
@@ -3219,9 +3121,7 @@ Extra - asset_id: collision_camera_039
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
   > Dock to EMMI Zone Exit Southwest
-      All of the following:
-          Morph Ball
-          Grapple Beam or Spider Magnet or Space Jump or Walljump (Beginner)
+      Can Slide
 
 ----------------
 Central Unit Access
@@ -3229,42 +3129,52 @@ Central Unit Access
 Extra - total_boundings: {'x1': -18100.0, 'x2': -12850.0, 'y1': -8300.0, 'y2': -4300.0}
 Extra - polygon: [[-12850.0, -4300.0], [-18100.0, -4300.0], [-18100.0, -8300.0], [-12850.0, -8300.0]]
 Extra - asset_id: collision_camera_040
-> Door to EMMI Zone Exit South (doorchargecharge_000); Heals? False
+> Door to EMMI Zone Exit South (Charge); Heals? False
   * Layers: default
-  * Charge Beam Door to EMMI Zone Exit South/Door to Central Unit Access (doorchargecharge_000)
+  * Charge Beam Door to EMMI Zone Exit South/Door to Central Unit Access (Charge)
   * Extra - actor_name: doorchargecharge_000
   * Extra - actor_def: actordef:actors/props/doorchargecharge/charclasses/doorchargecharge.bmsad
   * Extra - left_shield_entity: {EMPTY}
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Door to Central Unit
+  > Start Point 1
       Morph Ball
+  > Tunnel to EMMI Zone Exit South
+      Trivial
 
 > Pickup (Energy Part); Heals? False
   * Layers: default
   * Pickup 72; Major Location? True
   * Extra - actor_name: item_energyfragment_003
   * Extra - actor_def: actordef:actors/items/item_energyfragment/charclasses/item_energyfragment.bmsad
-  > Tile Group (SPEEDBOOST)
+  > Door to EMMI Zone Exit South (Open)
       Morph Ball
 
-> Door to EMMI Zone Exit South (doorframe_000); Heals? False
+> Door to EMMI Zone Exit South (Open); Heals? False
   * Layers: default
-  * Access Open to EMMI Zone Exit South/Door to Central Unit Access (doorframe_000)
+  * Access Open to EMMI Zone Exit South/Door to Central Unit Access (Open)
   * Extra - actor_name: doorframe_000
   * Extra - actor_def: actordef:actors/props/doorframe/charclasses/doorframe.bmsad
   * Extra - left_shield_entity: {EMPTY}
   * Extra - left_shield_def: None
   * Extra - right_shield_entity: {EMPTY}
   * Extra - right_shield_def: None
-  > Tile Group (SPEEDBOOST)
-      Trivial
+  > Pickup (Energy Part)
+      Ballspark
+  > Start Point 1
+      Speed Booster
 
 > Start Point 1; Heals? False
   * Layers: default
   * Extra - start_point_actor_name: SP_Checkpoint_SpeedBooster
   * Extra - start_point_actor_def: actordef:actors/logic/startpoint/charclasses/startpoint.bmsad
+  > Door to EMMI Zone Exit South (Charge)
+      Can Slide
+  > Door to EMMI Zone Exit South (Open)
+      Speed Booster
+  > Door to Central Unit
+      Morph Ball or Speed Booster or Use Spin Boost
 
 > Start Point 2; Heals? False; Spawn Point
   * Layers: default
@@ -3273,24 +3183,10 @@ Extra - asset_id: collision_camera_040
   > Door to Central Unit
       Trivial
 
-> Tile Group (SPEEDBOOST); Heals? False
-  * Layers: default
-  * Configurable Node
-  * Extra - actor_name: breakabletilegroup_009
-  * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
-  * Extra - actor_layer: breakables
-  * Extra - tile_types: ('SPEEDBOOST',)
-  > Pickup (Energy Part)
-      Morph Ball
-  > Door to EMMI Zone Exit South (doorframe_000)
-      Trivial
-
 > Door to Central Unit; Heals? False
   * Layers: default
   * Access Open to Central Unit/Door to Central Unit Access
-  > Door to EMMI Zone Exit South (doorchargecharge_000)
-      Can Slide
-  > Tile Group (SPEEDBOOST)
+  > Start Point 1
       Trivial
   > Pickup (Speed Booster)
       After Dairon - Central Unit
@@ -3304,13 +3200,14 @@ Extra - asset_id: collision_camera_040
   * Extra - actor_def: actors/characters/emmylab/charclasses/emmylab.bmsad
   * Extra - string_key: GUI_ITEM_ACQUIRED_SPEED_BOOSTER
   * Extra - callback_function: OnEmmyBaseLabDead
+  * Extra - boss_hint_name: E.M.M.I.-04SB
   > Door to Central Unit
       Trivial
 
 > Tunnel to EMMI Zone Exit South; Heals? False
   * Layers: default
   * Dairon EMMI Tunnel to EMMI Zone Exit South/Tunnel to Central Unit Access
-  > Door to EMMI Zone Exit South (doorchargecharge_000)
+  > Door to EMMI Zone Exit South (Charge)
       Trivial
 
 > Tunnel to EMMI Zone Exit Southwest; Heals? False
@@ -3349,9 +3246,9 @@ Energy Recharge Station West
 Extra - total_boundings: {'x1': -16100.0, 'x2': -13900.0, 'y1': 5000.0, 'y2': 7700.0}
 Extra - polygon: [[-13900.0, 7700.0], [-16100.0, 7700.0], [-16100.0, 5000.0], [-13900.0, 5000.0]]
 Extra - asset_id: collision_camera_042
-> Door to Freezer (doorpowerpower_028); Heals? False
+> Door to Freezer (Upper); Heals? False
   * Layers: default
-  * Power Beam Door to Freezer/Door to Energy Recharge Station West (doorpowerpower_028)
+  * Power Beam Door to Freezer/Door to Energy Recharge Station West (Upper)
   * Extra - actor_name: doorpowerpower_028
   * Extra - actor_def: actordef:actors/props/doorpowerpower/charclasses/doorpowerpower.bmsad
   * Extra - left_shield_entity: {EMPTY}
@@ -3363,9 +3260,9 @@ Extra - asset_id: collision_camera_042
   > Tile Group (WEIGHT)
       Trivial
 
-> Door to Freezer (doorpowerpower_030); Heals? False
+> Door to Freezer (Lower); Heals? False
   * Layers: default
-  * Power Beam Door to Freezer/Door to Energy Recharge Station West (doorpowerpower_030)
+  * Power Beam Door to Freezer/Door to Energy Recharge Station West (Lower)
   * Extra - actor_name: doorpowerpower_030
   * Extra - actor_def: actordef:actors/props/doorpowerpower/charclasses/doorpowerpower.bmsad
   * Extra - left_shield_entity: {EMPTY}
@@ -3374,15 +3271,13 @@ Extra - asset_id: collision_camera_042
   * Extra - right_shield_def: None
   > Life Recharge
       Trivial
-  > Dock to Transport to Ghavoran
-      Can Slide
 
 > Pickup (Energy Part); Heals? False
   * Layers: default
   * Pickup 70; Major Location? True
   * Extra - actor_name: item_energyfragment_002
   * Extra - actor_def: actordef:actors/items/item_energyfragment/charclasses/item_energyfragment.bmsad
-  > Door to Freezer (doorpowerpower_028)
+  > Door to Freezer (Upper)
       Trivial
 
 > Life Recharge; Heals? True; Spawn Point
@@ -3391,8 +3286,10 @@ Extra - asset_id: collision_camera_042
   * Extra - actor_def: actordef:actors/props/energyrecharge/charclasses/energyrecharge.bmsad
   * Extra - start_point_actor_name: energyrecharge_001_platform
   * Extra - start_point_actor_def: actordef:actors/props/weightactivatedplatform_energy/charclasses/weightactivatedplatform_energy.bmsad
-  > Door to Freezer (doorpowerpower_030)
-      Trivial
+  > Door to Freezer (Lower)
+      After Dairon - Power Switch 2
+  > Dock to Transport to Ghavoran
+      Can Slide
 
 > Tile Group (WEIGHT); Heals? False
   * Layers: default
@@ -3400,14 +3297,16 @@ Extra - asset_id: collision_camera_042
   * Extra - actor_def: actordef:actors/logic/breakabletilegroup/charclasses/breakabletilegroup.bmsad
   * Extra - actor_layer: breakables
   * Extra - tile_types: ('WEIGHT',)
-  > Door to Freezer (doorpowerpower_030)
+  > Door to Freezer (Lower)
       Trivial
 
 > Dock to Transport to Ghavoran; Heals? False
   * Layers: default
   * Open Passage to Transport to Ghavoran/Dock to Energy Recharge Station West
-  > Door to Freezer (doorpowerpower_030)
-      Morph Ball and After Dairon - powergenerator_002
+  > Door to Freezer (Lower)
+      Morph Ball and After Dairon - Power Switch 2
+  > Life Recharge
+      Morph Ball
 
 ----------------
 Transport to Cataris

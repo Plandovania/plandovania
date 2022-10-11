@@ -5,10 +5,123 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.5.0] - 2022-07-01
+## [5.1.0] - 2022-10-01
+
+- Added: You can now view past versions of the presets and revert your preset to it.
+- Added: A Playthrough tab where you can run the validator has been added to the Game Details window.
+- Added: Deleting a preset now has a confirmation dialog.
+- Added: A development mode for permalinks, to help investigate issues.
+- Changed: Discord slash command for FAQ has better usability on mobile.
+- Changed: The parent for a preset is now stored in your preferences, instead of in the preset itself.
+- Fixed: The solver can no longer consider collecting a location a requirement to collecting itself. This is a regression from 4.3.0.
+
+### Discord Bot
+
+- Added: `/website` command that gives instructions to where Randovania's website is.
+- Changed: `/randovania-faq` is now just `/faq`.
+- Changed: `/database-inspect` is now just `/database`.
+
+### Cave Story
+
+- Nothing.
+
+### Metroid Dread
+ 
+- Fixed: The target DNA count is no longer limited to 6 when modifying an existing preset, or changing tabs.
+- Fixed: Exporting multiple games at once is not properly prevented with an error message. It was never possible and fail in unclear ways.
+
+#### Logic Database
+
+- Added: Event in Underlava Puzzle Room 2 for breaking the speed blocks so that going between the two parts can be accounted for
+- Added: Event for the trigger that reopens the door to Central Unit Access, allowing it logical to go back through
+- Added: Other various methods of going through rooms
+- Added: New Diffusion Abuse trick for pushing Wide Beam blocks and activating the lava buttons in Cataris.
+- Added: Cross Bomb Skip (Advanced) for Dairon's Cross Bomb Puzzle Room item
+- Added: Power Bombs method for the Speedbooster Conservation for Dairon's Cross Bomb Puzzle Room item
+- Changed: Separated the First Tunnel Blob event into two to account for Diffusion/Wave not needing to be in the tunnel
+- Changed: Deleted some unnecessary tile nodes
+- Changed: Various instances of Walljump (Beginner) to trivial
+- Changed: Some Grapple options to include Grapple Movement
+- Changed: Some Movement tricks to Climb Sloped Tunnels
+- Changed: Some Movement tricks to Skip Cross Bomb
+- Changed: Rotating the spinner in Ghavoran - Flipper Room now requires either pulling the grapple block in Right Entrance, or activating the Freezer in Dairon.
+- Changed: Allow pickup in Ghavoran Elun Transport Access by charging speed via navigation room
+- Changed: Help solver by adding Morph Ball requirment on connections to event to flip the spinner in Ghavoran Flipper Room
+- Changed: Shooting occluded objects requires at least Intermediate Knowledge
+- Fixed: Accounted for whether the player could have Varia or not when trudging through lava
+- Fixed: Accounted for the upper parts of Thermal Device Room North being heated without pressing the lava button
+- Fixed: Ghavoran Orange backdoor properly connects to Above Pulse Radar
+- Fixed: Purple EMMI Arena properly accounting for Gravity Suit to climb the tower.
+- Fixed: Ferenia - Space Jump Room Access properly requires a way of destroying the blocks to get to the lower door.
+- Changed: Collecting the item in Burenia - Underneath Drogyga before flooding the room by defeating Drogyga now requires Highly Dangerous Logic to be enabled.
+
+### Metroid Prime
+
+- Fixed: Shuffle Item Position is now properly randomized, along with other things shuffled patcher-side.
+
+### Metroid Prime 2: Echoes
+
+- Fixed: Exporting multiple games at once is not properly prevented with an error message. It was never possible and fail in unclear ways.
+- Added: The winners of the Cross-Game Cup have been added to A-Kul's scan.
+
+## [5.0.2] - 2022-09-19
+
+### Metroid Dread
+
+- Fixed: Exporting Metroid Dread games on the Linux builds no longer causes an error.
+- Added: FAQ entry about Speed Booster/Phantom Cloak/Storm Missile not working.
+- Added: FAQ entry about Golzuna and Experiment Z-57 spawn conditions.
+- Added: FAQ entry about the Wide Beam door in Dairon - Teleport to Cataris.
+
+## [5.0.1] - 2022-09-12
+
+- Fixed: The README and front page now lists Metroid Dread as a supported game.
+
+### Metroid Dread
+
+- Fixed: The differences tab no longer mentions Kraid and Corpius checkpoints being removed, as that's not a thing.
+- Fixed: Missing credits in Randovania itself for SkyTheLucario's new map icons.
+
+## [5.0.0] - 2022-09-10
+
+- **Major** - Added: Metroid Dread has been added with full single-player support.
+- **Major** - Added: An installer is now provided for Windows. With it rdvgame files are associated to open with Randovania, for ease of use. A shortcut for opening just the auto tracker is also provided.
+- **Major** - Changed: The UI has been significantly revamped, with each game having their own section and an easy to use selector.
+- Changed: The multi-pickup placement, using the new weighting, is now the default mode. The old behavior has been removed.
+- Changed: Error messages when a permalink is incompatible have been improved with more details.
+- Changed: The Customize Preset dialog now creates each tab as you click then. This means the dialog is now faster to first open, but there's a short delay when opening certain tabs.
+- Changed: Progressive items now have their proper count as the simplified shuffled option.
+- Fixed: Hints can now once again be placed during generation.
+- Fixed: Exceptions when exporting a game now use the improved error dialog.
+- Fixed: Gracefully handle unsupported old versions of the preferences file.
+- Fixed: Excluding all copies of a progressive item, or the non-progressive equivalent, no longer hides them from the editor.
+- Fixed: Changing the selected backend while it's being used should no longer cause issues.
+- Fixed: Unexpected exceptions during generation now properly display an error message.
+- Fixed: Trick usage in preset summary now ignores tricks that are hidden from the UI.
+- Fixed: /database-inspect command no longer shows EventPickup nodes.
+- Fixed: Data Editor is now correctly named Data Editor instead of Data Visualizer.
+
+### Cave Story
+
+- The hints fix affects Cave Story.
+
+### Metroid Prime
+
+- **Major** - Added: Enemy Attribute Rando. Enemy stat values such as speed and scale can be randomized within a range you specify.
+
+### Metroid Prime 2: Echoes
+
+- The hints fix affects Metroid Prime 2: Echoes.
+
+## [4.5.1] - 2022-08-03
+
+- Fixed: The History and Audit Log are now properly updated when joining a game session.
+- Fixed: Your connection state is properly updated when joining a game session.
+
+## [4.5.0] - 2022-08-01
 
 - Added: Preferences are now saved separately for each version. This means newer Randovania versions don't break the preferences of older versions. 
-- Added: Exporting presets now fills in default file name
+- Added: Exporting presets now fills in default file name.
 - Added: Logging messages when receiving events from the server.
 - Changed: Internal changes to server for hopefully less expired sessions.
 - Fixed: The discord bot no longer includes the lock nodes.
@@ -27,33 +140,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Metroid Prime
 
-- **Major** - Added: Door rando. Door locks can now be randomized, with many options to fine-tune your experience.
+- **Major** - Added: Door lock rando. Door locks can now be randomized, with many options to fine-tune your experience. This feature is incompatible with multiworld.
+- **Major** - Added: Option to show icons on the map for each uncollected item in the game under "Customize Cosmetic Options..."
 
 #### Patcher Changes
 
-- Fixed: Exporting with `QoL Cosmetic = False`
+- Fixed: Exporting with `QoL Cosmetic` disabled
+- Fixed: Zoid's deadname appearing in credits
 - Changed: Patches now consume fewer layers on average
 
 #### Logic Database
 
-- Added: Advancing through rooms containing Trooper Pirates now requires either the proper beam(s), basic defensive capabilities (varies slightly by room), or Combat (Intermediate), except where noted. Rooms affected:
-    - Elite Control
-    - Elite Research
-    - Ore Processing - Climbing the room vanilla now requires Power Beam. Ore Processing climb without Power Beam now requires Combat (Advanced).
-    - Central Dynamo
-    - Omega Research
-    - Mine Security Station
-    - Metroid Quarantine B - The Standable Terrain method of traversing the room now requires Combat (Advanced) without Plasma Beam.
-    - Phazon Processing Center - This room is only affected after picking up the item in Plasma Processing.
-- Added: Advancing through rooms containing Scatter Bombus now requires Morph Ball, Wave Beam, Movement tricks, or basic defensive capabilities. Rooms affected:
-    - Ice Ruins Access
-    - Canyon Entryway
-    - Temple Entryway
-    - Hydra Lab Entryway
-    - West Tower Entrance
-    - Aether Lab Entryway
-    - Lower Edge Tunnel
-    - Lake Tunnel
+- Fixed: Phazon Mining Tunnel now accounts only for Bombs when coming from Fungal Hall B
+- Fixed: The Central Dynamo drone event is now accounted for to go through Dynamo Access
+- Added: Beginner Wall Boost to lock onto the spider track in Metroid Quarantine A
+- Added: Advancing through rooms containing Trooper Pirates now requires either the proper beam(s), basic defensive capabilities (varies slightly by room), or Combat (Intermediate) where appropriate
+- Added: Advancing through rooms containing Scatter Bombus now requires Morph Ball, Wave Beam, Movement tricks, or basic defensive capabilities
 
 ### Metroid Prime 2: Echoes
 

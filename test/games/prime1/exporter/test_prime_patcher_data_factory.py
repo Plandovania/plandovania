@@ -21,8 +21,9 @@ def test_prime1_pickup_details_to_patcher_shiny_missile(prime1_resource_database
     rng.randint.return_value = 0
     detail = pickup_exporter.ExportedPickupDetails(
         index=PickupIndex(15),
-        scan_text="Your Missile Expansion. Provides 5 Missiles",
-        hud_text=["Missile Expansion acquired!"],
+        name="Your Missile Expansion",
+        description="Provides 5 Missiles",
+        collection_text=["Missile Expansion acquired!"],
         conditional_resources=[ConditionalResources(
             None, None, (
                 (prime1_resource_database.get_item_by_name("Missile"), 6),
@@ -47,13 +48,14 @@ def test_prime1_pickup_details_to_patcher_shiny_missile(prime1_resource_database
         }
 
     # Run
-    result = prime1_pickup_details_to_patcher(detail, False, rng)
+    result = prime1_pickup_details_to_patcher(detail, False, True, rng)
 
     # Assert
     assert result == {
         'type': 'Missile',
         'currIncrease': 6, 'maxIncrease': 6,
         'respawn': False,
+        'showIcon': True,
         **shiny_stuff,
     }
 
@@ -63,7 +65,7 @@ def _test_preset(rdvgame_file: Path, expected_results_file: Path, mocker):
     description = LayoutDescription.from_file(rdvgame_file)
     players_config = PlayersConfiguration(0, {0: "Prime", 1: "Echoes"})
     cosmetic_patches = PrimeCosmeticPatches(use_hud_color=True, hud_color=(255, 0, 0),
-                                            suit_color_rotations=(0, 40, 350, 12))
+                                            suit_color_rotations=(0, 40, 350, 12), pickup_markers=True,)
 
     mocker.patch("randovania.layout.layout_description.LayoutDescription.shareable_hash_bytes",
                  new_callable=PropertyMock,

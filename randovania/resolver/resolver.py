@@ -1,10 +1,12 @@
 import asyncio
+from random import Random
 from typing import Callable
 
 from randovania.game_description.game_patches import GamePatches
 from randovania.game_description.requirements.requirement_list import RequirementList
 from randovania.game_description.requirements.requirement_set import RequirementSet
 from randovania.game_description.resources.resource_info import ResourceInfo
+from randovania.game_description.resources.resource_type import ResourceType
 from randovania.game_description.world.event_node import EventNode
 from randovania.game_description.world.event_pickup import EventPickupNode
 from randovania.game_description.world.node import Node
@@ -29,6 +31,11 @@ def _simplify_requirement_list(self: RequirementList, state: State,
         if item.satisfied(state.resources, state.energy, state.resource_database):
             continue
 
+        # We don't want to mark collecting a pickup/event node as a requirement to collecting that node.
+        # This could be interesting for DockLock, as indicating it needs to be unlocked from the other side.
+        if item.resource.resource_type == ResourceType.NODE_IDENTIFIER:
+            continue
+
         if item.resource not in dangerous_resources:
             # An empty RequirementList is considered satisfied, so we don't have to add the trivial resource
             items.append(item)
@@ -51,10 +58,8 @@ def _simplify_additional_requirement_set(requirements: RequirementSet,
                           if alternative is not None)
 
 
-def _should_check_if_action_is_safe(state: State,
-                                    action: ResourceNode,
-                                    dangerous_resources: frozenset[ResourceInfo],
-                                    all_nodes: tuple[Node, ...]) -> bool:
+def _should_check_if_action_is_safe(state: State, action: ResourceNode, dangerous_resources: frozenset[ResourceInfo],
+                                    ) -> bool:
     """
     Determines if we should _check_ if the given action is safe that state
     :param state:
@@ -134,9 +139,11 @@ async def _inner_advance_depth(state: State,
     debug.log_new_advance(state, reach)
     status_update(f"Resolving... {state.resources.num_resources} total resources")
 
+    actions = []
+
     for action, energy in reach.possible_actions(state):
-        if _should_check_if_action_is_safe(state, action, logic.game.dangerous_resources,
-                                           logic.game.world_list.iterate_nodes()):
+        actions.append((action, energy))
+        if _should_check_if_action_is_safe(state, action, logic.game.dangerous_resources):
             potential_state = state.act_on_node(action, path=reach.path_to_node(action), new_energy=energy)
             potential_reach = ResolverReach.calculate_reach(logic, potential_state)
 
@@ -156,9 +163,10 @@ async def _inner_advance_depth(state: State,
                 # If a safe node was a dead end, we're certainly a dead end as well
                 return new_result
 
-    debug.log_checking_satisfiable_actions()
+    actions = list(reach.satisfiable_actions(state, logic.victory_condition, actions))
+    debug.log_checking_satisfiable_actions(state, actions)
     has_action = False
-    for action, energy in reach.satisfiable_actions(state, logic.victory_condition):
+    for action, energy in actions:
         new_result = await _inner_advance_depth(
             state=state.act_on_node(action, path=reach.path_to_node(action), new_energy=energy),
             logic=logic,
@@ -172,7 +180,6 @@ async def _inner_advance_depth(state: State,
         else:
             has_action = True
 
-    debug.log_rollback(state, has_action, False)
     additional_requirements = reach.satisfiable_as_requirement_set
 
     if has_action:
@@ -188,6 +195,8 @@ async def _inner_advance_depth(state: State,
                                              state,
                                              logic.game.dangerous_resources)
     )
+    debug.log_rollback(state, has_action, False, logic.get_additional_requirements(state.node))
+
     return None, has_action
 
 

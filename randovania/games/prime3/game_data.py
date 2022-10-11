@@ -20,7 +20,7 @@ def _gui() -> game.GameGui:
         cosmetic_dialog=gui.CorruptionCosmeticPatchesDialog,
         export_dialog=gui.CorruptionGameExportDialog,
         progressive_item_gui_tuples=progressive_items.tuples(),
-        help_widget=lambda: gui.CorruptionHelpWidget(),
+        game_tab=gui.CorruptionGameTabWidget,
     )
 
 
@@ -59,7 +59,16 @@ game_data: game.GameData = game.GameData(
         }
     ],
 
-    faq=[],
+    faq=[
+        (
+           "What causes the Hypermode vines in Corrupted Pool to disappear?",
+           "Collecting the ship item from the Federation Landing Site removes the vines."
+        ),
+        (
+           "While fighting Rundas, the game is lags and there are pirates and turrets in the way. What causes this?",
+           "If you collect the ship item from the Federation Landing Site, both Rundas and the pirates will be active at the same time."
+        )
+    ],
 
     layout=game.GameLayout(
         configuration=CorruptionConfiguration,

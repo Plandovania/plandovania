@@ -64,7 +64,7 @@ async def create_player_pool(rng: Random, configuration: BaseConfiguration,
     )
 
     pool_results = pool_creator.calculate_pool_results(configuration,
-                                                       game.resource_database,
+                                                       game,
                                                        base_patches,
                                                        rng,
                                                        rng_required=rng_required)
@@ -214,7 +214,7 @@ async def _create_description(generator_params: GeneratorParameters,
     :param status_update:
     :return:
     """
-    rng = Random(generator_params.as_bytes)
+    rng = generator_params.create_rng()
 
     presets = [
         generator_params.get_preset(i)

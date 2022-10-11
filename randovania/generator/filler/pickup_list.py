@@ -65,7 +65,9 @@ def _unsatisfied_item_requirements_in_list(alternative: RequirementList,
 
     sum_damage = sum(req.damage(state.resources, state.resource_database) for req in damage)
     if state.energy < sum_damage:
-        tank_count = (sum_damage - state.energy) // state.game_data.energy_per_tank
+        # A requirement for many "Energy Tanks" is added,
+        # which is then decreased by how many tanks is in the state by pickups_to_solve_list
+        tank_count = sum_damage // state.game_data.energy_per_tank
         yield items + [ResourceRequirement.create(state.resource_database.energy_tank, tank_count + 1, False)]
         # FIXME: get the required items for reductions (aka suits)
     else:
@@ -96,7 +98,7 @@ def _requirement_lists_without_satisfied_resources(state: State,
 
     if debug.debug_level() > 2:
         print(">> All requirement lists:")
-        for items in sorted(result):
+        for items in sorted(result, key=lambda it: it.as_stable_sort_tuple):
             print(f"* {items}")
 
     return result
@@ -122,7 +124,7 @@ def pickups_to_solve_list(pickup_pool: list[PickupEntry],
         if individual.satisfied(resources, state.energy, state.resource_database):
             continue
 
-        # Create another copy of the list so we can remove elements while iterating
+        # Create another copy of the list, so we can remove elements while iterating
         for pickup in list(pickups_for_this):
             new_resources = ResourceCollection.from_resource_gain(db, pickup.resource_gain(resources, force_lock=True))
             pickup_progression = ResourceCollection.from_resource_gain(db, pickup.progression)
@@ -147,7 +149,8 @@ def get_pickups_that_solves_unreachable(pickups_left: list[PickupEntry],
     """New logic. Given pickup list and a reach, checks the combination of pickups
     that satisfies on unreachable nodes"""
     state = reach.state
-    possible_sets = list(reach.unreachable_nodes_with_requirements().values())
+    possible_sets = [v for v in reach.unreachable_nodes_with_requirements().values() if v.alternatives]
+    possible_sets.append(reach.game.victory_condition.as_set(reach.game.resource_database))
     context = reach.node_context()
 
     uncollected_resources = set()
@@ -171,22 +174,3 @@ def get_pickups_that_solves_unreachable(pickups_left: list[PickupEntry],
 
     return tuple(result)
 
-
-def get_pickups_with_interesting_resources(pickup_pool: list[PickupEntry],
-                                           reach: GeneratorReach,
-                                           uncollected_resource_nodes: list[ResourceNode],
-                                           ) -> PickupCombinations:
-    """Old logic. Given pickup list and a reach, gets these that gives at least one of the interesting resources."""
-    interesting_resources = interesting_resources_for_reach(reach)
-    progression_pickups = []
-
-    for pickup in pickup_pool:
-        if pickup in progression_pickups:
-            continue
-        if _resources_in_pickup(pickup, reach.state.resources).intersection(interesting_resources):
-            progression_pickups.append(pickup)
-
-    return tuple(
-        (pickup,)
-        for pickup in progression_pickups
-    )

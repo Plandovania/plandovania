@@ -1,6 +1,7 @@
 import functools
 import json
 from dataclasses import dataclass
+from random import Random
 from typing import Iterator
 
 from randovania.bitpacking import bitpacking
@@ -14,9 +15,13 @@ _PERMALINK_MAX_SEED = 2 ** 31
 _PERMALINK_PLAYER_COUNT_LIMITS = (2, 256)
 
 
-def _game_db_hash(game: RandovaniaGame) -> int:
-    data = default_data.read_json_then_binary(game)[1]
+def raw_database_hash(data: dict) -> int:
     return bitpacking.single_byte_hash(json.dumps(data, separators=(',', ':')).encode("UTF-8"))
+
+
+def game_db_hash(game: RandovaniaGame) -> int:
+    data = default_data.read_json_then_binary(game)[1]
+    return raw_database_hash(data)
 
 
 def _get_unique_games(presets: list[Preset]) -> Iterator[RandovaniaGame]:
@@ -47,6 +52,7 @@ class GeneratorParameters(BitPackValue):
     seed_number: int
     spoiler: bool
     presets: list[Preset]
+    development: bool = False
 
     def __post_init__(self):
         if self.seed_number is None:
@@ -57,41 +63,51 @@ class GeneratorParameters(BitPackValue):
         if not isinstance(self.presets, list):
             raise ValueError("presets must be a list")
 
+        if not self.spoiler and self.development:
+            raise ValueError("Race permalinks can't have development enabled")
+
         object.__setattr__(self, "__cached_as_bytes", None)
 
     def bit_pack_encode(self, metadata) -> Iterator[tuple[int, int]]:
         yield from encode_game_list(tuple(preset.game for preset in self.presets))
         yield self.seed_number, _PERMALINK_MAX_SEED
         yield from bitpacking.encode_bool(self.spoiler)
+        if self.spoiler:
+            yield from bitpacking.encode_bool(self.development)
 
         manager = PresetManager(None)
         for preset in self.presets:
             yield from preset.bit_pack_encode({"manager": manager})
 
-        for game in _get_unique_games(self.presets):
-            yield _game_db_hash(game), 256
+        if not self.development:
+            for game in _get_unique_games(self.presets):
+                yield game_db_hash(game), 256
 
     @classmethod
     def bit_pack_unpack(cls, decoder: BitPackDecoder, metadata) -> "GeneratorParameters":
         games = decode_game_list(decoder)
         seed_number = decoder.decode_single(_PERMALINK_MAX_SEED)
         spoiler = bitpacking.decode_bool(decoder)
+        development = False
+        if spoiler:
+            development = bitpacking.decode_bool(decoder)
 
         manager = PresetManager(None)
         presets = [
             Preset.bit_pack_unpack(decoder, {"manager": manager, "game": game})
             for game in games
         ]
-        for game in _get_unique_games(presets):
-            included_data_hash = decoder.decode_single(256)
-            expected_data_hash = _game_db_hash(game)
-            if included_data_hash != expected_data_hash:
-                raise ValueError("Given permalink is for a Randovania {} database with hash '{}', "
-                                 "but current database has hash '{}'.".format(game.long_name,
-                                                                              included_data_hash,
-                                                                              expected_data_hash))
 
-        return GeneratorParameters(seed_number, spoiler, presets)
+        if not development:
+            for game in _get_unique_games(presets):
+                included_data_hash = decoder.decode_single(256)
+                expected_data_hash = game_db_hash(game)
+                if included_data_hash != expected_data_hash:
+                    raise ValueError("Expected {} database with hash {}, but found {} instead.".format(
+                        game.long_name, included_data_hash, expected_data_hash,
+                    ))
+
+        return GeneratorParameters(seed_number, spoiler, presets, development=development)
 
     @property
     def as_bytes(self) -> bytes:
@@ -102,6 +118,9 @@ class GeneratorParameters(BitPackValue):
             object.__setattr__(self, key, result)
 
         return result
+
+    def create_rng(self):
+        return Random(self.seed_number if self.development else self.as_bytes)
 
     @classmethod
     def from_bytes(cls, b: bytes) -> "GeneratorParameters":

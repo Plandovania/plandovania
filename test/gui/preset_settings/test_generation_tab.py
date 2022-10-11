@@ -24,11 +24,9 @@ def test_on_preset_changed(skip_qtbot, preset_manager, game_data):
     game, has_specific_settings, has_min_logic, tab = game_data
 
     base = preset_manager.default_preset_for_game(game).get_preset()
-    preset = dataclasses.replace(base,
-                                 uuid=uuid.UUID('b41fde84-1f57-4b79-8cd6-3e5a78077fa6'),
-                                 base_preset_uuid=base.uuid)
+    preset = dataclasses.replace(base, uuid=uuid.UUID('b41fde84-1f57-4b79-8cd6-3e5a78077fa6'))
     editor = PresetEditor(preset)
-    window: PresetGeneration = tab(editor, default_database.game_description_for(game))
+    window: PresetGeneration = tab(editor, default_database.game_description_for(game), MagicMock())
     parent = QGroupBox()
     window.setParent(parent)
 
@@ -45,7 +43,7 @@ def test_persist_local_first_progression(skip_qtbot, preset_manager):
     game = RandovaniaGame.BLANK
 
     editor = MagicMock()
-    window = PresetGeneration(editor, default_database.game_description_for(game))
+    window = PresetGeneration(editor, default_database.game_description_for(game), MagicMock())
     window.setParent(parent)
 
     # Run

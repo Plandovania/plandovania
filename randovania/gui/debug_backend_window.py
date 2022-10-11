@@ -151,7 +151,7 @@ class DebugExecutorWindow(MemoryOperationExecutor, Ui_DebugBackendWindow):
     @handle_network_errors
     async def _setup_locations_combo(self):
         network_client = common_qt_lib.get_network_client()
-        game_session = network_client.current_game_session
+        game_session = network_client.current_game_session_meta
         user = network_client.current_user
 
         game = self.game
@@ -370,7 +370,7 @@ class DebugExecutorWindow(MemoryOperationExecutor, Ui_DebugBackendWindow):
         self._connected = True
         return True
 
-    async def disconnect(self):
+    def disconnect(self):
         self._connected = False
 
     def is_connected(self) -> bool:
