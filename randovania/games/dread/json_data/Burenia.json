@@ -3427,7 +3427,7 @@
             }
         },
         "Underneath Drogyga": {
-            "default_node": null,
+            "default_node": "Start Point",
             "extra": {
                 "total_boundings": {
                     "x1": -2000.0,
@@ -4082,6 +4082,22 @@
                             }
                         }
                     }
+                },
+                "Start Point": {
+                    "node_type": "generic",
+                    "heal": false,
+                    "coordinates": {
+                        "x": -1615.0,
+                        "y": 9330.0,
+                        "z": 0.0
+                    },
+                    "description": "",
+                    "layers": [
+                        "default"
+                    ],
+                    "extra": {},
+                    "valid_starting_location": true,
+                    "connections": {}
                 }
             }
         },

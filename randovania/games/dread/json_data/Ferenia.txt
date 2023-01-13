@@ -2310,6 +2310,9 @@ Central Unit Access
 Extra - total_boundings: {'x1': 9450.0, 'x2': 11550.0, 'y1': 2600.0, 'y2': 5900.0}
 Extra - polygon: [[11550.0, 5900.0], [9450.0, 5900.0], [9450.0, 2600.0], [11550.0, 2600.0]]
 Extra - asset_id: collision_camera_038_A
+> Start Point; Heals? False; Spawn Point
+  * Layers: default
+
 ----------------
 Purple EMMI Introduction
 Extra - total_boundings: {'x1': -8500.0, 'x2': -4400.0, 'y1': -7402.5, 'y2': -3800.0}

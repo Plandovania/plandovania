@@ -12412,7 +12412,7 @@
             }
         },
         "Central Unit Access": {
-            "default_node": null,
+            "default_node": "Start Point",
             "extra": {
                 "total_boundings": {
                     "x1": 9450.0,
@@ -12440,7 +12440,24 @@
                 ],
                 "asset_id": "collision_camera_038_A"
             },
-            "nodes": {}
+            "nodes": {
+                "Start Point": {
+                    "node_type": "generic",
+                    "heal": false,
+                    "coordinates": {
+                        "x": 11530.739241265557,
+                        "y": 5049.820062977958,
+                        "z": 0.0
+                    },
+                    "description": "",
+                    "layers": [
+                        "default"
+                    ],
+                    "extra": {},
+                    "valid_starting_location": true,
+                    "connections": {}
+                }
+            }
         },
         "Purple EMMI Introduction": {
             "default_node": "Start Point",

@@ -679,6 +679,9 @@ Extra - asset_id: collision_camera_007
               After Drogyga and Perform WBJ
               Spider Magnet or Lay Cross Bomb
 
+> Start Point; Heals? False; Spawn Point
+  * Layers: default
+
 ----------------
 Teleport to Ferenia
 Extra - total_boundings: {'x1': -8600.0, 'x2': -4900.0, 'y1': 2200.0, 'y2': 8900.0}
