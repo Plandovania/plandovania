@@ -75,6 +75,7 @@ def get_resources_for_details(detail: ExportedPickupDetails) -> list[dict]:
 class DreadPatchDataFactory(BasePatchDataFactory):
     cosmetic_patches: DreadCosmeticPatches
     configuration: DreadConfiguration
+    spawnpoint_name_prefix = "SP_RDV_"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -118,17 +119,42 @@ class DreadPatchDataFactory(BasePatchDataFactory):
     def _key_error_for_node(self, node: Node, err: KeyError):
         return KeyError(f"{self.game.world_list.node_name(node, with_world=True)} has no extra {err}")
 
+    def _key_error_for_start_node(self, node: Node):
+        return KeyError(f"{self.game.world_list.node_name(node, with_world=True)} has neither a start_point_actor_name nor the area has a collision_camera_name for a custom start point")
+
     def _start_point_ref_for(self, node: Node) -> dict:
         world = self.game.world_list.nodes_to_world(node)
+        area = self.game.world_list.area_by_area_location(node.identifier.area_identifier)
         level_name: str = os.path.splitext(os.path.split(world.extra["asset_id"])[1])[0]
 
         try:
-            return {
-                "scenario": level_name,
-                "actor": node.extra["start_point_actor_name"],
-            }
+            if "start_point_actor_name" in node.extra:
+                return {
+                    "scenario": level_name,
+                    "actor": node.extra["start_point_actor_name"],
+                }
+            else:
+                logging.debug("Can not find start_point_actor_name for node %s in scenario %s. Add it to new_spawn_points", node.name, level_name)
+                new_spawnpoint_name = f"{self.spawnpoint_name_prefix}{self.spawnpoint_id:03d}"
+                self.new_spawn_points.append({
+                    "new_actor": {
+                        "actor": new_spawnpoint_name,
+                        "scenario": level_name
+                    },
+                    "location": {
+                        "x": node.location.x,
+                        "y": node.location.y,
+                        "z": node.location.z
+                    },
+                    "collision_camera_name": area.extra["asset_id"]
+                })
+                self.spawnpoint_id += 1
+                return {
+                    "scenario": level_name,
+                    "actor": new_spawnpoint_name,
+                }
         except KeyError as e:
-            raise self._key_error_for_node(node, e)
+            raise self._key_error_for_start_node(node)
 
     def _level_name_for(self, node: Node) -> str:
         world = self.game.world_list.nodes_to_world(node)
@@ -351,6 +377,9 @@ class DreadPatchDataFactory(BasePatchDataFactory):
         ]
 
     def create_data(self) -> dict:
+        self.spawnpoint_id: int = 0
+        self.new_spawn_points = []
+
         starting_location = self._start_point_ref_for(self._node_for(self.patches.starting_location))
         starting_items = self._calculate_starting_inventory(self.patches.starting_items)
         starting_text = [self._starting_inventory_text(self.patches.starting_items)]
@@ -407,6 +436,7 @@ class DreadPatchDataFactory(BasePatchDataFactory):
             },
             "door_patches": self._door_patches(),
             "tile_group_patches": self._tilegroup_patches(),
+            "new_spawn_points": self.new_spawn_points,
             "objective": self._objective_patches(),
         }
 
