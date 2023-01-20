@@ -2033,6 +2033,8 @@ Extra - asset_id: collision_camera_024
       Trivial
   > Tile Group (SCREWATTACK)
       Trivial
+  > Dock to Chozo Warrior Arena
+      Grapple Beam and Gravity Suit and Shinesink Clip (Expert) and Can SSC and Use Spin Boost
   > Dock to Total Recharge Station North
       After Ghavoran - Storm Missile Gate
 
@@ -2500,6 +2502,7 @@ Extra - asset_id: collision_camera_028
       Any of the following:
           Gravity Suit
           Space Jump and Water Space Jump (Beginner)
+          Shinesink Clip (Hypermode) and Speedbooster Conservation (Advanced) and Can SSC
 
 > Bomb Ledge; Heals? False
   * Layers: default
