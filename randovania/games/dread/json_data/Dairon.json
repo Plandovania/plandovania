@@ -9164,20 +9164,8 @@
                                         }
                                     },
                                     {
-                                        "type": "or",
-                                        "data": {
-                                            "comment": null,
-                                            "items": [
-                                                {
-                                                    "type": "template",
-                                                    "data": "Lay Bomb"
-                                                },
-                                                {
-                                                    "type": "template",
-                                                    "data": "Lay Power Bomb"
-                                                }
-                                            ]
-                                        }
+                                        "type": "template",
+                                        "data": "Destroy Bomb Block"
                                     }
                                 ]
                             }

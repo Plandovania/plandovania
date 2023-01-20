@@ -1655,8 +1655,10 @@ Extra - asset_id: collision_camera_018
   * Open Passage to EMMI Zone Exit North/Dock to Yellow EMMI Introduction
   > Pickup (Energy Part)
       All of the following:
-          Missiles
-          Lay Bomb or Lay Power Bomb
+          Missiles and Destroy Bomb Block
+          Any of the following:
+              # Methods to get up into the tunnel after breaking the bomb block (e.g. if player only has PBs, they need another way to get up there)
+              Ballspark or Lay Bomb or Use Spin Boost
   > Lower-Left Area
       Speed Booster
 

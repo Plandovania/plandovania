@@ -243,7 +243,7 @@ Extra - asset_id: collision_camera_003
   > Door to Chozo Soldier Arena
       Trivial
   > Tile Group (BOMB) 3
-      Morph Ball
+      Destroy Bomb Block
 
 > Tile Group (BOMB) 1; Heals? False
   * Layers: default
@@ -754,7 +754,7 @@ Extra - asset_id: collision_camera_009
   * Layers: default
   * Morph Ball Tunnel to Horizontal Bomb Maze/Tunnel to Vertical Bomb Maze (Lower)
   > Tile Group (BOMB WEIGHT)
-      Lay Bomb
+      Destroy Bomb Block
 
 > Tunnel to Spider Magnet Room; Heals? False
   * Layers: default

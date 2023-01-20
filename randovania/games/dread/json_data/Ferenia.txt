@@ -84,7 +84,7 @@ Extra - asset_id: collision_camera_002
   > Tile Group (WEIGHT)
       Trivial
   > Ceiling Tunnel
-      Lay Bomb
+      Destroy Bomb Block
 
 > Door to Purple EMMI Introduction Access; Heals? False
   * Layers: default
@@ -134,7 +134,7 @@ Extra - asset_id: collision_camera_002
 > Ceiling Tunnel; Heals? False
   * Layers: default
   > Pickup (Energy Part)
-      Lay Bomb
+      Destroy Bomb Block
   > Right Alcove
       Trivial
 
@@ -1696,9 +1696,7 @@ Extra - asset_id: collision_camera_019
   * Layers: default
   * Morph Ball Tunnel to Energy Recharge Station Secret/Tunnel to Energy Recharge Station (Gate)
   > Tile Group (WEIGHT)
-      All of the following:
-          After Ferenia - Recharge Station Secret Grapple Block
-          Lay Bomb or Lay Power Bomb
+      After Ferenia - Recharge Station Secret Grapple Block and Destroy Bomb Block
 
 > Bomb Ledge; Heals? False
   * Layers: default
@@ -1747,7 +1745,7 @@ Extra - asset_id: collision_camera_020
   * Layers: default
   * Morph Ball Tunnel to Energy Recharge Station (Gate)/Tunnel to Energy Recharge Station Secret
   > Corner
-      Lay Bomb or Lay Power Bomb
+      Destroy Bomb Block
 
 > Corner; Heals? False
   * Layers: default
@@ -2044,7 +2042,7 @@ Extra - asset_id: collision_camera_025
   * Extra - actor_name: item_energyfragment
   * Extra - actor_def: actordef:actors/items/item_energyfragment/charclasses/item_energyfragment.bmsad
   > Tunnel to Escue Eyedoor Room
-      Lay Bomb
+      Destroy Bomb Block
 
 > Tile Group (WEIGHT); Heals? False
   * Layers: default
@@ -2061,7 +2059,7 @@ Extra - asset_id: collision_camera_025
   > Door to Storm Missile Tutorial
       Trivial
   > Pickup (Energy Part)
-      Lay Bomb
+      Destroy Bomb Block
 
 > Tunnel to Storm Missile Tutorial; Heals? False
   * Layers: default

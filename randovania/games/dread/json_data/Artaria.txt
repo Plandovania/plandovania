@@ -3385,7 +3385,7 @@ Extra - asset_id: collision_camera_051
   > Door to EMMI Zone Dome
       Trivial
   > Tunnel to Teleport to Cataris
-      Lay Bomb
+      Destroy Bomb Block
 
 > Door to EMMI Zone Hub; Heals? False
   * Layers: default

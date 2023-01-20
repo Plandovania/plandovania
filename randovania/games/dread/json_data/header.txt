@@ -101,6 +101,9 @@ Templates
 * Break/Move Grapple Block from Behind:
       Grapple Beam and Slide and Reverse Grapple Block (Beginner)
 
+* Destroy Bomb Block:
+      Lay Bomb or Lay Cross Bomb or Lay Power Bomb
+
 * Perform WBJ:
       All of the following:
           # Gain a little extra height in water without Gravity Suit by using a Bomb or Cross Bomb
@@ -527,7 +530,7 @@ Dock Weaknesses
 
   * Morph Ball Launcher
       Open:
-          Lay Bomb
+          Lay Bomb or Lay Cross Bomb
       No lock
 
 

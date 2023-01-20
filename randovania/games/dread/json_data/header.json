@@ -2004,6 +2004,26 @@
                     ]
                 }
             },
+            "Destroy Bomb Block": {
+                "type": "or",
+                "data": {
+                    "comment": null,
+                    "items": [
+                        {
+                            "type": "template",
+                            "data": "Lay Bomb"
+                        },
+                        {
+                            "type": "template",
+                            "data": "Lay Cross Bomb"
+                        },
+                        {
+                            "type": "template",
+                            "data": "Lay Power Bomb"
+                        }
+                    ]
+                }
+            },
             "Perform WBJ": {
                 "type": "and",
                 "data": {
@@ -5038,8 +5058,20 @@
                     "Morph Ball Launcher": {
                         "extra": {},
                         "requirement": {
-                            "type": "template",
-                            "data": "Lay Bomb"
+                            "type": "or",
+                            "data": {
+                                "comment": null,
+                                "items": [
+                                    {
+                                        "type": "template",
+                                        "data": "Lay Bomb"
+                                    },
+                                    {
+                                        "type": "template",
+                                        "data": "Lay Cross Bomb"
+                                    }
+                                ]
+                            }
                         },
                         "lock": null
                     },

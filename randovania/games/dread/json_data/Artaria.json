@@ -16941,7 +16941,7 @@
                         },
                         "Tunnel to Teleport to Cataris": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },

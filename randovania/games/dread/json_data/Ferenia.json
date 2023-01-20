@@ -424,7 +424,7 @@
                         },
                         "Ceiling Tunnel": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -684,7 +684,7 @@
                     "connections": {
                         "Pickup (Energy Part)": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         },
                         "Right Alcove": {
                             "type": "and",
@@ -8543,20 +8543,8 @@
                                         }
                                     },
                                     {
-                                        "type": "or",
-                                        "data": {
-                                            "comment": null,
-                                            "items": [
-                                                {
-                                                    "type": "template",
-                                                    "data": "Lay Bomb"
-                                                },
-                                                {
-                                                    "type": "template",
-                                                    "data": "Lay Power Bomb"
-                                                }
-                                            ]
-                                        }
+                                        "type": "template",
+                                        "data": "Destroy Bomb Block"
                                     }
                                 ]
                             }
@@ -8900,20 +8888,8 @@
                     "override_default_lock_requirement": null,
                     "connections": {
                         "Corner": {
-                            "type": "or",
-                            "data": {
-                                "comment": null,
-                                "items": [
-                                    {
-                                        "type": "template",
-                                        "data": "Lay Power Bomb"
-                                    },
-                                    {
-                                        "type": "template",
-                                        "data": "Lay Bomb"
-                                    }
-                                ]
-                            }
+                            "type": "template",
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -10244,7 +10220,7 @@
                     "connections": {
                         "Tunnel to Escue Eyedoor Room": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
@@ -10310,7 +10286,7 @@
                         },
                         "Pickup (Energy Part)": {
                             "type": "template",
-                            "data": "Lay Bomb"
+                            "data": "Destroy Bomb Block"
                         }
                     }
                 },
