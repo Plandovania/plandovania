@@ -2312,6 +2312,8 @@ Extra - polygon: [[11550.0, 5900.0], [9450.0, 5900.0], [9450.0, 2600.0], [11550.
 Extra - asset_id: collision_camera_038_A
 > Start Point; Heals? False; Spawn Point
   * Layers: default
+  * Extra - start_point_actor_name: SP_Checkpoint_CentralUnit
+  * Extra - start_point_actor_def: actordef:actors/logic/startpoint/charclasses/startpoint.bmsad
 
 ----------------
 Purple EMMI Introduction

@@ -12445,15 +12445,18 @@
                     "node_type": "generic",
                     "heal": false,
                     "coordinates": {
-                        "x": 11530.739241265557,
-                        "y": 5049.820062977958,
+                        "x": 10600.0,
+                        "y": 5100.0,
                         "z": 0.0
                     },
                     "description": "",
                     "layers": [
                         "default"
                     ],
-                    "extra": {},
+                    "extra": {
+                        "start_point_actor_name": "SP_Checkpoint_CentralUnit",
+                        "start_point_actor_def": "actordef:actors/logic/startpoint/charclasses/startpoint.bmsad"
+                    },
                     "valid_starting_location": true,
                     "connections": {}
                 }
