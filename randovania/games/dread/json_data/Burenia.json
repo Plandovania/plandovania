@@ -4097,7 +4097,15 @@
                     ],
                     "extra": {},
                     "valid_starting_location": true,
-                    "connections": {}
+                    "connections": {
+                        "Left of Grapple Blocks": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": []
+                            }
+                        }
+                    }
                 }
             }
         },
