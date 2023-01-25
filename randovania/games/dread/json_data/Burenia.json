@@ -3547,7 +3547,7 @@
         },
         "Underneath Drogyga": {
             "default_node": "Start Point",
-            "valid_starting_location": false,
+            "valid_starting_location": true,
             "extra": {
                 "total_boundings": {
                     "x1": -2000.0,
@@ -4207,7 +4207,15 @@
                         "default"
                     ],
                     "extra": {},
-                    "connections": {}
+                    "connections": {
+                        "Left of Grapple Blocks": {
+                            "type": "and",
+                            "data": {
+                                "comment": null,
+                                "items": []
+                            }
+                        }
+                    }
                 }
             }
         },

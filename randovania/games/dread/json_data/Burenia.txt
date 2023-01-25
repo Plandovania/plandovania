@@ -643,6 +643,7 @@ Extra - asset_id: collision_camera_006
 
 ----------------
 Underneath Drogyga
+(Valid Starting Location)
 Extra - total_boundings: {'x1': -2000.0, 'x2': 1100.0, 'y1': 7600.0, 'y2': 10250.0}
 Extra - polygon: [[1100.0, 10250.0], [-2000.0, 10250.0], [-2000.0, 7600.0], [1100.0, 7600.0]]
 Extra - asset_id: collision_camera_007
@@ -737,6 +738,8 @@ Extra - asset_id: collision_camera_007
 
 > Start Point; Heals? False; Spawn Point
   * Layers: default
+  > Left of Grapple Blocks
+      Trivial
 
 ----------------
 Teleport to Ferenia
