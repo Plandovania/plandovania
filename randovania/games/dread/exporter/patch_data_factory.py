@@ -134,24 +134,32 @@ class DreadPatchDataFactory(BasePatchDataFactory):
                     "actor": node.extra["start_point_actor_name"],
                 }
             else:
-                logging.debug("Can not find start_point_actor_name for node %s in scenario %s. Add it to new_spawn_points", node.name, level_name)
-                new_spawnpoint_name = f"{self.spawnpoint_name_prefix}{self.spawnpoint_id:03d}"
-                self.new_spawn_points.append({
-                    "new_actor": {
-                        "actor": new_spawnpoint_name,
-                        "scenario": level_name
-                    },
-                    "location": {
-                        "x": node.location.x,
-                        "y": node.location.y,
-                        "z": node.location.z
-                    },
-                    "collision_camera_name": area.extra["asset_id"]
-                })
-                self.spawnpoint_id += 1
+                collision_camera_name = area.extra["asset_id"]
+                spawnpoint_key = f"{level_name}_{collision_camera_name}_{node.location.x}_{node.location.y}_{node.location.z}"
+
+                if not spawnpoint_key in self.new_spawn_points:
+                    logging.debug("Can not find start_point_actor_name for node %s in scenario %s. Add it to new_spawn_points", node.name, level_name)
+                    new_spawnpoint_name = f"{self.spawnpoint_name_prefix}{self.spawnpoint_id:03d}"
+                    self.new_spawn_points[spawnpoint_key] = {
+                        "new_actor": {
+                            "actor": new_spawnpoint_name,
+                            "scenario": level_name
+                        },
+                        "location": {
+                            "x": node.location.x,
+                            "y": node.location.y,
+                            "z": node.location.z
+                        },
+                        "collision_camera_name": collision_camera_name
+                    }
+                    self.spawnpoint_id += 1
+
+                spawnpoint = self.new_spawn_points[spawnpoint_key]
+                spawnpoint_name = spawnpoint["new_actor"]["actor"]
+
                 return {
                     "scenario": level_name,
-                    "actor": new_spawnpoint_name,
+                    "actor": spawnpoint_name,
                 }
         except KeyError as e:
             raise self._key_error_for_start_node(node)
@@ -285,7 +293,7 @@ class DreadPatchDataFactory(BasePatchDataFactory):
         ])
 
         return text
-    
+
     def _credits_spoiler(self) -> dict[str, str]:
         return credits_spoiler.generic_credits(
             self.configuration.major_items_configuration,
@@ -326,7 +334,7 @@ class DreadPatchDataFactory(BasePatchDataFactory):
             if "actor_name" not in node.extra:
                 print(f"Invalid door (no actor): {node}")
                 continue
-            
+
             result.append({
                 "actor": (actor := self._teleporter_ref_for(node)),
                 "door_type": (door_type := weakness.extra["type"]),
@@ -378,7 +386,7 @@ class DreadPatchDataFactory(BasePatchDataFactory):
 
     def create_data(self) -> dict:
         self.spawnpoint_id: int = 0
-        self.new_spawn_points = []
+        self.new_spawn_points: dict[str, dict] = {}
 
         starting_location = self._start_point_ref_for(self._node_for(self.patches.starting_location))
         starting_items = self._calculate_starting_inventory(self.patches.starting_items)
@@ -436,7 +444,7 @@ class DreadPatchDataFactory(BasePatchDataFactory):
             },
             "door_patches": self._door_patches(),
             "tile_group_patches": self._tilegroup_patches(),
-            "new_spawn_points": self.new_spawn_points,
+            "new_spawn_points": list(self.new_spawn_points.values()),
             "objective": self._objective_patches(),
         }
 
