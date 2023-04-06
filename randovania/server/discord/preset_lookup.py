@@ -8,6 +8,8 @@ import random
 import re
 import subprocess
 import time
+import typing
+from typing import Callable
 
 import discord
 from discord.ui import Button
@@ -20,6 +22,7 @@ from randovania.layout.layout_description import LayoutDescription
 from randovania.layout.permalink import Permalink, UnsupportedPermalink
 from randovania.layout.preset import Preset
 from randovania.layout.versioned_preset import VersionedPreset
+from randovania.lib.migration_lib import UnsupportedVersion
 from randovania.resolver.exceptions import GenerationFailure
 from randovania.server.discord.bot import RandovaniaBot
 from randovania.server.discord.randovania_cog import RandovaniaCog
@@ -198,11 +201,11 @@ class RequestPresetsView(discord.ui.View):
     )
     async def button_callback(self, button: Button, interaction: discord.Interaction):
         try:
-            title = (await interaction.original_message()).embeds[0].title
+            title = (await interaction.original_response()).embeds[0].title
             # Trim leading and trailing `s
             permalink = Permalink.from_str(title[1:-1])
 
-        except (IndexError, ValueError, UnsupportedPermalink) as e:
+        except (IndexError, ValueError, UnsupportedPermalink):
             logging.exception("Unable to find permalink on message that sent attach_presets_of_permalink")
             permalink = None
 
@@ -217,26 +220,49 @@ class RequestPresetsView(discord.ui.View):
                     discord.File(data, filename=f"Player {player + 1}'s Preset.{VersionedPreset.file_extension()}")
                 )
 
-        await interaction.edit_original_message(
+        await interaction.edit_original_response(
             view=None,
             files=files,
         )
+
+
+T = typing.TypeVar("T")
+
+
+async def _try_get(message: discord.Message, attachment: discord.Attachment, decoder: Callable[[dict], T]) -> T | None:
+    try:
+        data = await attachment.read()
+        return decoder(json.loads(data.decode("utf-8")))
+    except Exception as e:
+        if not isinstance(e, UnsupportedVersion):
+            logging.exception(f"Unable to process {attachment.filename} from {message}")
+
+        await message.reply(
+            embed=discord.Embed(
+                title=f"Unable to process `{attachment.filename}`",
+                description=str(e),
+            ),
+            mention_author=False
+        )
+        return None
 
 
 async def _get_presets_from_message(message: discord.Message):
     for attachment in message.attachments:
         filename: str = attachment.filename
         if filename.endswith(VersionedPreset.file_extension()):
-            data = await attachment.read()
-            yield VersionedPreset(json.loads(data.decode("utf-8")))
+            result = await _try_get(message, attachment, VersionedPreset)
+            if result is not None:
+                yield result
 
 
 async def _get_layouts_from_message(message: discord.Message):
     for attachment in message.attachments:
         filename: str = attachment.filename
         if filename.endswith(LayoutDescription.file_extension()):
-            data = await attachment.read()
-            yield LayoutDescription.from_json_dict(json.loads(data.decode("utf-8")))
+            result = await _try_get(message, attachment, LayoutDescription.from_json_dict)
+            if result is not None:
+                yield result
 
 
 class PermalinkLookupCog(RandovaniaCog):
@@ -303,7 +329,7 @@ class PermalinkLookupCog(RandovaniaCog):
         except asyncio.TimeoutError:
             content = "Timeout after "
         except Exception as e:
-            return await response.edit_original_message(
+            return await response.edit_original_response(
                 content=f"Unexpected error when generating: {e} ({type(e)})",
             )
 
@@ -319,7 +345,7 @@ class PermalinkLookupCog(RandovaniaCog):
                 content=f"{content}\nRequested by {context.user.display_name}.",
                 files=files, embeds=embeds, mention_author=False)
         except discord.errors.Forbidden:
-            return await response.edit_original_message(content=content, files=files, embeds=embeds)
+            return await response.edit_original_response(content=content, files=files, embeds=embeds)
 
     @discord.Cog.listener()
     async def on_message(self, message: discord.Message):

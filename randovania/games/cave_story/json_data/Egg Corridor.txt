@@ -1,6 +1,5 @@
 ----------------
 Egg Corridor
-(Valid Starting Location)
 Extra - map_name: Eggs
 Extra - starting_script: <TRA0002:0099:0005:0006
 > Door to Cthulhu's Abode (Lower); Heals? False
@@ -17,7 +16,7 @@ Extra - starting_script: <TRA0002:0099:0005:0006
   > Pickup (Cthulhu's Abode)
       Trivial
 
-> Teleporter to Arthur's House; Heals? False; Spawn Point
+> Teleporter to Arthur's House; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Teleporter to Arthur's House/Teleporter to Egg Corridor
   > Hint - Blue Robot
@@ -35,8 +34,9 @@ Extra - starting_script: <TRA0002:0099:0005:0006
 
 > Hint - Blue Robot; Heals? False
   * Layers: default
-  * Logbook Generic for 1
+  * Hint
   * Extra - event: 0200
+  * Extra - string_asset_id: 1
   > Teleporter to Arthur's House
       Trivial
 
@@ -152,7 +152,6 @@ Extra - starting_script: <TRA0002:0099:0005:0006
 
 ----------------
 Cthulhu's Abode
-(Valid Starting Location)
 Extra - map_name: Cthu
 Extra - starting_script: <TRA0022:0094:0006:0012
 > Door to Egg Corridor (Lower); Heals? False
@@ -173,22 +172,22 @@ Extra - starting_script: <TRA0022:0094:0006:0012
 
 > Hint - Cthulhu; Heals? False
   * Layers: default
-  * Logbook Generic for 0
+  * Hint
   * Extra - event: 0200
+  * Extra - string_asset_id: 0
   > Door to Egg Corridor (Lower)
       Trivial
 
-> Save Point; Heals? False; Spawn Point
+> Save Point; Heals? False; Spawn Point; Default Node
   * Layers: default
   > Door to Egg Corridor (Lower)
       Trivial
 
 ----------------
 Egg No. 06
-(Valid Starting Location)
 Extra - map_name: Egg6
 Extra - starting_script: <TRA0004:0094:0008:0008
-> Door to Egg Corridor; Heals? False; Spawn Point
+> Door to Egg Corridor; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Door to Egg Corridor/H/V Trigger to Egg No. 06
   > Pickup (Egg Chest)
@@ -203,7 +202,6 @@ Extra - starting_script: <TRA0004:0094:0008:0008
 
 ----------------
 Egg Observation Room
-(Valid Starting Location)
 Extra - map_name: EggR
 Extra - starting_script: <TRA0005:0094:0017:0008
 > Pickup (Egg Observation Room Chest); Heals? False
@@ -213,7 +211,7 @@ Extra - starting_script: <TRA0005:0094:0017:0008
   > Door to Egg Corridor
       Trivial
 
-> Door to Egg Corridor; Heals? False; Spawn Point
+> Door to Egg Corridor; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Door to Egg Corridor/Door to Egg Observation Room
   > Pickup (Egg Observation Room Chest)
@@ -221,10 +219,9 @@ Extra - starting_script: <TRA0005:0094:0017:0008
 
 ----------------
 Egg No. 01
-(Valid Starting Location)
 Extra - map_name: Egg1
 Extra - starting_script: <TRA0023:0094:0008:0008
-> Door to Egg Corridor; Heals? False; Spawn Point
+> Door to Egg Corridor; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Door to Egg Corridor/H/V Trigger to Egg No. 01
   > Event - Lowered Egg Corridor Barrier
@@ -238,10 +235,9 @@ Extra - starting_script: <TRA0023:0094:0008:0008
 
 ----------------
 Egg No. 00
-(Valid Starting Location)
 Extra - map_name: EggX
 Extra - starting_script: <TRA0003:0094:0004:0010
-> Door to Egg Corridor; Heals? False; Spawn Point
+> Door to Egg Corridor; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Door to Egg Corridor/Door to Egg No. 00
   > Event - Saved Sue
@@ -255,7 +251,6 @@ Extra - starting_script: <TRA0003:0094:0004:0010
 
 ----------------
 Side Room
-(Valid Starting Location)
 Extra - map_name: EgEnd1
 Extra - starting_script: <TRA0021:0094:0011:0006
 > Door to Egg Corridor; Heals? False
@@ -264,7 +259,7 @@ Extra - starting_script: <TRA0021:0094:0011:0006
   > Save Point
       Trivial
 
-> Save Point; Heals? False; Spawn Point
+> Save Point; Heals? False; Spawn Point; Default Node
   * Layers: default
   > Door to Egg Corridor
       Trivial

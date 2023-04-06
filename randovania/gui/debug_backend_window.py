@@ -128,7 +128,7 @@ class DebugExecutorWindow(MemoryOperationExecutor, Ui_DebugBackendWindow):
 
     def _get_magic_address(self):
         multiworld_magic_item = self.game.resource_database.multiworld_magic_item
-        return _echoes_powerup_address(multiworld_magic_item.index)
+        return _echoes_powerup_address(multiworld_magic_item.extra["item_id"])
 
     def _read_magic(self):
         return self._read_memory_format(">II", self._get_magic_address())
@@ -264,7 +264,6 @@ class DebugExecutorWindow(MemoryOperationExecutor, Ui_DebugBackendWindow):
 
             if header == 19:
                 # subset of branch without address. Consider these blr
-                end_address = current_address
                 self.logger.debug("blr")
                 break
 

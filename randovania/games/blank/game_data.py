@@ -46,7 +46,7 @@ def _exporter():
 game_data: game.GameData = game.GameData(
     short_name="Blank",
     long_name="Blank Development Game",
-    development_state=game.DevelopmentState.DEVELOPMENT,
+    development_state=game.DevelopmentState.EXPERIMENTAL,
 
     presets=[
         {
@@ -71,4 +71,6 @@ game_data: game.GameData = game.GameData(
     patch_data_factory=_patch_data_factory,
 
     exporter=_exporter,
+
+    multiple_start_nodes_per_area=True,
 )

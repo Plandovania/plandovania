@@ -8,7 +8,7 @@ from randovania.game_description.resources.pickup_index import PickupIndex
 from randovania.game_description.resources.resource_database import ResourceDatabase
 from randovania.game_description.resources.resource_info import ResourceInfo, ResourceCollection
 from randovania.game_description.resources.resource_type import ResourceType
-from randovania.game_description.world.logbook_node import LogbookNode
+from randovania.game_description.world.hint_node import HintNode
 from randovania.game_description.world.node import Node, NodeContext
 from randovania.game_description.world.node_identifier import NodeIdentifier
 from randovania.game_description.world.pickup_node import PickupNode
@@ -92,7 +92,7 @@ class State:
     def collected_hints(self) -> Iterator[NodeIdentifier]:
         for resource, count in self.resources.as_resource_gain():
             if isinstance(resource, NodeResourceInfo) and count > 0:
-                if isinstance(self.world_list.node_by_identifier(resource.node_identifier), LogbookNode):
+                if isinstance(self.world_list.node_by_identifier(resource.node_identifier), HintNode):
                     yield resource.node_identifier
 
     @property
@@ -182,7 +182,7 @@ class State:
 
         new_resources = self.resources.duplicate()
         new_resources.add_resource_gain(pickup_resources.as_resource_gain())
-        new_patches = self.patches.assign_extra_initial_items(pickup_resources.as_resource_gain())
+        new_patches = self.patches.assign_extra_starting_pickups([pickup])
 
         tank_delta = _energy_tank_difference(new_resources, self.resources, self.resource_database)
 

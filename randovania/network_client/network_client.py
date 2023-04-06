@@ -10,18 +10,20 @@ from pathlib import Path
 
 import aiofiles
 import aiohttp
+import construct
 import engineio
+import sentry_sdk
 import socketio
 import socketio.exceptions
 
 from randovania.bitpacking import bitpacking
-from randovania.game_connection.connection_base import GameConnectionStatus, Inventory
+from randovania.game_connection.connection_base import GameConnectionStatus, Inventory, InventoryItem
 from randovania.game_connection.memory_executor_choice import MemoryExecutorChoice
 from randovania.game_description import default_database
 from randovania.games.game import RandovaniaGame
 from randovania.network_client.game_session import (GameSessionListEntry, GameSessionEntry, User, GameSessionActions,
                                                     GameSessionAction, GameSessionPickups, GameSessionAuditLog,
-                                                    GameSessionAuditEntry)
+                                                    GameSessionAuditEntry, GameSessionInventory)
 from randovania.network_common import connection_headers, error, binary_formats, admin_actions, pickup_serializer
 
 
@@ -139,6 +141,8 @@ class NetworkClient:
         self.sio.on("game_session_actions_update", self._on_game_session_actions_update_raw)
         self.sio.on("game_session_pickups_update", self._on_game_session_pickups_update_raw)
         self.sio.on("game_session_audit_update", self._on_game_session_audit_update_raw)
+        self.sio.on("game_session_binary_inventory", self._on_game_session_inventory_raw)
+        self.sio.on("game_session_json_inventory", print)
 
     @property
     def connection_state(self) -> ConnectionState:
@@ -197,7 +201,7 @@ class NetworkClient:
                 headers=connection_headers(),
             )
             await waiting_for_on_connect
-            self.logger.info(f"connected")
+            self.logger.info("connected")
 
         except (socketio.exceptions.ConnectionError, aiohttp.client_exceptions.ContentTypeError) as e:
             self.logger.info(f"failed with {e} - {type(e)}")
@@ -227,9 +231,9 @@ class NetworkClient:
         return self._connect_task
 
     async def disconnect_from_server(self):
-        self.logger.debug(f"will disconnect")
+        self.logger.debug("will disconnect")
         await self.sio.disconnect()
-        self.logger.debug(f"disconnected")
+        self.logger.debug("disconnected")
 
     async def _restore_session(self):
         persisted_session = await self.read_persisted_session()
@@ -248,7 +252,7 @@ class NetworkClient:
                 if self._current_game_session_meta is not None:
                     await self.game_session_request_update()
 
-                self.logger.info(f"session restored successful")
+                self.logger.info("session restored successful")
                 self.connection_state = ConnectionState.Connected
 
             except (error.InvalidSession, error.UserNotAuthorized) as e:
@@ -260,7 +264,7 @@ class NetworkClient:
                 self.connection_state = ConnectionState.ConnectedNotLogged
                 self.session_data_path.unlink()
         else:
-            self.logger.info(f"no session to restore")
+            self.logger.info("no session to restore")
             self.connection_state = ConnectionState.ConnectedNotLogged
 
     async def on_connect(self):
@@ -293,13 +297,21 @@ class NetworkClient:
             self.notify_on_connect(socketio.exceptions.ConnectionError(error_message))
 
     async def on_disconnect(self):
-        self.logger.info(f"on_disconnect")
+        self.logger.info("on_disconnect")
         self.connection_state = ConnectionState.Disconnected
         if self._restore_session_task is not None:
             self._restore_session_task.cancel()
 
     async def on_user_session_updated(self, new_session: dict):
         self._current_user = User.from_json(new_session["user"])
+
+        if self._current_user.discord_id is not None:
+            sentry_sdk.set_user({
+                "id": self._current_user.discord_id,
+                "username": self._current_user.name,
+                "server_id": self._current_user.id,
+            })
+
         if self.connection_state in (ConnectionState.ConnectedRestoringSession, ConnectionState.ConnectedNotLogged):
             self.connection_state = ConnectionState.Connected
 
@@ -360,10 +372,29 @@ class NetworkClient:
         ))
 
     async def on_game_session_audit_update(self, audit_log: GameSessionAuditLog):
-        self.logger.info("num aduit: %d", len(audit_log.entries))
+        self.logger.info("num audit: %d", len(audit_log.entries))
         self._current_game_session_audit_log = audit_log
 
-    #
+    async def _on_game_session_inventory_raw(self, session_id: int, row_id: int, raw_inventory: bytes):
+        try:
+            inventory = binary_formats.BinaryInventory.parse(raw_inventory)
+        except construct.ConstructError as e:
+            self.logger.debug("Unable to parse inventory for row %d: %s", row_id, str(e))
+            return
+
+        session_inventory = GameSessionInventory(
+            session_id=session_id,
+            row_id=row_id,
+            game=RandovaniaGame(inventory.game),
+            inventory={
+                element.name: InventoryItem(element.amount, element.capacity)
+                for element in inventory.elements
+            },
+        )
+        await self.on_game_session_inventory(session_inventory)
+
+    async def on_game_session_inventory(self, inventory: GameSessionInventory):
+        pass
 
     def _update_timeout_with(self, request_time: float, success: bool):
         if success:
@@ -456,17 +487,27 @@ class NetworkClient:
         return await self._emit_with_result("game_session_admin_player",
                                             (self._current_game_session_meta.id, user_id, action.value, arg))
 
-    async def session_self_update(self, inventory: Inventory, state: GameConnectionStatus,
+    async def session_self_update(self, game: RandovaniaGame | None, inventory: Inventory, state: GameConnectionStatus,
                                   backend: MemoryExecutorChoice):
 
-        inventory_binary = binary_formats.BinaryInventory.build([
-            {"name": resource.short_name, "amount": item.amount, "capacity": item.capacity}
-            for resource, item in inventory.items()
-        ])
+        if game is None or state not in (GameConnectionStatus.TrackerOnly, GameConnectionStatus.InGame):
+            inventory_binary = None
+        else:
+            inventory_binary = binary_formats.BinaryInventory.build(construct.Container(
+                game=game.value,
+                elements=[
+                    {"name": resource.short_name, "amount": item.amount, "capacity": item.capacity}
+                    for resource, item in inventory.items()
+                ],
+            ))
         state_string = f"{state.pretty_text} ({backend.pretty_text})"
 
         await self._emit_with_result("game_session_self_update",
                                      (self._current_game_session_meta.id, inventory_binary, state_string))
+
+    async def session_track_inventory(self, row: int, enable: bool):
+        await self._emit_with_result("game_session_watch_row_inventory",
+                                     (self._current_game_session_meta.id, row, enable, True))
 
     @property
     def current_user(self) -> User | None:
@@ -476,6 +517,7 @@ class NetworkClient:
         self.logger.info("Logging out")
         self.session_data_path.unlink()
         self._current_user = None
+        sentry_sdk.set_user(None)
 
         if self.connection_state != ConnectionState.Connected:
             return

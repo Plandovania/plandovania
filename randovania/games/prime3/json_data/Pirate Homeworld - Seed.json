@@ -6,7 +6,6 @@
     "areas": {
         "Landing Site Delta": {
             "default_node": "Samus Ship",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 9593588872354674734
             },
@@ -26,6 +25,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Seed",
@@ -46,7 +46,7 @@
                     }
                 },
                 "Samus Ship": {
-                    "node_type": "player_ship",
+                    "node_type": "teleporter_network",
                     "heal": true,
                     "coordinates": null,
                     "description": "",
@@ -54,6 +54,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "is_unlocked": {
                         "type": "resource",
                         "data": {
@@ -61,6 +62,24 @@
                             "name": "Event111",
                             "amount": 1,
                             "negate": false
+                        }
+                    },
+                    "network": "default",
+                    "requirement_to_activate": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "CommandVisor",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
                         }
                     },
                     "connections": {
@@ -104,7 +123,7 @@
                                                 {
                                                     "type": "and",
                                                     "data": {
-                                                        "comment": null,
+                                                        "comment": "https://youtu.be/3QUDijwoYC8",
                                                         "items": [
                                                             {
                                                                 "type": "resource",
@@ -141,6 +160,15 @@
                                                                     "amount": 5,
                                                                     "negate": false
                                                                 }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "tricks",
+                                                                    "name": "BombJump",
+                                                                    "amount": 5,
+                                                                    "negate": false
+                                                                }
                                                             }
                                                         ]
                                                     }
@@ -157,7 +185,6 @@
         },
         "Core Access": {
             "default_node": "Door to Landing Site Delta",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 15118031102725025016
             },
@@ -177,6 +204,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Seed",
@@ -208,6 +236,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Seed",
@@ -228,7 +257,6 @@
         },
         "Pirate Homeworld Leviathan Core": {
             "default_node": "Door to Core Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4585599704880367469
             },
@@ -248,6 +276,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Seed",
@@ -292,6 +321,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": null
                     },
+                    "valid_starting_location": false,
                     "destination": {
                         "world_name": "Pirate Homeworld - Command",
                         "area_name": "Landing Site Bravo"
@@ -309,6 +339,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 99,
                     "major_location": true,
                     "connections": {
@@ -344,6 +375,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event13",
                     "connections": {
                         "Pickup (Hyper Grapple)": {

@@ -125,7 +125,7 @@ class ConnectionBackend(ConnectionBase):
         for connector in possible_connectors:
             try:
                 is_version = await connector.is_this_version(self.executor)
-            except (RuntimeError, MemoryOperationException) as e:
+            except (RuntimeError, MemoryOperationException):
                 return None
 
             if is_version:
@@ -134,6 +134,10 @@ class ConnectionBackend(ConnectionBase):
 
     def get_current_inventory(self) -> Inventory:
         return self._inventory
+
+    @property
+    def expected_game(self):
+        return self._expected_game
 
     def set_expected_game(self, game: RandovaniaGame | None):
         self._expected_game = game

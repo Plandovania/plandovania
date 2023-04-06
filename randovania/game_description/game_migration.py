@@ -78,6 +78,99 @@ def _migrate_v10(data: dict) -> dict:
     return data
 
 
+def _migrate_v11(data: dict) -> dict:
+    data["dock_weakness_database"]["dock_rando"] = {
+        "enable_one_way": False,
+        "force_change_two_way": False,
+        "resolver_attempts": 125,
+        "to_shuffle_proportion": 1.0
+    }
+    return data
+
+
+def _migrate_v12(data: dict) -> dict:
+    for world in data["worlds"]:
+        for area in world["areas"].values():
+            for node in area["nodes"].values():
+                if node["node_type"] == "player_ship":
+                    node["node_type"] = "teleporter_network"
+                    node["network"] = "default"
+
+                    node["requirement_to_activate"] = {
+                        "type": "and",
+                        "data": {
+                            "comment": None,
+                            "items": [
+                            ]
+                        }
+                    }
+                    if data["game"] == "prime3":
+                        node["requirement_to_activate"]["data"]["items"].append({
+                            "type": "resource",
+                            "data": {
+                                "type": "items",
+                                "name": "CommandVisor",
+                                "amount": 1,
+                                "negate": False
+                            }
+                        })
+
+                elif node["node_type"] == "logbook":
+                    node["node_type"] = "hint"
+                    lore_type = node.pop("lore_type")
+
+                    required_items = []
+
+                    if data["game"] == "prime2":
+                        required_items.append("Scan")
+
+                    if lore_type == "requires-item":
+                        required_items.append(node["extra"]["translator"])
+                        lore_type = "generic"
+
+                    node["extra"]["string_asset_id"] = node.pop("string_asset_id")
+                    node["kind"] = lore_type
+                    node["requirement_to_collect"] = {
+                        "type": "and",
+                        "data": {
+                            "comment": None,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": item,
+                                        "amount": 1,
+                                        "negate": False
+                                    }
+                                }
+                                for item in required_items
+                            ]
+                        }
+                    }
+
+    return data
+
+
+def _migrate_v13(data: dict) -> dict:
+    for world in data["worlds"]:
+        for area_name, area in world["areas"].items():
+            old_valid_starting_location = area["valid_starting_location"]
+            start_node_name = area["default_node"]
+
+            starting_location = data["starting_location"]
+            if world["name"] == starting_location["world_name"] and area_name == starting_location["area_name"]:
+                starting_location["node_name"] = start_node_name
+
+            for node_name, node in area["nodes"].items():
+                if old_valid_starting_location and node_name == start_node_name:
+                    node["valid_starting_location"] = True
+                else:
+                    node["valid_starting_location"] = False
+            del area["valid_starting_location"]
+    return data
+
+
 _MIGRATIONS = [
     None,
     None,
@@ -89,6 +182,9 @@ _MIGRATIONS = [
     _migrate_v8,
     _migrate_v9,
     _migrate_v10,
+    _migrate_v11,
+    _migrate_v12,
+    _migrate_v13,
 ]
 CURRENT_VERSION = migration_lib.get_version(_MIGRATIONS)
 

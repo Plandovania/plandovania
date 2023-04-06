@@ -1,8 +1,11 @@
 import asyncio
+import typing
 
 from PySide6 import QtWidgets
 
 from randovania.gui.lib import common_qt_lib
+
+StandardButton = QtWidgets.QMessageBox.StandardButton
 
 
 async def execute_dialog(dialog: QtWidgets.QDialog) -> QtWidgets.QDialog.DialogCode:
@@ -27,18 +30,18 @@ async def execute_dialog(dialog: QtWidgets.QDialog) -> QtWidgets.QDialog.DialogC
 async def message_box(parent: QtWidgets.QWidget | None,
                       icon: QtWidgets.QMessageBox.Icon,
                       title: str, text: str,
-                      buttons: QtWidgets.QMessageBox.StandardButtons = QtWidgets.QMessageBox.Ok,
-                      default_button: QtWidgets.QMessageBox.StandardButton = QtWidgets.QMessageBox.NoButton,
-                      ) -> QtWidgets.QMessageBox.StandardButton:
+                      buttons: StandardButton = StandardButton.Ok,
+                      default_button: StandardButton = StandardButton.NoButton,
+                      ) -> StandardButton:
     box = QtWidgets.QMessageBox(icon, title, text, buttons, parent)
     box.setDefaultButton(default_button)
     common_qt_lib.set_default_window_icon(box)
-    return await execute_dialog(box)
+    return typing.cast(StandardButton, await execute_dialog(box))
 
 
 async def warning(parent: QtWidgets.QWidget | None,
                   title: str, text: str,
-                  buttons: QtWidgets.QMessageBox.StandardButtons = QtWidgets.QMessageBox.Ok,
-                  default_button: QtWidgets.QMessageBox.StandardButton = QtWidgets.QMessageBox.NoButton,
+                  buttons: StandardButton = StandardButton.Ok,
+                  default_button: StandardButton = StandardButton.NoButton,
                   ) -> QtWidgets.QMessageBox.StandardButton:
-    return await message_box(parent, QtWidgets.QMessageBox.Warning, title, text, buttons, default_button)
+    return await message_box(parent, QtWidgets.QMessageBox.Icon.Warning, title, text, buttons, default_button)

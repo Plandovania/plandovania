@@ -30,8 +30,13 @@ def display_exception(val: Exception):
         box.exec_()
 
 
+old_handler = None
+
+
 def catch_exceptions(t, val, tb):
     display_exception(val)
+    if old_handler is not None:
+        return old_handler(t, val, tb)
 
 
 def catch_exceptions_async(loop, context):
@@ -126,11 +131,14 @@ def show_data_editor(app: QtWidgets.QApplication, options, game: RandovaniaGame)
     app.data_editor.show()
 
 
-def show_game_details(app: QtWidgets.QApplication, options, game: Path):
-    from randovania.layout.layout_description import LayoutDescription
+async def show_game_details(app: QtWidgets.QApplication, options, file_path: Path):
     from randovania.gui.game_details.game_details_window import GameDetailsWindow
+    from randovania.gui.lib import layout_loader
 
-    layout = LayoutDescription.from_file(game)
+    layout = await layout_loader.load_layout_description(None, file_path)
+    if layout is None:
+        return
+    
     details_window = GameDetailsWindow(None, options)
     details_window.update_layout_description(layout)
     logger.info("Displaying game details")
@@ -167,7 +175,7 @@ async def show_game_session(app: QtWidgets.QApplication, options, session_id: in
     app.game_session_window.show()
 
 
-async def display_window_for(app, options: Options, command: str, args):
+async def display_window_for(app: QtWidgets.QApplication, options: Options, command: str, args):
     if command == "tracker":
         await show_tracker(app)
     elif command == "main":
@@ -175,7 +183,7 @@ async def display_window_for(app, options: Options, command: str, args):
     elif command == "data_editor":
         show_data_editor(app, options, RandovaniaGame(args.game))
     elif command == "game":
-        show_game_details(app, options, args.rdvgame)
+        await show_game_details(app, options, args.rdvgame)
     elif command == "session":
         await show_game_session(app, options, args.session_id)
     else:
@@ -252,7 +260,7 @@ def start_logger(data_dir: Path, is_preview: bool):
     log_dir = data_dir.joinpath("logs")
     log_dir.mkdir(parents=True, exist_ok=True)
 
-    randovania.setup_logging('DEBUG' if is_preview else 'INFO', log_dir.joinpath(f"logger.log"))
+    randovania.setup_logging('DEBUG' if is_preview else 'INFO', log_dir.joinpath("logger.log"))
 
 
 def create_loop(app: QtWidgets.QApplication) -> asyncio.AbstractEventLoop:
@@ -261,8 +269,11 @@ def create_loop(app: QtWidgets.QApplication) -> asyncio.AbstractEventLoop:
     loop: asyncio.AbstractEventLoop = qasync.QEventLoop(app)
     asyncio.set_event_loop(loop)
 
+    global old_handler
+    old_handler = sys.excepthook
     sys.excepthook = catch_exceptions
     loop.set_exception_handler(catch_exceptions_async)
+
     return loop
 
 
@@ -309,7 +320,19 @@ async def qt_main(app: QtWidgets.QApplication, data_dir: Path, args):
                          display_window_for(app, options, args.command, args))
 
 
+def _on_application_state_changed(new_state: QtCore.Qt.ApplicationState):
+    logger.info("New application state: %s", new_state)
+    import sentry_sdk
+    if new_state == QtCore.Qt.ApplicationState.ApplicationActive:
+        sentry_sdk.Hub.current.start_session(session_mode="application")
+    elif new_state == QtCore.Qt.ApplicationState.ApplicationInactive:
+        sentry_sdk.Hub.current.end_session()
+
+
 def run(args):
+    import randovania.monitoring
+    randovania.monitoring.client_init()
+
     locale.setlocale(locale.LC_ALL, "")  # use system's default locale
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
@@ -321,6 +344,7 @@ def run(args):
     is_preview = args.preview
     start_logger(data_dir, is_preview)
     app = QtWidgets.QApplication(sys.argv)
+    app.applicationStateChanged.connect(_on_application_state_changed)
 
     def main_done(done: asyncio.Task):
         e: Exception | None = done.exception()

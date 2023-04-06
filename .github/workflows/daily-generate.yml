@@ -1,0 +1,19 @@
+name: Daily Test Generate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 23 * * *'
+
+jobs:
+  report:
+    runs-on: self-hosted
+    container:
+      image: randovania/server:edge
+
+    steps:
+      - name: Bulk Generate
+        run:
+          ./tools/bulk_generate_for_discord.sh
+        env:
+          WEBHOOK_URL: ${{ secrets.DREAD_DEV_TALK_WEBHOOK }}

@@ -1,9 +1,9 @@
 {
-    "schema_version": 36,
+    "schema_version": 44,
+    "base_preset_uuid": null,
     "name": "Moderate Challenge",
     "uuid": "7c57ecf6-ff1c-4ab9-bc84-802ac70e980a",
     "description": "Generates seeds which can require some tricks to complete. A moderate amount of practice, knowledge and wit is required to overcome the typical seed.<br/><br/>Elevator connections are randomized and the game can start in almost any Save Station.",
-    "base_preset_uuid": null,
     "game": "prime1",
     "configuration": {
         "trick_level": {
@@ -226,6 +226,8 @@
                 }
             }
         },
+        "single_set_for_pickups_that_solve": false,
+        "staggered_multi_pickup_placement": false,
         "elevators": {
             "mode": "randomized",
             "excluded_teleporters": [
@@ -279,6 +281,7 @@
         "deterministic_idrone": true,
         "deterministic_maze": true,
         "main_plaza_door": true,
+        "blue_save_doors": true,
         "backwards_frigate": true,
         "backwards_labs": true,
         "backwards_upper_mines": true,
@@ -286,6 +289,7 @@
         "phazon_elite_without_dynamo": true,
         "qol_game_breaking": true,
         "qol_pickup_scans": true,
-        "qol_cutscenes": "competitive"
+        "qol_cutscenes": "competitive",
+        "enemy_attributes": null
     }
 }

@@ -8,7 +8,8 @@ from qasync import asyncSlot
 from randovania.generator.filler.filler_library import UnableToGenerate
 from randovania.gui.lib import async_dialog, common_qt_lib, error_message_box
 from randovania.gui.lib.scroll_message_box import ScrollMessageBox
-from randovania.resolver.exceptions import GenerationFailure, ImpossibleForSolver
+from randovania.layout.exceptions import InvalidConfiguration
+from randovania.resolver.exceptions import GenerationFailure
 
 
 class GenerationFailureHandler(QtWidgets.QWidget):
@@ -28,6 +29,8 @@ class GenerationFailureHandler(QtWidgets.QWidget):
         if isinstance(exception, GenerationFailure):
             message = "Generation Failure"
             self.handle_failure(exception)
+        elif isinstance(exception, InvalidConfiguration):
+            await self.handle_invalid_configuration(exception)
         else:
             logging.exception("Unable to generate")
             box = error_message_box.create_box_for_exception(exception)
@@ -38,27 +41,31 @@ class GenerationFailureHandler(QtWidgets.QWidget):
     @asyncSlot(GenerationFailure)
     async def _show_failed_generation_exception(self, exception: GenerationFailure):
         box = ScrollMessageBox(
-            QtWidgets.QMessageBox.Critical,
+            QtWidgets.QMessageBox.Icon.Critical,
             "An error occurred while generating game",
-            str(exception), QtWidgets.QMessageBox.Ok, self.parent)
+            str(exception), QtWidgets.QMessageBox.StandardButton.Ok, self.parent)
         common_qt_lib.set_default_window_icon(box)
 
         if isinstance(exception.source, UnableToGenerate):
-            box.label.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+            box.label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
             box.setText(
-                "{}\n\nClick 'Show Details' to see a report of where the failure occurred.\n"
+                "{}\n\n"
                 "Double check if your settings aren't impossible, or try again.\n\n"
                 "Details: {}".format(
                     box.text(),
                     exception.source
                 ))
 
-        elif isinstance(exception.source, ImpossibleForSolver):
-            box.setText(box.text() + "\n\nRandovania sometimes generates games with insufficient Energy Tanks. "
-                                     "Please try generating again.")
-
         elif isinstance(exception.source, multiprocessing.TimeoutError):
             box.setText(box.text() + "\n\nRandovania sometimes gets stuck infinitely when trying to verify a game, "
                                      "so there's a timeout. Please try generating again.")
 
         await async_dialog.execute_dialog(box)
+
+    async def handle_invalid_configuration(self, exception: InvalidConfiguration):
+        logging.warning("Invalid Preset: %s", str(exception))
+        await async_dialog.warning(
+            self.parent,
+            "Invalid Preset",
+            f"{exception}.",
+        )

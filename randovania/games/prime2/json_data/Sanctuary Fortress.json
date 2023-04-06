@@ -7,7 +7,6 @@
     "areas": {
         "Transport to Temple Grounds": {
             "default_node": "Elevator to Temple Grounds - Transport to Sanctuary Fortress",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3528156989,
                 "in_dark_aether": false
@@ -22,8 +21,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -57,6 +57,7 @@
                         "scan_asset_id": 585469310,
                         "teleporter_instance_id": 38
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Temple Grounds",
                         "area_name": "Transport to Sanctuary Fortress"
@@ -77,7 +78,6 @@
         },
         "Temple Transport Access": {
             "default_node": "Door to Transport to Temple Grounds",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1650075282,
                 "in_dark_aether": false
@@ -92,8 +92,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South1"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -159,8 +160,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -191,6 +193,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event43",
                     "connections": {
                         "Door to Transport to Temple Grounds": {
@@ -213,7 +216,6 @@
         },
         "Sanctuary Entrance": {
             "default_node": "Door to Temple Transport Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1193696267,
                 "in_dark_aether": false
@@ -228,8 +230,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -664,8 +667,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -739,6 +743,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 94,
                     "major_location": false,
                     "connections": {
@@ -752,7 +757,7 @@
                     }
                 },
                 "Lore Scan": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -760,10 +765,37 @@
                         "default"
                     ],
                     "extra": {
-                        "translator": "Cobalt"
+                        "translator": "Cobalt",
+                        "string_asset_id": 4072633400
                     },
-                    "string_asset_id": 4072633400,
-                    "lore_type": "requires-item",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                },
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Cobalt",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Door to Power Junction": {
                             "type": "and",
@@ -783,6 +815,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Power Junction": {
                             "type": "and",
@@ -812,7 +845,7 @@
                     }
                 },
                 "Keybearer Corpse (S-Jrs)": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -820,10 +853,28 @@
                         "default"
                     ],
                     "extra": {
-                        "hint_index": 117
+                        "hint_index": 117,
+                        "string_asset_id": 1657556419
                     },
-                    "string_asset_id": 1657556419,
-                    "lore_type": "specific-pickup",
+                    "valid_starting_location": false,
+                    "kind": "specific-pickup",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Cannon to Pickup": {
                             "type": "and",
@@ -843,6 +894,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Power Junction": {
                             "type": "and",
@@ -899,6 +951,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event96",
                     "connections": {
                         "Turret": {
@@ -914,7 +967,6 @@
         },
         "Power Junction": {
             "default_node": "Door to Sanctuary Entrance",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 834698518,
                 "in_dark_aether": false
@@ -929,8 +981,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North2"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -959,8 +1012,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -984,7 +1038,6 @@
         },
         "Reactor Access": {
             "default_node": "Door to Power Junction",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3060184661,
                 "in_dark_aether": false
@@ -999,8 +1052,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1143,8 +1197,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1175,6 +1230,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event44",
                     "connections": {
                         "Door to Power Junction": {
@@ -1190,7 +1246,6 @@
         },
         "Reactor Core": {
             "default_node": "Door to Reactor Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1248653973,
                 "in_dark_aether": false
@@ -1205,8 +1260,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1235,8 +1291,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1265,8 +1322,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "North2"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1295,8 +1353,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1325,8 +1384,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1355,6 +1415,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 95,
                     "major_location": true,
                     "connections": {
@@ -1376,6 +1437,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event45",
                     "connections": {
                         "Room Bottom": {
@@ -1396,6 +1458,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Save Station A": {
                             "type": "resource",
@@ -1565,6 +1628,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Minigyro Chamber": {
                             "type": "and",
@@ -1887,6 +1951,7 @@
                         "vanilla_actual": "Cobalt",
                         "vanilla_color": "Cobalt"
                     },
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Sanctuary Map Station": {
                             "type": "and",
@@ -1908,7 +1973,6 @@
         },
         "Save Station A": {
             "default_node": "Save Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1706557902,
                 "in_dark_aether": false
@@ -1923,6 +1987,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Door to Reactor Core": {
                             "type": "and",
@@ -1942,8 +2007,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -1967,7 +2033,6 @@
         },
         "Minigyro Chamber": {
             "default_node": "Door to Reactor Core",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2532624926,
                 "in_dark_aether": false
@@ -1982,8 +2047,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2031,8 +2097,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2106,6 +2173,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event46",
                     "connections": {
                         "Door to Hall of Combat Mastery": {
@@ -2128,7 +2196,6 @@
         },
         "Transit Station": {
             "default_node": "Door to Reactor Core",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4148317891,
                 "in_dark_aether": false
@@ -2143,8 +2210,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2173,8 +2241,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "VirtualDock_North_Right"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2195,8 +2264,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 5
+                        "dock_name": "VirtualDock_North_Middle"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2280,8 +2350,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2310,8 +2381,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualDock_North_Left"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2342,8 +2414,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "VirtualDock_South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2364,6 +2437,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 96,
                     "major_location": false,
                     "connections": {
@@ -2455,6 +2529,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Reactor Core": {
                             "type": "and",
@@ -2575,7 +2650,6 @@
         },
         "Sanctuary Map Station": {
             "default_node": "Door to Reactor Core",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1388284403,
                 "in_dark_aether": false
@@ -2590,8 +2664,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2622,6 +2697,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 97,
                     "major_location": false,
                     "connections": {
@@ -2640,7 +2716,6 @@
         },
         "Hall of Combat Mastery": {
             "default_node": "Door to Minigyro Chamber",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1433528478,
                 "in_dark_aether": false
@@ -2655,8 +2730,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "EastElevator"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2818,8 +2894,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "EastHall"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2876,8 +2953,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -2980,6 +3058,27 @@
                                                 }
                                             ]
                                         }
+                                    },
+                                    {
+                                        "type": "and",
+                                        "data": {
+                                            "comment": "https://youtu.be/hfFI_kNqoYg",
+                                            "items": [
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "tricks",
+                                                        "name": "Movement",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "template",
+                                                    "data": "Use Screw Attack (No Space Jump)"
+                                                }
+                                            ]
+                                        }
                                     }
                                 ]
                             }
@@ -3021,8 +3120,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -3311,6 +3411,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 98,
                     "major_location": false,
                     "connections": {
@@ -3393,6 +3494,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event47",
                     "connections": {
                         "Portal to Culling Chamber": {
@@ -3405,7 +3507,7 @@
                     }
                 },
                 "Lore Scan": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -3413,10 +3515,37 @@
                         "default"
                     ],
                     "extra": {
-                        "translator": "Cobalt"
+                        "translator": "Cobalt",
+                        "string_asset_id": 67497535
                     },
-                    "string_asset_id": 67497535,
-                    "lore_type": "requires-item",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                },
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Cobalt",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Door to Central Area Transport East": {
                             "type": "and",
@@ -3436,6 +3565,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Pickup (Missile)": {
                             "type": "and",
@@ -3520,7 +3650,6 @@
         },
         "Main Research": {
             "default_node": "Door to Torvus Transport Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2437878657,
                 "in_dark_aether": false
@@ -3535,8 +3664,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -3645,8 +3775,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West to 0l_cliff_hall"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -3675,8 +3806,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "East2 to 0m_cliff_hall"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -3735,8 +3867,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualNorth1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -3765,8 +3898,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West1 to 0p_cliff_hall"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -3964,6 +4098,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 99,
                     "major_location": false,
                     "connections": {
@@ -3985,6 +4120,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event48",
                     "connections": {
                         "Door to Torvus Transport Access": {
@@ -4004,7 +4140,7 @@
                     }
                 },
                 "Lore Scan": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -4012,10 +4148,37 @@
                         "default"
                     ],
                     "extra": {
-                        "translator": "Cobalt"
+                        "translator": "Cobalt",
+                        "string_asset_id": 3212301619
                     },
-                    "string_asset_id": 3212301619,
-                    "lore_type": "requires-item",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                },
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Cobalt",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Door to Torvus Transport Access": {
                             "type": "and",
@@ -4035,6 +4198,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Central Area Transport West": {
                             "type": "resource",
@@ -4083,7 +4247,6 @@
         },
         "Hive Portal Chamber": {
             "default_node": "Front of Portal to Transit Station (Second)",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2073342059,
                 "in_dark_aether": true
@@ -4098,8 +4261,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "VirtualDock_North_Right"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4271,8 +4435,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualDock_North_Middle"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4293,8 +4458,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualDock_South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4437,8 +4603,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "VirtualDock_North_Left"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4459,6 +4626,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Portal to Transit Station (Second)": {
                             "type": "resource",
@@ -4484,7 +4652,6 @@
         },
         "Agon Transport Access": {
             "default_node": "Door to Hall of Combat Mastery",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1963704303,
                 "in_dark_aether": false
@@ -4499,8 +4666,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4529,8 +4697,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4554,7 +4723,6 @@
         },
         "Central Area Transport East": {
             "default_node": "Door to Dynamo Works",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 290586973,
                 "in_dark_aether": false
@@ -4569,8 +4737,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "group1_West_04 (Top)"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4601,8 +4770,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "group1_West_07 (Bottom)"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4628,7 +4798,6 @@
         },
         "Culling Chamber": {
             "default_node": "Portal to Hall of Combat Mastery",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1762359402,
                 "in_dark_aether": true
@@ -4643,8 +4812,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "EastHall"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4675,8 +4845,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -4719,8 +4890,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "EastElevator"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5083,8 +5255,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5136,6 +5309,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 100,
                     "major_location": true,
                     "connections": {
@@ -5301,6 +5475,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Central Hive East Transport": {
                             "type": "and",
@@ -5385,6 +5560,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Unseen Way": {
                             "type": "or",
@@ -5511,6 +5687,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event97",
                     "connections": {
                         "Door to Central Hive East Transport": {
@@ -5523,7 +5700,6 @@
         },
         "Central Area Transport West": {
             "default_node": "Door to Main Research",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1894024576,
                 "in_dark_aether": false
@@ -5538,8 +5714,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East_Bottom"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5587,8 +5764,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East_Top"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5628,6 +5806,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 101,
                     "major_location": false,
                     "connections": {
@@ -5655,7 +5834,6 @@
         },
         "Torvus Transport Access": {
             "default_node": "Door to Main Research",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4071453868,
                 "in_dark_aether": false
@@ -5670,8 +5848,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5700,8 +5879,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5725,7 +5905,6 @@
         },
         "Staging Area": {
             "default_node": "Portal to Main Research (Upper)",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1539257167,
                 "in_dark_aether": true
@@ -5740,8 +5919,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5867,8 +6047,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -5962,8 +6143,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualNorth1"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -6264,6 +6446,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event98",
                     "connections": {
                         "Portal to Main Research (Upper)": {
@@ -6279,7 +6462,6 @@
         },
         "Transport to Agon Wastes": {
             "default_node": "Elevator to Agon Wastes - Transport to Sanctuary Fortress",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 900285955,
                 "in_dark_aether": false
@@ -6294,8 +6476,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -6329,6 +6512,7 @@
                         "scan_asset_id": 3282119661,
                         "teleporter_instance_id": 1245332
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Agon Wastes",
                         "area_name": "Transport to Sanctuary Fortress"
@@ -6349,7 +6533,6 @@
         },
         "Dynamo Works": {
             "default_node": "Door to Workers Path",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3222355176,
                 "in_dark_aether": false
@@ -6364,8 +6547,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "South2 0H"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -6518,8 +6702,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -6548,8 +6733,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "East2 00_Pickup C"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -6659,8 +6845,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East 0E"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -6740,8 +6927,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West1 0F"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -6770,6 +6958,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 102,
                     "major_location": true,
                     "connections": {
@@ -6791,6 +6980,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 103,
                     "major_location": false,
                     "connections": {
@@ -6847,6 +7037,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event49",
                     "connections": {
                         "Portal to Hive Dynamo Works": {
@@ -7120,6 +7311,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event50",
                     "connections": {
                         "Pickup (Spider Ball)": {
@@ -7151,7 +7343,7 @@
                     }
                 },
                 "Keybearer Corpse (C-Rch)": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -7159,10 +7351,28 @@
                         "default"
                     ],
                     "extra": {
-                        "hint_index": 106
+                        "hint_index": 106,
+                        "string_asset_id": 2844827238
                     },
-                    "string_asset_id": 2844827238,
-                    "lore_type": "specific-pickup",
+                    "valid_starting_location": false,
+                    "kind": "specific-pickup",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Door to Central Area Transport East": {
                             "type": "and",
@@ -7177,7 +7387,6 @@
         },
         "Hazing Cliff": {
             "default_node": "Door to Culling Chamber",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 931221290,
                 "in_dark_aether": true
@@ -7192,8 +7401,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -7293,6 +7503,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 104,
                     "major_location": false,
                     "connections": {
@@ -7311,7 +7522,6 @@
         },
         "Central Hive East Transport": {
             "default_node": "Door to Hive Dynamo Works",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3268908651,
                 "in_dark_aether": true
@@ -7326,8 +7536,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "group1_West_07 (Bottom)"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -7409,8 +7620,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "group1_West_04 (Top)"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -7487,7 +7699,6 @@
         },
         "Unseen Way": {
             "default_node": "Door to Culling Chamber",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3590320811,
                 "in_dark_aether": true
@@ -7502,8 +7713,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -7744,8 +7956,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -7981,7 +8194,6 @@
         },
         "Watch Station": {
             "default_node": "Door to Central Area Transport West",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2722128775,
                 "in_dark_aether": false
@@ -7996,8 +8208,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -8250,8 +8463,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "WestDown"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -8440,8 +8654,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualNorth1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -8472,8 +8687,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "WestUp"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -8610,8 +8826,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -8718,6 +8935,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 105,
                     "major_location": false,
                     "connections": {
@@ -8739,6 +8957,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event51",
                     "connections": {
                         "Pickup (Dark Ammo)": {
@@ -8803,6 +9022,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Watch Station Access": {
                             "type": "or",
@@ -8882,7 +9102,7 @@
                     }
                 },
                 "Lore Scan": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -8890,10 +9110,37 @@
                         "default"
                     ],
                     "extra": {
-                        "translator": "Cobalt"
+                        "translator": "Cobalt",
+                        "string_asset_id": 1948976790
                     },
-                    "string_asset_id": 1948976790,
-                    "lore_type": "requires-item",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                },
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Cobalt",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Room Center": {
                             "type": "and",
@@ -8908,7 +9155,6 @@
         },
         "Transport to Torvus Bog": {
             "default_node": "Elevator to Torvus Bog - Transport to Sanctuary Fortress",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3145160350,
                 "in_dark_aether": false
@@ -8923,8 +9169,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -8958,6 +9205,7 @@
                         "scan_asset_id": 158293345,
                         "teleporter_instance_id": 1638535
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Torvus Bog",
                         "area_name": "Transport to Sanctuary Fortress"
@@ -8978,7 +9226,6 @@
         },
         "Central Hive West Transport": {
             "default_node": "Door to Staging Area",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1824314539,
                 "in_dark_aether": true
@@ -8993,8 +9240,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East_Top"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9059,8 +9307,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East_Bottom"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9124,7 +9373,6 @@
         },
         "Dynamo Access": {
             "default_node": "Door to Dynamo Works",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1120426713,
                 "in_dark_aether": false
@@ -9139,8 +9387,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9222,8 +9471,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9300,7 +9550,6 @@
         },
         "Workers Path": {
             "default_node": "Door to Dynamo Works",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 65839695,
                 "in_dark_aether": false
@@ -9315,8 +9564,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9440,8 +9690,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9604,7 +9855,6 @@
         },
         "Dynamo Storage": {
             "default_node": "Door to Dynamo Works",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 527902968,
                 "in_dark_aether": false
@@ -9619,8 +9869,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "group1_West"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9649,8 +9900,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualWest"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -9674,7 +9926,6 @@
         },
         "Hive Dynamo Works": {
             "default_node": "Door to Central Hive East Transport",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4065261236,
                 "in_dark_aether": true
@@ -9689,8 +9940,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -10189,8 +10441,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -10238,8 +10491,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -10282,8 +10536,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "East2"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -10579,6 +10834,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 106,
                     "major_location": true,
                     "connections": {
@@ -10769,6 +11025,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event52",
                     "connections": {
                         "Door to Hive Dynamo Access": {
@@ -10789,6 +11046,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Dynamo Access": {
                             "type": "or",
@@ -11229,7 +11487,6 @@
         },
         "Hive Reactor": {
             "default_node": "Door to Hive Save Station 1",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4175151165,
                 "in_dark_aether": true
@@ -11244,8 +11501,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -11276,8 +11534,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -11350,8 +11609,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -11394,8 +11654,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "North2"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -11426,6 +11687,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Save Station 1": {
                             "type": "or",
@@ -11643,7 +11905,6 @@
         },
         "Sentinel's Path": {
             "default_node": "Door to Watch Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2765624647,
                 "in_dark_aether": false
@@ -11658,8 +11919,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -11688,8 +11950,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -11718,6 +11981,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 107,
                     "major_location": false,
                     "connections": {
@@ -11739,6 +12003,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Watch Station": {
                             "type": "and",
@@ -11837,7 +12102,6 @@
         },
         "Watch Station Access": {
             "default_node": "Door to Watch Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1349974475,
                 "in_dark_aether": false
@@ -11852,8 +12116,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -11912,8 +12177,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -12228,6 +12494,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 108,
                     "major_location": true,
                     "connections": {
@@ -12249,6 +12516,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event53",
                     "connections": {
                         "Next to Scan Post": {
@@ -12269,6 +12537,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Watch Station": {
                             "type": "or",
@@ -12645,7 +12914,6 @@
         },
         "Grand Abyss": {
             "default_node": "Door to Watch Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 595516932,
                 "in_dark_aether": false
@@ -12660,8 +12928,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "Ceiling"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -12690,8 +12959,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -12867,8 +13137,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -12942,6 +13213,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event54",
                     "connections": {
                         "Door to Watch Station": {
@@ -13140,6 +13412,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event55",
                     "connections": {
                         "Door to Vault": {
@@ -13240,7 +13513,6 @@
         },
         "Aerial Training Site": {
             "default_node": "Door to Judgment Drop",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1089946750,
                 "in_dark_aether": true
@@ -13255,8 +13527,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "West_0O"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -13476,8 +13749,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "VirtualNorth1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -13849,8 +14123,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -14495,8 +14770,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West_0L"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -14900,6 +15176,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 109,
                     "major_location": true,
                     "connections": {
@@ -14923,6 +15200,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 110,
                     "major_location": false,
                     "connections": {
@@ -14946,6 +15224,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event56",
                     "connections": {
                         "Door to Central Hive West Transport": {
@@ -14968,6 +15247,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Judgment Drop": {
                             "type": "and",
@@ -15349,7 +15629,6 @@
         },
         "Main Gyro Chamber": {
             "default_node": "Door to Dynamo Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1932798548,
                 "in_dark_aether": false
@@ -15364,8 +15643,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "East1"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -15494,8 +15774,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "West_Save"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -15507,17 +15788,64 @@
                     "override_default_lock_requirement": null,
                     "connections": {
                         "Event - Main Gyro Chamber Puzzle 1": {
-                            "type": "or",
+                            "type": "and",
                             "data": {
                                 "comment": null,
                                 "items": [
                                     {
-                                        "type": "and",
+                                        "type": "or",
                                         "data": {
                                             "comment": null,
                                             "items": [
                                                 {
-                                                    "type": "or",
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Missile",
+                                                        "amount": 4,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Power",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "and",
+                                                    "data": {
+                                                        "comment": null,
+                                                        "items": [
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "tricks",
+                                                                    "name": "Knowledge",
+                                                                    "amount": 3,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "template",
+                                                                "data": "Use Screw Attack (Space Jump)"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "or",
+                                        "data": {
+                                            "comment": null,
+                                            "items": [
+                                                {
+                                                    "type": "and",
                                                     "data": {
                                                         "comment": null,
                                                         "items": [
@@ -15525,7 +15853,51 @@
                                                                 "type": "resource",
                                                                 "data": {
                                                                     "type": "items",
-                                                                    "name": "Power",
+                                                                    "name": "MorphBall",
+                                                                    "amount": 1,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "items",
+                                                                    "name": "Bombs",
+                                                                    "amount": 1,
+                                                                    "negate": false
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "type": "and",
+                                                    "data": {
+                                                        "comment": null,
+                                                        "items": [
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "tricks",
+                                                                    "name": "BomblessSlot",
+                                                                    "amount": 3,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "items",
+                                                                    "name": "DarkAmmo",
+                                                                    "amount": 60,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "items",
+                                                                    "name": "Charge",
                                                                     "amount": 1,
                                                                     "negate": false
                                                                 }
@@ -15535,142 +15907,89 @@
                                                                 "data": {
                                                                     "type": "items",
                                                                     "name": "Missile",
-                                                                    "amount": 4,
+                                                                    "amount": 10,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "or",
+                                                                "data": {
+                                                                    "comment": null,
+                                                                    "items": [
+                                                                        {
+                                                                            "type": "and",
+                                                                            "data": {
+                                                                                "comment": null,
+                                                                                "items": [
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "Dark",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "Darkburst",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "and",
+                                                                            "data": {
+                                                                                "comment": null,
+                                                                                "items": [
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "Annihilator",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "LightAmmo",
+                                                                                            "amount": 60,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "SonicBoom",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "items",
+                                                                    "name": "SpaceJump",
+                                                                    "amount": 1,
                                                                     "negate": false
                                                                 }
                                                             }
                                                         ]
-                                                    }
-                                                },
-                                                {
-                                                    "type": "or",
-                                                    "data": {
-                                                        "comment": null,
-                                                        "items": [
-                                                            {
-                                                                "type": "and",
-                                                                "data": {
-                                                                    "comment": null,
-                                                                    "items": [
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "items",
-                                                                                "name": "MorphBall",
-                                                                                "amount": 1,
-                                                                                "negate": false
-                                                                            }
-                                                                        },
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "items",
-                                                                                "name": "Bombs",
-                                                                                "amount": 1,
-                                                                                "negate": false
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            },
-                                                            {
-                                                                "type": "and",
-                                                                "data": {
-                                                                    "comment": null,
-                                                                    "items": [
-                                                                        {
-                                                                            "type": "template",
-                                                                            "data": "Activate Bomb Slot without Bombs (Space Jump)"
-                                                                        },
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "tricks",
-                                                                                "name": "BomblessSlot",
-                                                                                "amount": 3,
-                                                                                "negate": false
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
-                                                        ]
-                                                    }
-                                                },
-                                                {
-                                                    "type": "or",
-                                                    "data": {
-                                                        "comment": null,
-                                                        "items": [
-                                                            {
-                                                                "type": "and",
-                                                                "data": {
-                                                                    "comment": null,
-                                                                    "items": [
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "items",
-                                                                                "name": "MorphBall",
-                                                                                "amount": 1,
-                                                                                "negate": false
-                                                                            }
-                                                                        },
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "items",
-                                                                                "name": "Bombs",
-                                                                                "amount": 1,
-                                                                                "negate": false
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            },
-                                                            {
-                                                                "type": "and",
-                                                                "data": {
-                                                                    "comment": null,
-                                                                    "items": [
-                                                                        {
-                                                                            "type": "template",
-                                                                            "data": "Activate Bomb Slot without Bombs (Space Jump)"
-                                                                        },
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "tricks",
-                                                                                "name": "BomblessSlot",
-                                                                                "amount": 3,
-                                                                                "negate": false
-                                                                            }
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    {
-                                        "type": "and",
-                                        "data": {
-                                            "comment": null,
-                                            "items": [
-                                                {
-                                                    "type": "template",
-                                                    "data": "Use Screw Attack (Space Jump)"
-                                                },
-                                                {
-                                                    "type": "resource",
-                                                    "data": {
-                                                        "type": "tricks",
-                                                        "name": "Knowledge",
-                                                        "amount": 3,
-                                                        "negate": false
                                                     }
                                                 }
                                             ]
@@ -15771,8 +16090,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 4
+                        "dock_name": "West21"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -15957,8 +16277,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -16049,8 +16370,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -16240,6 +16562,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 111,
                     "major_location": false,
                     "connections": {
@@ -16261,6 +16584,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event57",
                     "connections": {
                         "Door to Save Station B": {
@@ -16281,6 +16605,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event58",
                     "connections": {
                         "Door to Temple Access": {
@@ -16301,6 +16626,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event59",
                     "connections": {
                         "Room Bottom": {
@@ -16321,6 +16647,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event60",
                     "connections": {
                         "Door to Watch Station Access": {
@@ -16341,6 +16668,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Dynamo Access": {
                             "type": "resource",
@@ -16499,6 +16827,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Event - Main Gyro Chamber Puzzle 2": {
                             "type": "and",
@@ -16520,144 +16849,73 @@
                                             "comment": null,
                                             "items": [
                                                 {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Power",
+                                                        "amount": 1,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
+                                                    "type": "resource",
+                                                    "data": {
+                                                        "type": "items",
+                                                        "name": "Missile",
+                                                        "amount": 7,
+                                                        "negate": false
+                                                    }
+                                                },
+                                                {
                                                     "type": "and",
                                                     "data": {
                                                         "comment": null,
                                                         "items": [
                                                             {
-                                                                "type": "or",
+                                                                "type": "resource",
                                                                 "data": {
-                                                                    "comment": null,
-                                                                    "items": [
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "items",
-                                                                                "name": "Power",
-                                                                                "amount": 1,
-                                                                                "negate": false
-                                                                            }
-                                                                        },
-                                                                        {
-                                                                            "type": "resource",
-                                                                            "data": {
-                                                                                "type": "items",
-                                                                                "name": "Missile",
-                                                                                "amount": 7,
-                                                                                "negate": false
-                                                                            }
-                                                                        }
-                                                                    ]
+                                                                    "type": "tricks",
+                                                                    "name": "Knowledge",
+                                                                    "amount": 3,
+                                                                    "negate": false
                                                                 }
                                                             },
                                                             {
-                                                                "type": "or",
+                                                                "type": "template",
+                                                                "data": "Use Screw Attack (Space Jump)"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "or",
+                                        "data": {
+                                            "comment": null,
+                                            "items": [
+                                                {
+                                                    "type": "and",
+                                                    "data": {
+                                                        "comment": null,
+                                                        "items": [
+                                                            {
+                                                                "type": "resource",
                                                                 "data": {
-                                                                    "comment": null,
-                                                                    "items": [
-                                                                        {
-                                                                            "type": "and",
-                                                                            "data": {
-                                                                                "comment": null,
-                                                                                "items": [
-                                                                                    {
-                                                                                        "type": "resource",
-                                                                                        "data": {
-                                                                                            "type": "items",
-                                                                                            "name": "MorphBall",
-                                                                                            "amount": 1,
-                                                                                            "negate": false
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "type": "resource",
-                                                                                        "data": {
-                                                                                            "type": "items",
-                                                                                            "name": "Bombs",
-                                                                                            "amount": 1,
-                                                                                            "negate": false
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        },
-                                                                        {
-                                                                            "type": "and",
-                                                                            "data": {
-                                                                                "comment": null,
-                                                                                "items": [
-                                                                                    {
-                                                                                        "type": "template",
-                                                                                        "data": "Activate Bomb Slot without Bombs (Space Jump)"
-                                                                                    },
-                                                                                    {
-                                                                                        "type": "resource",
-                                                                                        "data": {
-                                                                                            "type": "tricks",
-                                                                                            "name": "BomblessSlot",
-                                                                                            "amount": 3,
-                                                                                            "negate": false
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        }
-                                                                    ]
+                                                                    "type": "items",
+                                                                    "name": "MorphBall",
+                                                                    "amount": 1,
+                                                                    "negate": false
                                                                 }
                                                             },
                                                             {
-                                                                "type": "or",
+                                                                "type": "resource",
                                                                 "data": {
-                                                                    "comment": null,
-                                                                    "items": [
-                                                                        {
-                                                                            "type": "and",
-                                                                            "data": {
-                                                                                "comment": null,
-                                                                                "items": [
-                                                                                    {
-                                                                                        "type": "resource",
-                                                                                        "data": {
-                                                                                            "type": "items",
-                                                                                            "name": "MorphBall",
-                                                                                            "amount": 1,
-                                                                                            "negate": false
-                                                                                        }
-                                                                                    },
-                                                                                    {
-                                                                                        "type": "resource",
-                                                                                        "data": {
-                                                                                            "type": "items",
-                                                                                            "name": "Bombs",
-                                                                                            "amount": 1,
-                                                                                            "negate": false
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        },
-                                                                        {
-                                                                            "type": "and",
-                                                                            "data": {
-                                                                                "comment": null,
-                                                                                "items": [
-                                                                                    {
-                                                                                        "type": "template",
-                                                                                        "data": "Activate Bomb Slot without Bombs (Space Jump)"
-                                                                                    },
-                                                                                    {
-                                                                                        "type": "resource",
-                                                                                        "data": {
-                                                                                            "type": "tricks",
-                                                                                            "name": "BomblessSlot",
-                                                                                            "amount": 3,
-                                                                                            "negate": false
-                                                                                        }
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        }
-                                                                    ]
+                                                                    "type": "items",
+                                                                    "name": "Bombs",
+                                                                    "amount": 1,
+                                                                    "negate": false
                                                                 }
                                                             }
                                                         ]
@@ -16669,15 +16927,116 @@
                                                         "comment": null,
                                                         "items": [
                                                             {
-                                                                "type": "template",
-                                                                "data": "Use Screw Attack (Space Jump)"
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "tricks",
+                                                                    "name": "BomblessSlot",
+                                                                    "amount": 3,
+                                                                    "negate": false
+                                                                }
                                                             },
                                                             {
                                                                 "type": "resource",
                                                                 "data": {
-                                                                    "type": "tricks",
-                                                                    "name": "Knowledge",
-                                                                    "amount": 3,
+                                                                    "type": "items",
+                                                                    "name": "SpaceJump",
+                                                                    "amount": 1,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "items",
+                                                                    "name": "DarkAmmo",
+                                                                    "amount": 60,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "items",
+                                                                    "name": "Charge",
+                                                                    "amount": 1,
+                                                                    "negate": false
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "or",
+                                                                "data": {
+                                                                    "comment": null,
+                                                                    "items": [
+                                                                        {
+                                                                            "type": "and",
+                                                                            "data": {
+                                                                                "comment": null,
+                                                                                "items": [
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "Dark",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "Darkburst",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "and",
+                                                                            "data": {
+                                                                                "comment": null,
+                                                                                "items": [
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "Annihilator",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "LightAmmo",
+                                                                                            "amount": 60,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "resource",
+                                                                                        "data": {
+                                                                                            "type": "items",
+                                                                                            "name": "SonicBoom",
+                                                                                            "amount": 1,
+                                                                                            "negate": false
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "resource",
+                                                                "data": {
+                                                                    "type": "items",
+                                                                    "name": "Missile",
+                                                                    "amount": 10,
                                                                     "negate": false
                                                                 }
                                                             }
@@ -16701,6 +17060,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Dynamo Access": {
                             "type": "resource",
@@ -16807,6 +17167,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Watch Station Access": {
                             "type": "resource",
@@ -16923,7 +17284,7 @@
                     }
                 },
                 "Lore Scan": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -16931,10 +17292,37 @@
                         "default"
                     ],
                     "extra": {
-                        "translator": "Cobalt"
+                        "translator": "Cobalt",
+                        "string_asset_id": 4115881194
                     },
-                    "string_asset_id": 4115881194,
-                    "lore_type": "requires-item",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                },
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Cobalt",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Room Bottom": {
                             "type": "and",
@@ -16949,7 +17337,6 @@
         },
         "Sanctuary Temple": {
             "default_node": "Door to Temple Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1815493844,
                 "in_dark_aether": false
@@ -16964,8 +17351,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -17053,8 +17441,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -17083,8 +17472,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -17190,8 +17580,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -17305,6 +17696,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Temple Access": {
                             "type": "and",
@@ -17567,6 +17959,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Controller Access": {
                             "type": "or",
@@ -18009,6 +18402,7 @@
                         "vanilla_actual": "Cobalt",
                         "vanilla_color": "Cobalt"
                     },
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Workers Path": {
                             "type": "and",
@@ -18129,6 +18523,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Controller Access": {
                             "type": "and",
@@ -18176,6 +18571,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event104",
                     "connections": {
                         "Room Center (Top)": {
@@ -18196,6 +18592,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event104",
                     "connections": {
                         "Room Center (Bottom)": {
@@ -18211,7 +18608,6 @@
         },
         "Hive Cache 3": {
             "default_node": "Door to Hive Dynamo Works",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 120573884,
                 "in_dark_aether": true
@@ -18226,8 +18622,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualWest"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -18300,8 +18697,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "group1_West"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -18327,7 +18725,6 @@
         },
         "Hive Dynamo Access": {
             "default_node": "Door to Hive Dynamo Works",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4222565163,
                 "in_dark_aether": true
@@ -18342,8 +18739,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -18471,8 +18869,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -18515,6 +18914,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event61",
                     "connections": {
                         "Central Safe Zone": {
@@ -18532,6 +18932,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Gyro Chamber": {
                             "type": "and",
@@ -18667,7 +19068,6 @@
         },
         "Hive Save Station 1": {
             "default_node": "Save Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3143049775,
                 "in_dark_aether": true
@@ -18682,6 +19082,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Door to Hive Reactor": {
                             "type": "and",
@@ -18737,8 +19138,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -18798,7 +19200,6 @@
         },
         "Hive Reactor Access": {
             "default_node": "Door to Entrance Defense Hall",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2955332843,
                 "in_dark_aether": true
@@ -18813,8 +19214,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -18901,8 +19303,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -18971,6 +19374,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Entrance Defense Hall": {
                             "type": "resource",
@@ -19047,7 +19451,6 @@
         },
         "Hive Cache 1": {
             "default_node": "Door to Hive Reactor",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1598256765,
                 "in_dark_aether": true
@@ -19062,8 +19465,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -19136,6 +19540,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Reactor": {
                             "type": "resource",
@@ -19152,7 +19557,6 @@
         },
         "Judgment Drop": {
             "default_node": "Spawn Point",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1438939627,
                 "in_dark_aether": true
@@ -19167,8 +19571,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualNorth"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -19189,8 +19594,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -19221,6 +19627,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Portal to Grand Abyss": {
                             "type": "and",
@@ -19459,7 +19866,6 @@
         },
         "Vault": {
             "default_node": "Door to Grand Abyss",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1378173793,
                 "in_dark_aether": false
@@ -19474,8 +19880,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -19635,8 +20042,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualWest"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -19903,8 +20311,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "VirtualEast"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -20136,6 +20545,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 112,
                     "major_location": true,
                     "connections": {
@@ -20157,6 +20567,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event62",
                     "connections": {
                         "Portal to Vault Attack Portal (Dark)": {
@@ -20177,6 +20588,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event63",
                     "connections": {
                         "Portal to Vault Attack Portal (Scan)": {
@@ -20417,6 +20829,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event85",
                     "connections": {
                         "Pickup (Screw Attack)": {
@@ -20481,6 +20894,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Event - Vault Bomb Slot": {
                             "type": "and",
@@ -20574,6 +20988,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Grand Abyss": {
                             "type": "or",
@@ -20770,7 +21185,6 @@
         },
         "Temple Security Access": {
             "default_node": "Door to Aerial Training Site",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1122770219,
                 "in_dark_aether": true
@@ -20785,8 +21199,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -21195,8 +21610,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -21683,6 +22099,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Aerial Training Site": {
                             "type": "and",
@@ -22591,6 +23008,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event64",
                     "connections": {
                         "Door to Aerial Training Site": {
@@ -22606,7 +23024,6 @@
         },
         "Temple Access": {
             "default_node": "Door to Main Gyro Chamber",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3312357786,
                 "in_dark_aether": false
@@ -22621,8 +23038,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -22771,8 +23189,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -22801,6 +23220,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 113,
                     "major_location": false,
                     "connections": {
@@ -22841,6 +23261,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Main Gyro Chamber": {
                             "type": "and",
@@ -23223,6 +23644,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event103",
                     "connections": {
                         "Room Center": {
@@ -23243,6 +23665,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event105",
                     "connections": {
                         "Room Center": {
@@ -23258,7 +23681,6 @@
         },
         "Checkpoint Station": {
             "default_node": "Door to Main Gyro Chamber",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2219469068,
                 "in_dark_aether": false
@@ -23273,8 +23695,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -23303,8 +23726,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -23328,7 +23752,6 @@
         },
         "Save Station B": {
             "default_node": "Save Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3811341152,
                 "in_dark_aether": false
@@ -23343,6 +23766,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Door to Main Gyro Chamber": {
                             "type": "and",
@@ -23362,8 +23786,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -23387,7 +23812,6 @@
         },
         "Controller Access": {
             "default_node": "Door to Sanctuary Temple",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3902528658,
                 "in_dark_aether": false
@@ -23402,8 +23826,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -23528,8 +23953,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -23649,7 +24075,6 @@
         },
         "Hive Gyro Chamber": {
             "default_node": "Door to Hive Dynamo Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2741330578,
                 "in_dark_aether": true
@@ -23664,8 +24089,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "East1"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -23928,8 +24354,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -24111,8 +24538,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "West_Save"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -24368,8 +24796,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -24603,6 +25032,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 114,
                     "major_location": true,
                     "connections": {
@@ -24748,6 +25178,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Dynamo Access": {
                             "type": "and",
@@ -25041,7 +25472,6 @@
         },
         "Entrance Defense Hall": {
             "default_node": "Door to Hive Entrance",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2802755627,
                 "in_dark_aether": true
@@ -25056,8 +25486,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North2"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -25130,8 +25561,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -25204,6 +25636,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Reactor Access": {
                             "type": "or",
@@ -25313,7 +25746,6 @@
         },
         "Vault Attack Portal": {
             "default_node": "Portal to Vault (Light)",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 502346057,
                 "in_dark_aether": true
@@ -25328,8 +25760,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualWest"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -25480,8 +25913,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "VirtualEast"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -25609,7 +26043,6 @@
         },
         "Hive Temple": {
             "default_node": "Door to Hive Temple Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2838429875,
                 "in_dark_aether": true
@@ -25624,8 +26057,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 3
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -25751,8 +26185,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -25860,8 +26295,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "West"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -25968,6 +26404,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 115,
                     "major_location": true,
                     "connections": {
@@ -26061,6 +26498,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event65",
                     "connections": {
                         "Pickup (Annihilator Beam)": {
@@ -26113,6 +26551,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Temple Access": {
                             "type": "and",
@@ -26509,6 +26948,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Event - Quadraxis": {
                             "type": "and",
@@ -26869,6 +27309,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event95",
                     "connections": {
                         "Before Quadraxis": {
@@ -26889,6 +27330,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event95",
                     "connections": {
                         "Pickup (Annihilator Beam)": {
@@ -26904,7 +27346,6 @@
         },
         "Aerie Transport Station": {
             "default_node": "Door to Checkpoint Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3136899603,
                 "in_dark_aether": false
@@ -26919,8 +27360,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -26960,8 +27402,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "Ceiling"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "other",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -26985,6 +27428,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": 204865660
                     },
+                    "valid_starting_location": false,
                     "destination": {
                         "world_name": "Sanctuary Fortress",
                         "area_name": "Aerie"
@@ -27005,7 +27449,6 @@
         },
         "Sanctuary Energy Controller": {
             "default_node": "Door to Controller Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 218311274,
                 "in_dark_aether": false
@@ -27020,8 +27463,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -27093,6 +27537,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 116,
                     "major_location": true,
                     "connections": {
@@ -27117,6 +27562,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": 137822369
                     },
+                    "valid_starting_location": false,
                     "destination": {
                         "world_name": "Great Temple",
                         "area_name": "Main Energy Controller"
@@ -27145,6 +27591,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": 137822376
                     },
+                    "valid_starting_location": false,
                     "destination": {
                         "world_name": "Agon Wastes",
                         "area_name": "Agon Energy Controller"
@@ -27173,6 +27620,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": 137822482
                     },
+                    "valid_starting_location": false,
                     "destination": {
                         "world_name": "Torvus Bog",
                         "area_name": "Torvus Energy Controller"
@@ -27198,6 +27646,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event66",
                     "connections": {
                         "Door to Controller Access": {
@@ -27210,7 +27659,7 @@
                     }
                 },
                 "Lore Scan": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": null,
                     "description": "",
@@ -27218,10 +27667,37 @@
                         "default"
                     ],
                     "extra": {
-                        "translator": "Cobalt"
+                        "translator": "Cobalt",
+                        "string_asset_id": 1041207119
                     },
-                    "string_asset_id": 1041207119,
-                    "lore_type": "requires-item",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Scan",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                },
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "Cobalt",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
+                        }
+                    },
                     "connections": {
                         "Door to Controller Access": {
                             "type": "and",
@@ -27236,7 +27712,6 @@
         },
         "Hive Temple Access": {
             "default_node": "Spawn Point",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3968294891,
                 "in_dark_aether": true
@@ -27251,8 +27726,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -27521,8 +27997,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -27553,6 +28030,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event67",
                     "connections": {
                         "Front of Gate": {
@@ -27573,6 +28051,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Temple": {
                             "type": "or",
@@ -27863,6 +28342,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Door to Hive Gyro Chamber": {
                             "type": "resource",
@@ -27886,7 +28366,6 @@
         },
         "Hive Gyro Access": {
             "default_node": "Door to Hive Gyro Chamber",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 657793899,
                 "in_dark_aether": true
@@ -27901,8 +28380,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -27933,8 +28413,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -27960,7 +28441,6 @@
         },
         "Hive Save Station 2": {
             "default_node": "Save Station",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 582304814,
                 "in_dark_aether": true
@@ -27975,6 +28455,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Door to Hive Gyro Chamber": {
                             "type": "and",
@@ -28030,8 +28511,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "East"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28091,7 +28573,6 @@
         },
         "Hive Entrance": {
             "default_node": "Door to Entrance Defense Hall",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4093264161,
                 "in_dark_aether": true
@@ -28106,8 +28587,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28238,6 +28720,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 117,
                     "major_location": true,
                     "connections": {
@@ -28290,7 +28773,6 @@
         },
         "Hive Controller Access": {
             "default_node": "Door to Hive Temple",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 648838942,
                 "in_dark_aether": true
@@ -28305,8 +28787,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28448,8 +28931,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "South1"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28586,7 +29070,6 @@
         },
         "Aerie Access": {
             "default_node": "Dock to Aerie Transport Station",
-            "valid_starting_location": false,
             "extra": {
                 "asset_id": 3741790551,
                 "in_dark_aether": false
@@ -28601,8 +29084,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "Floor"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "other",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28631,8 +29115,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "Ceiling"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "other",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28648,7 +29133,6 @@
         },
         "Hive Ammo Station": {
             "default_node": "Spawn Point",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4057954524,
                 "in_dark_aether": true
@@ -28663,8 +29147,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "South"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28695,6 +29180,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Hive Gyro Access": {
                             "type": "or",
@@ -28758,6 +29244,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Ammo Station": {
                             "type": "resource",
@@ -28774,7 +29261,6 @@
         },
         "Hive Energy Controller": {
             "default_node": "Door to Hive Controller Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 770491160,
                 "in_dark_aether": true
@@ -28789,8 +29275,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "North"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28821,6 +29308,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event68",
                     "connections": {
                         "Door to Hive Controller Access": {
@@ -28872,7 +29360,6 @@
         },
         "Aerie": {
             "default_node": "Dock to Aerie Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1564082177,
                 "in_dark_aether": false
@@ -28887,8 +29374,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "VirtualUnderStatueDock"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -28909,8 +29397,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualArenaDock"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -29057,8 +29546,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 0
+                        "dock_name": "Docks_Floor"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "other",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -29089,6 +29579,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 118,
                     "major_location": true,
                     "connections": {
@@ -29113,6 +29604,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": 4260106
                     },
+                    "valid_starting_location": false,
                     "destination": {
                         "world_name": "Sanctuary Fortress",
                         "area_name": "Aerie Transport Station"
@@ -29140,6 +29632,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event69",
                     "connections": {
                         "Bottom Floor": {
@@ -29160,6 +29653,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event70",
                     "connections": {
                         "Pickup (Echo Visor)": {
@@ -29199,6 +29693,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Portal to Hive Summit": {
                             "type": "and",
@@ -29283,6 +29778,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Event - Dark Samus 2": {
                             "type": "or",
@@ -29384,7 +29880,6 @@
         },
         "Hive Summit": {
             "default_node": "Portal from Aerie",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2642430293,
                 "in_dark_aether": true
@@ -29399,8 +29894,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 1
+                        "dock_name": "VirtualArenaDock"
                     },
+                    "valid_starting_location": false,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",
@@ -29421,8 +29917,9 @@
                         "default"
                     ],
                     "extra": {
-                        "dock_index": 2
+                        "dock_name": "VirtualUnderStatueDock"
                     },
+                    "valid_starting_location": true,
                     "dock_type": "portal",
                     "default_connection": {
                         "world_name": "Sanctuary Fortress",

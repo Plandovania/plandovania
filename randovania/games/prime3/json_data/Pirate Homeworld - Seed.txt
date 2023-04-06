@@ -1,6 +1,5 @@
 ----------------
 Landing Site Delta
-(Valid Starting Location)
 Extra - asset_id: 9593588872354674734
 > Door to Core Access; Heals? False
   * Layers: default
@@ -9,21 +8,22 @@ Extra - asset_id: 9593588872354674734
   > Samus Ship
       Trivial
 
-> Samus Ship; Heals? True; Spawn Point
+> Samus Ship; Heals? True; Spawn Point; Default Node
   * Layers: default
-  * Player Ship (Unlocked by After Transit Station Leviathan Door)
+  * Teleporter Network (Unlocked by After Transit Station Leviathan Door)
   > Door to Core Access
       All of the following:
           Space Jump Boots and Morph Ball
           Any of the following:
               Screw Attack
-              Boost Ball and Scan Visor and Combat/Scan Dash (Hypermode) and Movement (Hypermode)
+              All of the following:
+                  # https://youtu.be/3QUDijwoYC8
+                  Boost Ball and Scan Visor and Bomb Jump (Hypermode) and Combat/Scan Dash (Hypermode) and Movement (Hypermode)
 
 ----------------
 Core Access
-(Valid Starting Location)
 Extra - asset_id: 15118031102725025016
-> Door to Landing Site Delta; Heals? False; Spawn Point
+> Door to Landing Site Delta; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Normal Door to Landing Site Delta/Door to Core Access
   * Extra - dock_index: 0
@@ -39,9 +39,8 @@ Extra - asset_id: 15118031102725025016
 
 ----------------
 Pirate Homeworld Leviathan Core
-(Valid Starting Location)
 Extra - asset_id: 4585599704880367469
-> Door to Core Access; Heals? False; Spawn Point
+> Door to Core Access; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Normal Door to Core Access/Door to Pirate Homeworld Leviathan Core
   * Extra - dock_index: 0

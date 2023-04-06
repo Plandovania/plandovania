@@ -13,7 +13,9 @@ from retro_data_structures.conversion import conversions
 from retro_data_structures.conversion.asset_converter import AssetConverter, ConvertedAsset
 from retro_data_structures.dependencies import all_converted_dependencies, Dependency
 from retro_data_structures.exceptions import InvalidAssetId, UnknownAssetId
-from retro_data_structures.formats import PAK, format_for
+from retro_data_structures.formats import format_for
+from retro_data_structures.formats.pak import PakBody, PakFile
+from retro_data_structures.formats.pak_gc import PAK_GC
 from retro_data_structures.game_check import Game
 
 from randovania import get_data_path
@@ -128,7 +130,7 @@ def convert_prime1_pickups(prime1_iso: Path, echoes_files_path: Path, assets_pat
     }
 
     # Prepare new resources for writing
-    pak_resources = {}
+    pak_resources: dict[int, PakFile] = {}
     num_assets = len(converted_assets) + 1
 
     for i, new_asset in enumerate(converted_assets.values()):
@@ -136,19 +138,16 @@ def convert_prime1_pickups(prime1_iso: Path, echoes_files_path: Path, assets_pat
             continue
 
         updaters[1](f"Encoding new asset {new_asset.type} 0x{new_asset.id:08X}", i / num_assets)
-        pak_resources[new_asset.id] = {
-            "compressed": 0,
-            "asset": {
-                "type": new_asset.type,
-                "id": new_asset.id,
-            },
-            "contents": {
-                "value": format_for(new_asset.type).build(new_asset.resource, target_game=Game.ECHOES),
-            },
-        }
+        pak_resources[new_asset.id] = PakFile(
+            asset_id=new_asset.id,
+            asset_type=new_asset.type,
+            should_compress=False,
+            uncompressed_data=format_for(new_asset.type).build(new_asset.resource, target_game=Game.ECHOES),
+            compressed_data=None,
+        )
 
     # Figure out where models are used for duplication
-    extra_assets_for_mrea = collections.defaultdict(list)
+    extra_assets_for_mrea: dict[int, list[PakFile]] = collections.defaultdict(list)
 
     for pickup in patch_data["pickups"]:
         model = pickup["model"]
@@ -165,29 +164,29 @@ def convert_prime1_pickups(prime1_iso: Path, echoes_files_path: Path, assets_pat
                     dependency_list.append(dependency_resource)
 
     # Write to paks now
-    updaters[2](f"Writing modified PAks", 0)
+    updaters[2]("Writing modified PAks", 0)
     for pak_i in range(1, 6):
         pak_path = echoes_files_path.joinpath("files", f"Metroid{pak_i}.pak")
 
-        new_pak = PAK.parse(
+        new_pak: PakBody = PAK_GC.parse(
             pak_path.read_bytes(),
             target_game=Game.ECHOES,
         )
 
         additions = []
-        for i, resource in enumerate(new_pak.resources):
-            new_deps = extra_assets_for_mrea.get(resource["asset"]["id"])
+        for i, resource in enumerate(new_pak.files):
+            new_deps = extra_assets_for_mrea.get(resource.asset_id)
             if new_deps is not None:
                 additions.append((i - 1, new_deps))
 
         for i, new_deps in reversed(additions):
-            new_pak.resources[i:i] = new_deps
+            new_pak.files[i:i] = new_deps
 
         # And add all resources at the end of every pak anyway
         for resource in pak_resources.values():
-            new_pak.resources.append(resource)
+            new_pak.files.append(resource)
 
-        PAK.build_file(new_pak, pak_path, target_game=Game.ECHOES)
+        PAK_GC.build_file(new_pak, pak_path, target_game=Game.ECHOES)
         updaters[2](f"Wrote new {pak_path.name}", pak_i / 6)
 
 
@@ -221,7 +220,7 @@ def _convert_prime1_assets(input_iso: Path, output_path: Path, randomizer_data: 
         next_id = new_id + 1
         return new_id
 
-    start = time.time()
+    time.time()
     conversion_updaters = status_update_lib.split_progress_update(status_update, 2)
     conversion_updaters[0]("Loading Prime 1 PAKs", 0)
     converter = AssetConverter(
@@ -257,13 +256,13 @@ def _convert_prime1_assets(input_iso: Path, output_path: Path, randomizer_data: 
             assetdata
         )
     '''
-    end = time.time()
+    time.time()
 
     # logging.debug(f"Time took: {end - start}")
     converted_assets = converter.converted_assets
     converted_dependencies = all_converted_dependencies(converter)
     # logging.debug("Updating RandomizerData.json")
-    start = time.time()
+    time.time()
     meta_dict = {"version": PRIME_MODELS_VERSION}
 
     randomizer_data_additions = []
@@ -296,7 +295,7 @@ def _convert_prime1_assets(input_iso: Path, output_path: Path, randomizer_data: 
     with open(output_path.joinpath("meta.json"), "w") as data_additions_file:
         json.dump(meta_dict, data_additions_file, indent=4)
 
-    end = time.time()
+    time.time()
     # logging.debug(f"Time took: {end - start}")
     return converted_assets, randomizer_data_additions
 

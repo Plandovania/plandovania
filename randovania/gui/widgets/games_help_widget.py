@@ -1,10 +1,8 @@
 from __future__ import annotations
 
-import logging
-import os
 import typing
 
-from PySide6 import QtWidgets, QtGui, QtCore
+from PySide6 import QtWidgets, QtGui
 
 from randovania.games.game import RandovaniaGame
 from randovania.gui.widgets.base_game_tab_widget import BaseGameTabWidget
@@ -38,7 +36,7 @@ class GamesHelpWidget(QtWidgets.QTabWidget):
             widget_layout.setContentsMargins(0, 0, 0, 0)
 
             index = self.addTab(widget, game.long_name)
-            self.setTabVisible(index, game.data.development_state.can_view(self._experimental_visible))
+            self.setTabVisible(index, game.data.development_state.can_view())
             self._index_for_game[game] = index
             self._layout_for_index[index] = widget_layout
 
@@ -78,12 +76,6 @@ class GamesHelpWidget(QtWidgets.QTabWidget):
             self._on_first_show()
 
         return super().showEvent(arg)
-
-    def set_experimental_visible(self, visible: bool):
-        self._experimental_visible = visible
-        if self._index_for_game is not None:
-            for game, index in self._index_for_game.items():
-                self.setTabVisible(index, game.data.development_state.can_view(self._experimental_visible))
 
     def set_current_game(self, game: RandovaniaGame):
         if self._first_show:

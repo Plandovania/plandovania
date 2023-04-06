@@ -1,6 +1,7 @@
 import functools
 from typing import Mapping
 
+import sentry_sdk
 import flask
 import flask_discord
 import flask_socketio
@@ -115,36 +116,42 @@ class ServerApp:
     def on(self, message: str, handler, namespace=None, *, with_header_check: bool = False):
         @functools.wraps(handler)
         def _handler(*args):
-            if with_header_check:
-                error_msg = self.check_client_headers()
-                if error_msg is not None:
-                    return UnsupportedClient(error_msg).as_json
+            with sentry_sdk.start_transaction(op="message", name=message) as span:
+                if with_header_check:
+                    error_msg = self.check_client_headers()
+                    if error_msg is not None:
+                        return UnsupportedClient(error_msg).as_json
 
-            try:
-                return {
-                    "result": handler(self, *args),
-                }
-            except BaseNetworkError as error:
-                return error.as_json
+                try:
+                    span.set_data("message.error", 0)
+                    return {
+                        "result": handler(self, *args),
+                    }
+                except BaseNetworkError as error:
+                    span.set_data("message.error", error.code())
+                    return error.as_json
 
-            except (Exception, TypeError):
-                logger().exception(f"Unhandled exception while processing request for message {message}. Args: {args}")
-                return ServerError().as_json
+                except (Exception, TypeError):
+                    span.set_data("message.error", ServerError.code())
+                    logger().exception(
+                        f"Unhandled exception while processing request for message {message}. Args: {args}"
+                    )
+                    return ServerError().as_json
 
         metric_wrapper = self.metrics.summary(f"socket_{message}", f"Socket.io messages of type {message}")
 
         return self.sio.on(message, namespace)(metric_wrapper(_handler))
 
-    def admin_route(self, route: str):
+    def route_with_user(self, route: str, *, need_admin: bool = False, **kwargs):
         def decorator(handler):
-            @self.app.route(route)
+            @self.app.route(route, **kwargs)
             @functools.wraps(handler)
             def _handler(**kwargs):
                 try:
                     user: User
                     if not self.app.debug:
                         user = User.get(discord_id=self.discord.fetch_user().id)
-                        if user is None or not user.admin:
+                        if user is None or (need_admin and not user.admin):
                             return "User not authorized", 403
                     else:
                         user = list(User.select().limit(1))[0]

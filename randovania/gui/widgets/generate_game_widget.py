@@ -1,3 +1,4 @@
+import asyncio
 import dataclasses
 import datetime
 import logging
@@ -9,6 +10,7 @@ from typing import Callable
 from PySide6 import QtWidgets, QtGui, QtCore
 from qasync import asyncSlot
 
+import randovania
 from randovania.games.game import RandovaniaGame
 from randovania.gui.dialog.preset_history_dialog import PresetHistoryDialog
 from randovania.gui.generated.generate_game_widget_ui import Ui_GenerateGameWidget
@@ -25,7 +27,13 @@ from randovania.layout.generator_parameters import GeneratorParameters
 from randovania.layout.layout_description import LayoutDescription
 from randovania.layout.permalink import Permalink
 from randovania.layout.versioned_preset import VersionedPreset, InvalidPreset
+from randovania.lib.migration_lib import UnsupportedVersion
 from randovania.lib.status_update_lib import ProgressUpdateCallable
+from randovania.resolver.exceptions import ImpossibleForSolver
+
+
+class RetryGeneration(Exception):
+    pass
 
 
 def persist_layout(history_dir: Path, description: LayoutDescription):
@@ -166,9 +174,10 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
         self.create_generate_button.setEnabled(value)
         self.create_generate_race_button.setEnabled(value)
 
-    def _add_new_preset(self, preset: VersionedPreset, *, parent: uuid.UUID | None = None):
+    def _add_new_preset(self, preset: VersionedPreset, *, parent: uuid.UUID | None):
         with self._options as options:
-            options.set_parent_for_preset(preset.uuid, parent)
+            if parent is not None:
+                options.set_parent_for_preset(preset.uuid, parent)
             options.set_selected_preset_uuid_for(self.game, preset.uuid)
 
         self._window_manager.preset_manager.add_new_preset(preset)
@@ -183,7 +192,10 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
 
         old_preset = self._current_preset_data.get_preset()
         if self._current_preset_data.is_included_preset:
+            parent_uuid = old_preset.uuid
             old_preset = old_preset.fork()
+        else:
+            parent_uuid = None
 
         editor = PresetEditor(old_preset)
         self._logic_settings_window = CustomizePresetDialog(self._window_manager, editor)
@@ -193,18 +205,21 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
         result = await async_dialog.execute_dialog(self._logic_settings_window)
         self._logic_settings_window = None
 
-        if result == QtWidgets.QDialog.Accepted:
-            self._add_new_preset(VersionedPreset.with_preset(editor.create_custom_preset_with()))
+        if result == QtWidgets.QDialog.DialogCode.Accepted:
+            self._add_new_preset(
+                VersionedPreset.with_preset(editor.create_custom_preset_with()),
+                parent=parent_uuid,
+            )
 
     @asyncSlot()
     async def _on_delete_preset(self):
         result = await async_dialog.warning(
             self, "Delete preset?",
             f"Are you sure you want to delete preset {self._current_preset_data.name}?",
-            buttons=QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-            default_button=QtWidgets.QMessageBox.No,
+            buttons=async_dialog.StandardButton.Yes | async_dialog.StandardButton.No,
+            default_button=async_dialog.StandardButton.No,
         )
-        if result == QtWidgets.QMessageBox.Yes:
+        if result == async_dialog.StandardButton.Yes:
             self._window_manager.preset_manager.delete_preset(self._current_preset_data)
             self._update_preset_tree_items()
             self._on_select_preset()
@@ -224,9 +239,9 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
         result = await async_dialog.execute_dialog(self._preset_history)
         new_preset = self._preset_history.selected_preset()
         self._preset_history = None
-        assert new_preset is not None
 
-        if result == QtWidgets.QDialog.Accepted:
+        if result == QtWidgets.QDialog.DialogCode.Accepted:
+            assert new_preset is not None
             self._window_manager.preset_manager.add_new_preset(VersionedPreset.with_preset(new_preset))
             self._update_preset_tree_items()
 
@@ -248,7 +263,7 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
     def _on_open_required_tricks_for_preset(self):
         from randovania.gui.dialog.trick_usage_popup import TrickUsagePopup
         self._trick_usage_popup = TrickUsagePopup(self, self._window_manager, self._current_preset_data.get_preset())
-        self._trick_usage_popup.setWindowModality(QtCore.Qt.WindowModal)
+        self._trick_usage_popup.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
         self._trick_usage_popup.open()
 
     def _on_import_preset(self):
@@ -280,15 +295,15 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
                     preset.name,
                     existing_preset.name,
                 ),
-                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel,
-                QtWidgets.QMessageBox.Cancel
+                async_dialog.StandardButton.Yes | async_dialog.StandardButton.No | async_dialog.StandardButton.Cancel,
+                async_dialog.StandardButton.Cancel
             )
-            if user_response == QtWidgets.QMessageBox.Cancel:
+            if user_response == async_dialog.StandardButton.Cancel:
                 return
-            elif user_response == QtWidgets.QMessageBox.No:
+            elif user_response == async_dialog.StandardButton.No:
                 preset = VersionedPreset.with_preset(dataclasses.replace(preset.get_preset(), uuid=uuid.uuid4()))
 
-        self._add_new_preset(preset)
+        self._add_new_preset(preset, parent=None)
 
     def _on_select_preset(self):
         preset_data = self._current_preset_data
@@ -332,14 +347,40 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
         preset = self.preset
         num_players = self.num_players_spin_box.value()
 
-        return await self.generate_layout_from_permalink(
-            permalink=Permalink.from_parameters(GeneratorParameters(
-                seed_number=random.randint(0, 2 ** 31),
-                spoiler=spoiler,
-                presets=[preset.get_preset()] * num_players,
-            )),
-            retries=retries,
-        )
+        unsupported_features = preset.get_preset().configuration.unsupported_features()
+        if unsupported_features:
+            if randovania.is_dev_version():
+                confirmation = "Are you sure you want to continue?"
+                buttons = async_dialog.StandardButton.Yes | async_dialog.StandardButton.No
+            else:
+                confirmation = "These features are not available outside of development builds."
+                buttons = async_dialog.StandardButton.No
+
+            result = await async_dialog.warning(
+                self, "Unsupported Features",
+                "Preset '{}' uses the unsupported features:\n{}\n\n{}".format(
+                    preset.name,
+                    ", ".join(unsupported_features),
+                    confirmation,
+                ),
+                buttons=buttons,
+                default_button=async_dialog.StandardButton.No,
+            )
+            if result != async_dialog.StandardButton.Yes:
+                return
+
+        while True:
+            try:
+                return await self.generate_layout_from_permalink(
+                    permalink=Permalink.from_parameters(GeneratorParameters(
+                        seed_number=random.randint(0, 2 ** 31),
+                        spoiler=spoiler,
+                        presets=[preset.get_preset()] * num_players,
+                    )),
+                    retries=retries,
+                )
+            except RetryGeneration:
+                pass
 
     async def generate_layout_from_permalink(self, permalink: Permalink, retries: int | None = None):
         def work(progress_update: ProgressUpdateCallable):
@@ -353,14 +394,37 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
 
         try:
             layout = await self._background_task.run_in_background_async(work, "Creating a game...")
-            self._background_task.progress_update_signal.emit(f"Success! (Seed hash: {layout.shareable_hash})", 1)
-            persist_layout(self._options.game_history_path, layout)
-            self._window_manager.open_game_details(layout)
+        except ImpossibleForSolver as e:
+            code = await async_dialog.warning(
+                self, "Solver Error",
+                f"{e}.\n\nDo you want to:"
+                f"\n- Keep the generated game, even without any guarantees it's possible"
+                f"\n- Retry the generation"
+                f"\n- Cancel the process",
+                buttons=(async_dialog.StandardButton.Save
+                         | async_dialog.StandardButton.Retry
+                         | async_dialog.StandardButton.Cancel),
+                default_button=async_dialog.StandardButton.Cancel,
+            )
+            if code == async_dialog.StandardButton.Save:
+                layout = e.layout
+            elif code == async_dialog.StandardButton.Retry:
+                raise RetryGeneration()
+            else:
+                self._background_task.progress_update_signal.emit("Solver Error", 0)
+                return
+
+        except asyncio.exceptions.CancelledError:
+            return
 
         except Exception as e:
-            await self.failure_handler.handle_exception(
+            return await self.failure_handler.handle_exception(
                 e, self._background_task.progress_update_signal.emit
             )
+
+        self._background_task.progress_update_signal.emit(f"Success! (Seed hash: {layout.shareable_hash})", 1)
+        persist_layout(self._options.game_history_path, layout)
+        self._window_manager.open_game_details(layout)
 
     def on_options_changed(self, options: Options):
         if not self._has_set_from_last_selected:
@@ -384,7 +448,8 @@ class GenerateGameWidget(QtWidgets.QWidget, Ui_GenerateGameWidget):
                 description += preset_describer.merge_categories(preset_describer.describe(raw_preset))
 
             except InvalidPreset as e:
-                logging.exception(f"Invalid preset for {preset.name}")
+                if not isinstance(e.original_exception, UnsupportedVersion):
+                    logging.exception(f"Invalid preset for {preset.name}")
                 description = (
                     f"Preset {preset.name} can't be used as it contains the following error:"
                     f"\n{e.original_exception}\n"

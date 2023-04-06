@@ -17,8 +17,19 @@ from randovania.layout.lib import location_list
 
 class StartingLocationList(location_list.LocationList):
     @classmethod
-    def areas_list(cls, game: RandovaniaGame):
-        return location_list.area_locations_with_filter(game, lambda area: area.valid_starting_location)
+    def nodes_list(cls, game: RandovaniaGame):
+        return location_list.node_locations_with_filter(game, lambda node: node.valid_starting_location)
+
+
+def _collect_from_fields(obj, field_name: str):
+    result = []
+
+    for field in dataclasses.fields(obj):
+        f = getattr(obj, field.name)
+        if hasattr(f, field_name):
+            result.extend(getattr(f, field_name)())
+
+    return result
 
 
 @dataclasses.dataclass(frozen=True)
@@ -38,6 +49,8 @@ class BaseConfiguration(BitPackDataclass, JsonDataclass, DataclassPostInitTypeCh
         "min": 0, "max": 5.0, "precision": 0.1,
     })
     dock_rando: DockRandoConfiguration
+    single_set_for_pickups_that_solve: bool
+    staggered_multi_pickup_placement: bool
 
     @classmethod
     def game_enum(cls) -> RandovaniaGame:
@@ -57,24 +70,19 @@ class BaseConfiguration(BitPackDataclass, JsonDataclass, DataclassPostInitTypeCh
         return {"default"}
 
     def dangerous_settings(self) -> list[str]:
-        result = []
+        result = _collect_from_fields(self, "dangerous_settings")
 
         if self.first_progression_must_be_local:
             result.append("Requiring first progression to be local causes increased generation failure.")
 
-        for field in dataclasses.fields(self):
-            f = getattr(self, field.name)
-            if hasattr(f, "dangerous_settings"):
-                result.extend(f.dangerous_settings())
-
         return result
 
     def settings_incompatible_with_multiworld(self) -> list[str]:
-        result = []
+        return _collect_from_fields(self, "settings_incompatible_with_multiworld")
 
-        for field in dataclasses.fields(self):
-            f = getattr(self, field.name)
-            if hasattr(f, "settings_incompatible_with_multiworld"):
-                result.extend(f.settings_incompatible_with_multiworld())
+    def unsupported_features(self) -> list[str]:
+        return _collect_from_fields(self, "unsupported_features")
 
-        return result
+    def should_hide_generation_log(self):
+        """Certain settings makes the generation log full of nonsense. It should be hidden in these cases."""
+        return self.dock_rando.is_enabled()

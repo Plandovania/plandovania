@@ -1,6 +1,5 @@
 ----------------
 Transport to Tallon Overworld South
-(Valid Starting Location)
 Extra - asset_id: 1125030300
 Extra - size_index: 0.3
 Extra - aabb: [260.33414, 81.07292, 16.824417, 304.50952, 121.239456, 67.27582]
@@ -12,7 +11,7 @@ Extra - aabb: [260.33414, 81.07292, 16.824417, 304.50952, 121.239456, 67.27582]
   > Elevator to Tallon Overworld - Transport to Phazon Mines East
       Trivial
 
-> Elevator to Tallon Overworld - Transport to Phazon Mines East; Heals? False; Spawn Point
+> Elevator to Tallon Overworld - Transport to Phazon Mines East; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Teleporter to Tallon Overworld - Transport to Phazon Mines East
   * Extra - scan_asset_id: 2685334598
@@ -27,7 +26,6 @@ Extra - aabb: [260.33414, 81.07292, 16.824417, 304.50952, 121.239456, 67.27582]
 
 ----------------
 Quarry Access
-(Valid Starting Location)
 Extra - asset_id: 1758230360
 Extra - size_index: 0.1
 Extra - aabb: [201.19872, 68.6595, 5.336385, 260.348, 107.23985, 50.83834]
@@ -39,7 +37,7 @@ Extra - aabb: [201.19872, 68.6595, 5.336385, 260.348, 107.23985, 50.83834]
   > Door to Transport to Tallon Overworld South
       Trivial
 
-> Door to Transport to Tallon Overworld South; Heals? False; Spawn Point
+> Door to Transport to Tallon Overworld South; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Wave Door to Transport to Tallon Overworld South/Door to Quarry Access
   * Extra - dock_index: 1
@@ -54,7 +52,6 @@ Extra - aabb: [201.19872, 68.6595, 5.336385, 260.348, 107.23985, 50.83834]
 
 ----------------
 Main Quarry
-(Valid Starting Location)
 Extra - asset_id: 1681720207
 Extra - size_index: 0.6
 Extra - aabb: [58.95912, -13.365204, -0.8746805, 213.88028, 134.1634, 99.340744]
@@ -68,7 +65,7 @@ Extra - aabb: [58.95912, -13.365204, -0.8746805, 213.88028, 134.1634, 99.340744]
   > Crane Platform
       Use Grapple Beam
 
-> Door to Quarry Access; Heals? False; Spawn Point
+> Door to Quarry Access; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Wave Door to Quarry Access/Door to Main Quarry
   * Extra - dock_index: 1
@@ -148,7 +145,14 @@ Extra - aabb: [58.95912, -13.365204, -0.8746805, 213.88028, 134.1634, 99.340744]
           Scan Visor and Shoot Wave Beam
           Thermal Visor or Invisible Objects (Beginner)
           Any of the following:
-              Morph Ball Bomb and Morph Ball and Spider Ball
+              All of the following:
+                  Morph Ball and Spider Ball
+                  Any of the following:
+                      Morph Ball Bomb
+                      Boost Ball and Wall Boost (Intermediate)
+                      All of the following:
+                          # https://www.youtube.com/watch?v=TgGo2RyY79w
+                          Knowledge (Intermediate) and Movement (Intermediate)
               All of the following:
                   Space Jump Boots and Slope Jump (Intermediate) and Standable Terrain (Beginner)
                   Any of the following:
@@ -161,7 +165,6 @@ Extra - aabb: [58.95912, -13.365204, -0.8746805, 213.88028, 134.1634, 99.340744]
 
 ----------------
 Waste Disposal
-(Valid Starting Location)
 Extra - asset_id: 665031095
 Extra - size_index: 0.3
 Extra - aabb: [95.84184, 100.52373, 29.230505, 116.84188, 133.5831, 62.536324]
@@ -173,7 +176,7 @@ Extra - aabb: [95.84184, 100.52373, 29.230505, 116.84188, 133.5831, 62.536324]
   > Door to Ore Processing
       Morph Ball Bomb and Morph Ball
 
-> Door to Ore Processing; Heals? False; Spawn Point
+> Door to Ore Processing; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Ore Processing/Door to Waste Disposal
   * Extra - dock_index: 1
@@ -205,7 +208,7 @@ Extra - aabb: [131.38985, -30.599165, 12.26794, 156.20804, 7.0214443, 21.498444]
   > Event - Save Station A Barrier Opened
       Scan Visor
 
-> Save Station; Heals? True; Spawn Point
+> Save Station; Heals? True; Default Node
   * Layers: default
   > Door to Main Quarry
       After Phazon Mines Save Station A Barrier
@@ -223,11 +226,10 @@ Extra - aabb: [131.38985, -30.599165, 12.26794, 156.20804, 7.0214443, 21.498444]
 
 ----------------
 Security Access A
-(Valid Starting Location)
 Extra - asset_id: 3345300114
 Extra - size_index: 0.1
 Extra - aabb: [23.658386, -20.741074, -5.5762477, 100.966, 12.423266, 16.894772]
-> Door to Main Quarry; Heals? False; Spawn Point
+> Door to Main Quarry; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Main Quarry/Door to Security Access A
   * Extra - dock_index: 0
@@ -254,7 +256,6 @@ Extra - aabb: [23.658386, -20.741074, -5.5762477, 100.966, 12.423266, 16.894772]
 
 ----------------
 Ore Processing
-(Valid Starting Location)
 Extra - asset_id: 2547167990
 Extra - size_index: 0.6
 Extra - aabb: [66.58455, 129.7148, 11.163003, 138.8284, 204.85583, 77.01038]
@@ -309,7 +310,7 @@ Extra - aabb: [66.58455, 129.7148, 11.163003, 138.8284, 204.85583, 77.01038]
   > Door to Elevator Access A
       Trivial
 
-> Door to Elevator Access A; Heals? False; Spawn Point
+> Door to Elevator Access A; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Elevator Access A/Door to Ore Processing
   * Extra - dock_index: 3
@@ -350,22 +351,15 @@ Extra - aabb: [66.58455, 129.7148, 11.163003, 138.8284, 204.85583, 77.01038]
 
 ----------------
 Mine Security Station
-(Valid Starting Location)
 Extra - asset_id: 2507085138
 Extra - size_index: 0.6
 Extra - aabb: [-36.12424, -29.465834, -4.4074636, 29.15716, 66.50636, 24.451797]
-> Door to Security Access A; Heals? False; Spawn Point
+> Door to Security Access A; Heals? False; Default Node
   * Layers: default
   * Ice Door to Security Access A/Door to Mine Security Station
   * Extra - dock_index: 0
   * Extra - nonstandard: False
-  > Door to Security Access B
-      All of the following:
-          After Mine Security Station Unlock Doors
-          Any of the following:
-              Combat (Intermediate) or Normal Damage ≥ 125
-              Shoot Ice Beam and Shoot Wave Beam
-  > Wave Pirate Shootout
+  > Room Center
       Trivial
 
 > Door to Security Access B; Heals? False
@@ -373,17 +367,7 @@ Extra - aabb: [-36.12424, -29.465834, -4.4074636, 29.15716, 66.50636, 24.451797]
   * Wave Door to Security Access B/Door to Mine Security Station
   * Extra - dock_index: 1
   * Extra - nonstandard: False
-  > Door to Security Access A
-      All of the following:
-          After Mine Security Station Unlock Doors
-          Any of the following:
-              Combat (Intermediate) or Normal Damage ≥ 125
-              Shoot Ice Beam and Shoot Wave Beam
-  > Door to Storage Depot A
-      After Mine Security Station Barrier
-  > Event - Mine Security Station Barrier Opened
-      Morph Ball and Power Bomb and Scan Visor
-  > Wave Pirate Shootout
+  > Room Center
       Trivial
 
 > Door to Storage Depot A; Heals? False
@@ -391,15 +375,13 @@ Extra - aabb: [-36.12424, -29.465834, -4.4074636, 29.15716, 66.50636, 24.451797]
   * Plasma Door to Storage Depot A/Door to Mine Security Station
   * Extra - dock_index: 2
   * Extra - nonstandard: False
-  > Door to Security Access B
-      After Mine Security Station Barrier and After Mine Security Station Unlock Doors
-  > Wave Pirate Shootout
-      Trivial
+  > Room Center
+      After Mine Security Station Barrier
 
 > Event - Mine Security Station Barrier Opened; Heals? False
   * Layers: default
   * Event Mine Security Station Barrier
-  > Door to Security Access B
+  > Room Center
       Trivial
 
 > Pickup (Items Every Room); Heals? False
@@ -414,9 +396,27 @@ Extra - aabb: [-36.12424, -29.465834, -4.4074636, 29.15716, 66.50636, 24.451797]
       Trivial
   > Door to Security Access B
       Trivial
+  > Room Center
+      Trivial
 
-> Wave Pirate Shootout; Heals? False
+> Room Center; Heals? False; Spawn Point
   * Layers: default
+  > Door to Security Access A
+      All of the following:
+          After Mine Security Station Unlock Doors
+          Any of the following:
+              Combat (Intermediate) or Normal Damage ≥ 125
+              Shoot Ice Beam and Shoot Wave Beam
+  > Door to Security Access B
+      All of the following:
+          After Mine Security Station Unlock Doors
+          Any of the following:
+              Combat (Intermediate) or Normal Damage ≥ 125
+              Shoot Ice Beam and Shoot Wave Beam
+  > Door to Storage Depot A
+      After Mine Security Station Barrier
+  > Event - Mine Security Station Barrier Opened
+      Morph Ball and Power Bomb and Scan Visor
   > Event - Mine Security Station Doors Unlocked
       All of the following:
           Before Mine Security Station Unlock Doors and Shoot Wave Beam
@@ -426,11 +426,10 @@ Extra - aabb: [-36.12424, -29.465834, -4.4074636, 29.15716, 66.50636, 24.451797]
 
 ----------------
 Research Access
-(Valid Starting Location)
 Extra - asset_id: 1128703815
 Extra - size_index: 0.3
 Extra - aabb: [21.132175, 150.98628, 9.5497265, 67.11244, 174.17516, 75.12991]
-> Door to Ore Processing; Heals? False; Spawn Point
+> Door to Ore Processing; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Ore Processing/Door to Research Access
   * Extra - dock_index: 0
@@ -455,11 +454,10 @@ Extra - aabb: [21.132175, 150.98628, 9.5497265, 67.11244, 174.17516, 75.12991]
 
 ----------------
 Storage Depot B
-(Valid Starting Location)
 Extra - asset_id: 3818665003
 Extra - size_index: 0.1
 Extra - aabb: [85.17375, 201.43071, 54.532803, 121.04616, 239.88766, 74.44488]
-> Door to Ore Processing; Heals? False; Spawn Point
+> Door to Ore Processing; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Ore Processing/Door to Storage Depot B
   * Extra - dock_index: 0
@@ -482,11 +480,10 @@ Extra - aabb: [85.17375, 201.43071, 54.532803, 121.04616, 239.88766, 74.44488]
 
 ----------------
 Elevator Access A
-(Valid Starting Location)
 Extra - asset_id: 639736833
 Extra - size_index: 0.1
 Extra - aabb: [40.680916, 162.93446, 9.550913, 70.02207, 207.09828, 75.1311]
-> Door to Ore Processing; Heals? False; Spawn Point
+> Door to Ore Processing; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Ore Processing/Door to Elevator Access A
   * Extra - dock_index: 0
@@ -504,7 +501,9 @@ Extra - aabb: [40.680916, 162.93446, 9.550913, 70.02207, 207.09828, 75.1311]
           Morph Ball
           Any of the following:
               Spider Ball
-              Morph Ball Bomb and Space Jump Boots and Bomb Space Jump (Advanced) and Standable Terrain (Expert) and Shoot Wave Beam
+              All of the following:
+                  # https://www.youtube.com/watch?v=YVwT_qur7lo
+                  Morph Ball Bomb and Space Jump Boots and Bomb Space Jump (Advanced) and Standable Terrain (Expert) and Shoot Wave Beam
 
 > Pickup (Items Every Room); Heals? False
   * Layers: items_every_room
@@ -513,7 +512,6 @@ Extra - aabb: [40.680916, 162.93446, 9.550913, 70.02207, 207.09828, 75.1311]
 
 ----------------
 Security Access B
-(Valid Starting Location)
 Extra - asset_id: 2718040532
 Extra - size_index: 0.1
 Extra - aabb: [-37.44287, 53.214096, 5.0618, 7.18207, 140.8923, 33.829872]
@@ -525,7 +523,7 @@ Extra - aabb: [-37.44287, 53.214096, 5.0618, 7.18207, 140.8923, 33.829872]
   > Door to Mine Security Station
       Trivial
 
-> Door to Mine Security Station; Heals? False; Spawn Point
+> Door to Mine Security Station; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Wave Door to Mine Security Station/Door to Security Access B
   * Extra - dock_index: 1
@@ -540,11 +538,10 @@ Extra - aabb: [-37.44287, 53.214096, 5.0618, 7.18207, 140.8923, 33.829872]
 
 ----------------
 Storage Depot A
-(Valid Starting Location)
 Extra - asset_id: 902158134
 Extra - size_index: 0.1
 Extra - aabb: [-22.358103, 66.50636, -6.551444, 14.069801, 104.96331, 16.117886]
-> Door to Mine Security Station; Heals? False; Spawn Point
+> Door to Mine Security Station; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Mine Security Station/Door to Storage Depot A
   * Extra - dock_index: 0
@@ -561,7 +558,6 @@ Extra - aabb: [-22.358103, 66.50636, -6.551444, 14.069801, 104.96331, 16.117886]
 
 ----------------
 Elite Research
-(Valid Starting Location)
 Extra - asset_id: 2325199700
 Extra - size_index: 0.8
 Extra - aabb: [-86.10738, 118.43238, 15.926657, 29.835865, 233.99252, 83.92861]
@@ -577,7 +573,7 @@ Extra - aabb: [-86.10738, 118.43238, 15.926657, 29.835865, 233.99252, 83.92861]
               # https://youtu.be/ljX553EUfX4
               Boost Ball and Morph Ball and Clip Through Objects (Beginner)
 
-> Door to Security Access B; Heals? False; Spawn Point
+> Door to Security Access B; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Security Access B/Door to Elite Research
   * Extra - dock_index: 1
@@ -645,11 +641,10 @@ Extra - aabb: [-86.10738, 118.43238, 15.926657, 29.835865, 233.99252, 83.92861]
 
 ----------------
 Elevator A
-(Valid Starting Location)
 Extra - asset_id: 21425475
 Extra - size_index: 0.6
 Extra - aabb: [2.163498, 185.95581, -70.273094, 40.68094, 212.25165, 21.601616]
-> Door to Elevator Access A; Heals? False; Spawn Point
+> Door to Elevator Access A; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Elevator Access A/Door to Elevator A
   * Extra - dock_index: 0
@@ -672,11 +667,10 @@ Extra - aabb: [2.163498, 185.95581, -70.273094, 40.68094, 212.25165, 21.601616]
 
 ----------------
 Elite Control Access
-(Valid Starting Location)
 Extra - asset_id: 2307445195
 Extra - size_index: 0.1
 Extra - aabb: [39.633324, 157.56491, -80.02066, 95.99235, 211.56596, -47.37211]
-> Door to Elevator A; Heals? False; Spawn Point
+> Door to Elevator A; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Elevator A/Door to Elite Control Access
   * Extra - dock_index: 0
@@ -718,7 +712,6 @@ Extra - aabb: [39.633324, 157.56491, -80.02066, 95.99235, 211.56596, -47.37211]
 
 ----------------
 Elite Control
-(Valid Starting Location)
 Extra - asset_id: 3305828730
 Extra - size_index: 0.6
 Extra - aabb: [-18.74421, 79.04062, -74.48461, 91.819305, 157.94768, -0.48807144]
@@ -730,7 +723,7 @@ Extra - aabb: [-18.74421, 79.04062, -74.48461, 91.819305, 157.94768, -0.48807144
   > Bottom Floor Center
       Trivial
 
-> Door to Elite Control Access; Heals? False; Spawn Point
+> Door to Elite Control Access; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Wave Door to Elite Control Access/Door to Elite Control
   * Extra - dock_index: 1
@@ -808,11 +801,10 @@ Extra - aabb: [-18.74421, 79.04062, -74.48461, 91.819305, 157.94768, -0.48807144
 
 ----------------
 Maintenance Tunnel
-(Valid Starting Location)
 Extra - asset_id: 3975146125
 Extra - size_index: 0.1
 Extra - aabb: [-83.276855, 61.53632, -74.12119, 1.8154144, 130.33823, -51.051174]
-> Door to Elite Control; Heals? False; Spawn Point
+> Door to Elite Control; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Elite Control/Door to Maintenance Tunnel
   * Extra - dock_index: 0
@@ -835,7 +827,6 @@ Extra - aabb: [-83.276855, 61.53632, -74.12119, 1.8154144, 130.33823, -51.051174
 
 ----------------
 Ventilation Shaft
-(Valid Starting Location)
 Extra - asset_id: 2423298732
 Extra - size_index: 0.3
 Extra - aabb: [5.424013, 33.537285, -58.636707, 65.094376, 96.8914, -32.222157]
@@ -859,7 +850,7 @@ Extra - aabb: [5.424013, 33.537285, -58.636707, 65.094376, 96.8914, -32.222157]
   > Pickup (Energy Tank)
       Morph Ball and Power Bomb and Scan Visor
 
-> Door to Elite Control; Heals? False; Spawn Point
+> Door to Elite Control; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Elite Control/Door to Ventilation Shaft
   * Extra - dock_index: 1
@@ -876,7 +867,6 @@ Extra - aabb: [5.424013, 33.537285, -58.636707, 65.094376, 96.8914, -32.222157]
 
 ----------------
 Phazon Processing Center
-(Valid Starting Location)
 Extra - asset_id: 2905505465
 Extra - size_index: 0.6
 Extra - aabb: [-132.15839, 87.526505, -111.61871, -26.354706, 153.05708, -8.02652]
@@ -888,7 +878,7 @@ Extra - aabb: [-132.15839, 87.526505, -111.61871, -26.354706, 153.05708, -8.0265
   > Door to Maintenance Tunnel
       Trivial
 
-> Door to Maintenance Tunnel; Heals? False; Spawn Point
+> Door to Maintenance Tunnel; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Maintenance Tunnel/Door to Phazon Processing Center
   * Extra - dock_index: 1
@@ -973,7 +963,6 @@ Extra - aabb: [-132.15839, 87.526505, -111.61871, -26.354706, 153.05708, -8.0265
 
 ----------------
 Omega Research
-(Valid Starting Location)
 Extra - asset_id: 1060593356
 Extra - size_index: 0.8
 Extra - aabb: [-30.495464, -73.79053, -86.16589, 78.22917, 33.54581, 12.443928]
@@ -985,7 +974,7 @@ Extra - aabb: [-30.495464, -73.79053, -86.16589, 78.22917, 33.54581, 12.443928]
   > Door to Ventilation Shaft
       Morph Ball and Power Bomb
 
-> Door to Ventilation Shaft; Heals? False; Spawn Point
+> Door to Ventilation Shaft; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Ventilation Shaft/Door to Omega Research
   * Extra - dock_index: 1
@@ -1019,11 +1008,10 @@ Extra - aabb: [-30.495464, -73.79053, -86.16589, 78.22917, 33.54581, 12.443928]
 
 ----------------
 Transport Access
-(Valid Starting Location)
 Extra - asset_id: 1120185073
 Extra - size_index: 0.1
 Extra - aabb: [-131.295, 131.10147, -26.54456, -111.45558, 193.1018, -4.131468]
-> Door to Phazon Processing Center; Heals? False; Spawn Point
+> Door to Phazon Processing Center; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Phazon Processing Center/Door to Transport Access
   * Extra - dock_index: 0
@@ -1046,7 +1034,6 @@ Extra - aabb: [-131.295, 131.10147, -26.54456, -111.45558, 193.1018, -4.131468]
 
 ----------------
 Processing Center Access
-(Valid Starting Location)
 Extra - asset_id: 3983402811
 Extra - size_index: 0.1
 Extra - aabb: [-163.20789, 71.449905, -117.49063, -119.851204, 124.62913, -96.187004]
@@ -1062,7 +1049,7 @@ Extra - aabb: [-163.20789, 71.449905, -117.49063, -119.851204, 124.62913, -96.18
               Phazon Suit
               Movement (Beginner) and Phazon Damage ≥ 99
 
-> Door to Elite Quarters; Heals? False; Spawn Point
+> Door to Elite Quarters; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Elite Quarters/Door to Processing Center Access
   * Extra - dock_index: 1
@@ -1094,11 +1081,10 @@ Extra - aabb: [-163.20789, 71.449905, -117.49063, -119.851204, 124.62913, -96.18
 
 ----------------
 Map Station Mines
-(Valid Starting Location)
 Extra - asset_id: 428864988
 Extra - size_index: 0.1
 Extra - aabb: [20.17642, -77.24749, -77.06698, 39.075035, -49.53195, -34.70632]
-> Door to Omega Research; Heals? False; Spawn Point
+> Door to Omega Research; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Omega Research/Door to Map Station Mines
   * Extra - dock_index: 0
@@ -1118,11 +1104,10 @@ Extra - aabb: [20.17642, -77.24749, -77.06698, 39.075035, -49.53195, -34.70632]
 
 ----------------
 Dynamo Access
-(Valid Starting Location)
 Extra - asset_id: 4111966698
 Extra - size_index: 0.1
 Extra - aabb: [57.918835, -49.629333, -88.16487, 129.05498, -6.0125637, -65.82009]
-> Door to Central Dynamo; Heals? False; Spawn Point
+> Door to Central Dynamo; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Central Dynamo/Door to Dynamo Access
   * Extra - dock_index: 0
@@ -1157,7 +1142,6 @@ Extra - aabb: [57.918835, -49.629333, -88.16487, 129.05498, -6.0125637, -65.8200
 
 ----------------
 Transport to Magmoor Caverns South
-(Valid Starting Location)
 Extra - asset_id: 3804417848
 Extra - size_index: 0.3
 Extra - aabb: [-143.05084, 192.08687, -49.47048, -104.58562, 236.35016, 27.738552]
@@ -1169,7 +1153,7 @@ Extra - aabb: [-143.05084, 192.08687, -49.47048, -104.58562, 236.35016, 27.73855
   > Elevator - Transport to Phazon Mines West
       Trivial
 
-> Elevator - Transport to Phazon Mines West; Heals? False; Spawn Point
+> Elevator - Transport to Phazon Mines West; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Teleporter to Magmoor Caverns - Transport to Phazon Mines West
   * Extra - scan_asset_id: 495694188
@@ -1184,11 +1168,10 @@ Extra - aabb: [-143.05084, 192.08687, -49.47048, -104.58562, 236.35016, 27.73855
 
 ----------------
 Elite Quarters
-(Valid Starting Location)
 Extra - asset_id: 961790803
 Extra - size_index: 0.8
 Extra - aabb: [-209.90451, -63.744553, -141.35068, -99.78124, 74.70173, -75.977715]
-> Door to Elite Quarters Access; Heals? False; Spawn Point
+> Door to Elite Quarters Access; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Elite Quarters Access/Door to Elite Quarters
   * Extra - dock_index: 0
@@ -1248,11 +1231,10 @@ Extra - aabb: [-209.90451, -63.744553, -141.35068, -99.78124, 74.70173, -75.9777
 
 ----------------
 Central Dynamo
-(Valid Starting Location)
 Extra - asset_id: 4272124642
 Extra - size_index: 0.8
 Extra - aabb: [122.126015, -44.231895, -102.18276, 201.19897, 105.61425, -30.731926]
-> Door to Dynamo Access; Heals? False; Spawn Point
+> Door to Dynamo Access; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Dynamo Access/Door to Central Dynamo
   * Extra - dock_index: 0
@@ -1338,11 +1320,10 @@ Extra - aabb: [122.126015, -44.231895, -102.18276, 201.19897, 105.61425, -30.731
 
 ----------------
 Elite Quarters Access
-(Valid Starting Location)
 Extra - asset_id: 1899248703
 Extra - size_index: 0.1
 Extra - aabb: [-162.80762, -94.60118, -150.71225, -105.42819, -56.492065, -124.98163]
-> Door to Metroid Quarantine B; Heals? False; Spawn Point
+> Door to Metroid Quarantine B; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Metroid Quarantine B/Door to Elite Quarters Access
   * Extra - dock_index: 0
@@ -1375,11 +1356,10 @@ Extra - aabb: [-162.80762, -94.60118, -150.71225, -105.42819, -56.492065, -124.9
 
 ----------------
 Quarantine Access A
-(Valid Starting Location)
 Extra - asset_id: 1522461728
 Extra - size_index: 0.3
 Extra - aabb: [127.70681, 85.29369, -96.93268, 177.26456, 146.28539, -74.011665]
-> Door to Central Dynamo; Heals? False; Spawn Point
+> Door to Central Dynamo; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Central Dynamo/Door to Quarantine Access A
   * Extra - dock_index: 0
@@ -1402,7 +1382,6 @@ Extra - aabb: [127.70681, 85.29369, -96.93268, 177.26456, 146.28539, -74.011665]
 
 ----------------
 Save Station Mines B
-(Valid Starting Location)
 Extra - asset_id: 2077614267
 Extra - size_index: 0.1
 Extra - aabb: [164.23203, -42.884247, -96.278015, 187.07254, -18.917255, -87.71871]
@@ -1414,7 +1393,7 @@ Extra - aabb: [164.23203, -42.884247, -96.278015, 187.07254, -18.917255, -87.718
   > Save Station
       Trivial
 
-> Save Station; Heals? True; Spawn Point
+> Save Station; Heals? True; Spawn Point; Default Node
   * Layers: default
   > Door to Central Dynamo
       Trivial
@@ -1426,11 +1405,10 @@ Extra - aabb: [164.23203, -42.884247, -96.278015, 187.07254, -18.917255, -87.718
 
 ----------------
 Metroid Quarantine B
-(Valid Starting Location)
 Extra - asset_id: 3141205070
 Extra - size_index: 0.6
 Extra - aabb: [-108.57961, -160.31125, -168.22823, 77.58658, -50.59403, -92.429504]
-> Door to Quarantine Access B; Heals? False; Spawn Point
+> Door to Quarantine Access B; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Quarantine Access B/Door to Metroid Quarantine B
   * Extra - dock_index: 0
@@ -1529,11 +1507,10 @@ Extra - aabb: [-108.57961, -160.31125, -168.22823, 77.58658, -50.59403, -92.4295
 
 ----------------
 Metroid Quarantine A
-(Valid Starting Location)
 Extra - asset_id: 4211416922
 Extra - size_index: 0.6
 Extra - aabb: [111.66573, 146.28539, -114.17708, 246.21591, 324.61493, -51.890182]
-> Door to Quarantine Access A; Heals? False; Spawn Point
+> Door to Quarantine Access A; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Wave Door to Quarantine Access A/Door to Metroid Quarantine A
   * Extra - dock_index: 0
@@ -1548,7 +1525,9 @@ Extra - aabb: [111.66573, 146.28539, -114.17708, 246.21591, 324.61493, -51.89018
               Thermal Visor and Invisible Objects (Beginner)
           Any of the following:
               Space Jump Boots
-              Morph Ball Bomb and Morph Ball and Bomb Jump (Expert) and L-Jump (Advanced)
+              All of the following:
+                  # https://youtu.be/x036CC58IZ8?t=9
+                  Morph Ball Bomb and Morph Ball and Bomb Jump (Expert) and L-Jump (Advanced)
 
 > Door to Elevator Access B; Heals? False
   * Layers: default
@@ -1562,6 +1541,8 @@ Extra - aabb: [111.66573, 146.28539, -114.17708, 246.21591, 324.61493, -51.89018
               Space Jump Boots
               Morph Ball Bomb and Morph Ball and Bomb Jump (Beginner) and Phazon Damage ≥ 200
               Slope Jump (Intermediate) and Phazon Damage ≥ 150
+  > Pickup (Missile)
+      Space Jump Boots and R-Jump (Advanced) and Standable Terrain (Intermediate)
   > Front of Spider Track
       Any of the following:
           Space Jump Boots or Combat/Scan Dash (Advanced)
@@ -1572,7 +1553,13 @@ Extra - aabb: [111.66573, 146.28539, -114.17708, 246.21591, 324.61493, -51.89018
   * Pickup 86; Major Location? False
   * Extra - position_required: False
   > Door to Elevator Access B
-      Space Jump Boots and Combat/Scan Dash (Advanced) and Standable Terrain (Beginner)
+      Any of the following:
+          All of the following:
+              # https://youtu.be/tQzvoPTimww?t=35
+              Space Jump Boots and Combat/Scan Dash (Advanced) and Standable Terrain (Beginner)
+          All of the following:
+              # https://www.youtube.com/watch?v=EgTFsy2qGh8&t=28s
+              Scan Visor and Combat/Scan Dash (Expert) and Standable Terrain (Advanced)
   > Front of Spider Track
       Trivial
 
@@ -1600,25 +1587,37 @@ Extra - aabb: [111.66573, 146.28539, -114.17708, 246.21591, 324.61493, -51.89018
       All of the following:
           Morph Ball
           Any of the following:
-              Morph Ball Bomb and Spider Ball
+              All of the following:
+                  Spider Ball
+                  Any of the following:
+                      Morph Ball Bomb
+                      Boost Ball and Wall Boost (Beginner)
               All of the following:
                   Scan Visor
                   Any of the following:
                       Power Bomb ≥ 2 and Combat/Scan Dash (Hypermode) and Standable Terrain (Expert)
-                      Power Bomb and Space Jump Boots and Combat/Scan Dash (Advanced) and Slope Jump (Advanced) and Standable Terrain (Advanced)
-              Boost Ball and Wall Boost (Beginner)
+                      All of the following:
+                          # https://youtu.be/tQzvoPTimww
+                          Power Bomb and Space Jump Boots and Combat/Scan Dash (Advanced) and Slope Jump (Advanced) and Standable Terrain (Advanced)
   > Pickup (Missile)
-      All of the following:
-          Morph Ball and Power Bomb ≥ 2
-          Any of the following:
-              Space Jump Boots and Slope Jump (Intermediate) and Standable Terrain (Beginner)
-              All of the following:
-                  Thermal Visor or X-Ray Visor or Invisible Objects (Intermediate)
-                  Spider Ball or Movement (Beginner)
+      Any of the following:
+          All of the following:
+              Morph Ball and Power Bomb ≥ 2
+              Any of the following:
+                  Space Jump Boots and Slope Jump (Intermediate) and Standable Terrain (Beginner)
+                  All of the following:
+                      Thermal Visor or X-Ray Visor or Invisible Objects (Intermediate)
+                      Any of the following:
+                          Spider Ball
+                          All of the following:
+                              # https://youtu.be/tQzvoPTimww?t=19
+                              Movement (Beginner)
+          All of the following:
+              Scan Visor and Space Jump Boots and Combat/Scan Dash (Advanced)
+              Thermal Visor or X-Ray Visor or Invisible Objects (Beginner)
 
 ----------------
 Quarantine Access B
-(Valid Starting Location)
 Extra - asset_id: 340985721
 Extra - size_index: 0.1
 Extra - aabb: [71.02483, -87.01303, -159.26898, 123.01101, -41.865093, -138.19998]
@@ -1634,7 +1633,7 @@ Extra - aabb: [71.02483, -87.01303, -159.26898, 123.01101, -41.865093, -138.1999
           X-Ray Visor and Combat/Scan Dash (Beginner) and L-Jump (Beginner) and Phazon Damage ≥ 150
           Slope Jump (Advanced) and Phazon Damage ≥ 300
 
-> Door to Fungal Hall B; Heals? False; Spawn Point
+> Door to Fungal Hall B; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Fungal Hall B/Door to Quarantine Access B
   * Extra - dock_index: 1
@@ -1652,7 +1651,6 @@ Extra - aabb: [71.02483, -87.01303, -159.26898, 123.01101, -41.865093, -138.1999
 
 ----------------
 Save Station Mines C
-(Valid Starting Location)
 Extra - asset_id: 1724960771
 Extra - size_index: 0.1
 Extra - aabb: [-94.1811, -193.16371, -160.72958, -57.753193, -154.70676, -138.06024]
@@ -1664,7 +1662,7 @@ Extra - aabb: [-94.1811, -193.16371, -160.72958, -57.753193, -154.70676, -138.06
   > Save Station
       Trivial
 
-> Save Station; Heals? True; Spawn Point
+> Save Station; Heals? True; Spawn Point; Default Node
   * Layers: default
   > Door to Metroid Quarantine B
       Trivial
@@ -1676,11 +1674,10 @@ Extra - aabb: [-94.1811, -193.16371, -160.72958, -57.753193, -154.70676, -138.06
 
 ----------------
 Elevator Access B
-(Valid Starting Location)
 Extra - asset_id: 1071241062
 Extra - size_index: 0.1
 Extra - aabb: [140.16626, 321.78094, -86.563934, 200.5625, 382.84692, -38.296978]
-> Door to Metroid Quarantine A; Heals? False; Spawn Point
+> Door to Metroid Quarantine A; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Metroid Quarantine A/Door to Elevator Access B
   * Extra - dock_index: 0
@@ -1703,7 +1700,6 @@ Extra - aabb: [140.16626, 321.78094, -86.563934, 200.5625, 382.84692, -38.296978
 
 ----------------
 Fungal Hall B
-(Valid Starting Location)
 Extra - asset_id: 3964125762
 Extra - size_index: 0.6
 Extra - aabb: [98.72754, -44.531593, -167.96475, 187.92752, 134.34625, -115.89773]
@@ -1723,7 +1719,7 @@ Extra - aabb: [98.72754, -44.531593, -167.96475, 187.92752, 134.34625, -115.8977
   > Door to Phazon Mining Tunnel
       Trivial
 
-> Door to Phazon Mining Tunnel; Heals? False; Spawn Point
+> Door to Phazon Mining Tunnel; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Phazon Mining Tunnel/Door to Fungal Hall B
   * Extra - dock_index: 2
@@ -1755,11 +1751,10 @@ Extra - aabb: [98.72754, -44.531593, -167.96475, 187.92752, 134.34625, -115.8977
 
 ----------------
 Elevator B
-(Valid Starting Location)
 Extra - asset_id: 3900266464
 Extra - size_index: 0.3
 Extra - aabb: [150.87694, 381.88913, -150.76053, 176.09467, 419.10742, -64.71138]
-> Door to Elevator Access B; Heals? False; Spawn Point
+> Door to Elevator Access B; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Elevator Access B/Door to Elevator B
   * Extra - dock_index: 0
@@ -1782,11 +1777,10 @@ Extra - aabb: [150.87694, 381.88913, -150.76053, 176.09467, 419.10742, -64.71138
 
 ----------------
 Missile Station Mines
-(Valid Starting Location)
 Extra - asset_id: 2961781534
 Extra - size_index: 0.1
 Extra - aabb: [186.02907, -16.215353, -144.68292, 249.02724, 27.720753, -121.77229]
-> Door to Fungal Hall B; Heals? False; Spawn Point
+> Door to Fungal Hall B; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Fungal Hall B/Door to Missile Station Mines
   * Extra - dock_index: 0
@@ -1806,7 +1800,6 @@ Extra - aabb: [186.02907, -16.215353, -144.68292, 249.02724, 27.720753, -121.772
 
 ----------------
 Phazon Mining Tunnel
-(Valid Starting Location)
 Extra - asset_id: 3153742515
 Extra - size_index: 0.3
 Extra - aabb: [101.97653, 132.17677, -171.1141, 156.53535, 161.4677, -131.1141]
@@ -1834,7 +1827,7 @@ Extra - aabb: [101.97653, 132.17677, -171.1141, 156.53535, 161.4677, -131.1141]
                       Movement (Expert) and Phazon Damage ≥ 1099
                       Movement (Hypermode) and Phazon Damage ≥ 999
 
-> Door to Fungal Hall A; Heals? False; Spawn Point
+> Door to Fungal Hall A; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Fungal Hall A/Door to Phazon Mining Tunnel
   * Extra - dock_index: 1
@@ -1868,7 +1861,6 @@ Extra - aabb: [101.97653, 132.17677, -171.1141, 156.53535, 161.4677, -131.1141]
 
 ----------------
 Fungal Hall Access
-(Valid Starting Location)
 Extra - asset_id: 3734860277
 Extra - size_index: 0.3
 Extra - aabb: [132.64903, 328.942, -184.2123, 180.28085, 381.88913, -101.63486]
@@ -1880,7 +1872,13 @@ Extra - aabb: [132.64903, 328.942, -184.2123, 180.28085, 381.88913, -101.63486]
   > Door to Elevator B
       Any of the following:
           Space Jump Boots
-          Morph Ball Bomb and Morph Ball and Bomb Jump (Advanced) and Standable Terrain (Advanced)
+          All of the following:
+              Morph Ball Bomb and Morph Ball and Standable Terrain (Advanced)
+              Any of the following:
+                  Bomb Jump (Advanced)
+                  All of the following:
+                      # https://www.youtube.com/watch?v=0oZ7WaA8P4I
+                      Bomb Space Jump (Advanced)
   > Pickup (Missile)
       All of the following:
           Morph Ball
@@ -1888,7 +1886,7 @@ Extra - aabb: [132.64903, 328.942, -184.2123, 180.28085, 381.88913, -101.63486]
               Phazon Suit
               Movement (Beginner) and Phazon Damage ≥ 100
 
-> Door to Elevator B; Heals? False; Spawn Point
+> Door to Elevator B; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Plasma Door to Elevator B/Door to Fungal Hall Access
   * Extra - dock_index: 1
@@ -1911,7 +1909,6 @@ Extra - aabb: [132.64903, 328.942, -184.2123, 180.28085, 381.88913, -101.63486]
 
 ----------------
 Fungal Hall A
-(Valid Starting Location)
 Extra - asset_id: 257062865
 Extra - size_index: 0.6
 Extra - aabb: [90.076614, 160.53384, -176.2045, 166.0206, 330.8736, -124.46773]
@@ -1923,7 +1920,7 @@ Extra - aabb: [90.076614, 160.53384, -176.2045, 166.0206, 330.8736, -124.46773]
   > Door to Fungal Hall Access
       Space Jump Boots or Slope Jump (Beginner)
 
-> Door to Fungal Hall Access; Heals? False; Spawn Point
+> Door to Fungal Hall Access; Heals? False; Spawn Point; Default Node
   * Layers: default
   * Ice Door to Fungal Hall Access/Door to Fungal Hall A
   * Extra - dock_index: 1

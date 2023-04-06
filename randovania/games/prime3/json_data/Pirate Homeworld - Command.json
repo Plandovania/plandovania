@@ -6,7 +6,6 @@
     "areas": {
         "Landing Site Bravo": {
             "default_node": "Samus Ship",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4408585131827753141
             },
@@ -26,6 +25,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -46,7 +46,7 @@
                     }
                 },
                 "Samus Ship": {
-                    "node_type": "player_ship",
+                    "node_type": "teleporter_network",
                     "heal": true,
                     "coordinates": null,
                     "description": "",
@@ -54,11 +54,30 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "is_unlocked": {
                         "type": "and",
                         "data": {
                             "comment": null,
                             "items": []
+                        }
+                    },
+                    "network": "default",
+                    "requirement_to_activate": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "CommandVisor",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
                         }
                     },
                     "connections": {
@@ -75,7 +94,6 @@
         },
         "Security Air Lock": {
             "default_node": "Door to Lift Hub",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 5682718801820042955
             },
@@ -95,6 +113,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -148,6 +167,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -211,6 +231,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 86,
                     "major_location": false,
                     "connections": {
@@ -232,6 +253,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event101",
                     "connections": {
                         "Door to Defense Access": {
@@ -247,7 +269,6 @@
         },
         "Command Vault": {
             "default_node": "Room Center",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1808913861159744919
             },
@@ -267,6 +288,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -303,6 +325,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -350,6 +373,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 87,
                     "major_location": true,
                     "connections": {
@@ -371,6 +395,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Morph Ball Door to Command Station": {
                             "type": "and",
@@ -508,6 +533,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event142",
                     "connections": {
                         "Room Center": {
@@ -523,7 +549,6 @@
         },
         "Command Courtyard": {
             "default_node": "Door to Lift Hub",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 18221971457754325372
             },
@@ -543,6 +568,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -579,6 +605,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -734,6 +761,7 @@
                     "extra": {
                         "dock_index": 2
                     },
+                    "valid_starting_location": false,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -781,6 +809,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 88,
                     "major_location": false,
                     "connections": {
@@ -802,6 +831,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 89,
                     "major_location": true,
                     "connections": {
@@ -823,6 +853,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event132",
                     "connections": {
                         "Door to Courtyard Passage": {
@@ -843,6 +874,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event133",
                     "connections": {
                         "Pickup (Energy Cell)": {
@@ -863,11 +895,12 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Courtyard Passage": {
                             "type": "and",
                             "data": {
-                                "comment": null,
+                                "comment": "https://youtu.be/81IeuzWYBE4",
                                 "items": [
                                     {
                                         "type": "template",
@@ -952,7 +985,6 @@
         },
         "Command Station": {
             "default_node": "Morph Ball Door to Flux Control",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 13589229454537797972
             },
@@ -972,6 +1004,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1008,6 +1041,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": true,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1053,6 +1087,7 @@
                     "extra": {
                         "dock_index": 2
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1200,6 +1235,7 @@
                     "extra": {
                         "dock_index": 3
                     },
+                    "valid_starting_location": false,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1236,6 +1272,7 @@
                     "extra": {
                         "dock_index": 4
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1256,6 +1293,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 90,
                     "major_location": false,
                     "connections": {
@@ -1286,6 +1324,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event105",
                     "connections": {
                         "Door to Defense Access (Lower)": {
@@ -1306,6 +1345,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event106",
                     "connections": {
                         "Door to Defense Access (Lower)": {
@@ -1326,6 +1366,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event107",
                     "connections": {
                         "Door to Defense Access (Lower)": {
@@ -1341,7 +1382,6 @@
         },
         "Transit Station 1104": {
             "default_node": "Door to Skyway Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 9401189381177175830
             },
@@ -1361,6 +1401,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1414,6 +1455,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1442,6 +1484,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event110",
                     "connections": {
                         "Front of Voltage Terminal": {
@@ -1462,6 +1505,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event150",
                     "connections": {
                         "Front of Voltage Terminal": {
@@ -1482,6 +1526,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Transit Station 0203": {
                             "type": "and",
@@ -1573,7 +1618,6 @@
         },
         "Transit Station 0203": {
             "default_node": "Door to Transit Station 1104",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 11029728296836027873
             },
@@ -1593,6 +1637,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1638,6 +1683,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1673,6 +1719,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event151",
                     "connections": {
                         "Door to Transit Tunnel P68": {
@@ -1693,6 +1740,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event152",
                     "connections": {
                         "Room Center": {
@@ -1713,6 +1761,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Transit Tunnel P68": {
                             "type": "or",
@@ -1755,7 +1804,6 @@
         },
         "Transit Station 0204": {
             "default_node": "Door to Transit Tunnel P68",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 16448375801676354754
             },
@@ -1775,6 +1823,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1858,6 +1907,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -1897,6 +1947,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event145",
                     "connections": {
                         "Door to Transit Tunnel P69": {
@@ -1912,7 +1963,6 @@
         },
         "Transit Station 0205": {
             "default_node": "Door to Transit Tunnel P69",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 4381182303934744164
             },
@@ -1932,6 +1982,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2015,6 +2066,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2040,7 +2092,6 @@
         },
         "Transit Tunnel P68": {
             "default_node": "Door to Transit Station 0203",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 16543666292419631320
             },
@@ -2060,6 +2111,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2112,6 +2164,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2161,6 +2214,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event144",
                     "connections": {
                         "Door to Transit Station 0204": {
@@ -2181,6 +2235,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event153",
                     "connections": {
                         "Door to Transit Station 0203": {
@@ -2210,7 +2265,6 @@
         },
         "Transit Tunnel P69": {
             "default_node": "Door to Transit Station 0204",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 11121647730682962559
             },
@@ -2230,6 +2284,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2266,6 +2321,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2312,7 +2368,6 @@
         },
         "Transit Station 2-A": {
             "default_node": "Train to Command Center - Transit Station 2-B",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 1933322814469947092
             },
@@ -2332,6 +2387,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2365,6 +2421,7 @@
                         "scan_asset_id": 15720495307184570570,
                         "teleporter_instance_id": 851982
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Pirate Homeworld - Command",
                         "area_name": "Transit Station 2-B"
@@ -2385,7 +2442,6 @@
         },
         "Transit Station 2-B": {
             "default_node": "Train to Command Center - Transit Station 2-A",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 9768654166807123312
             },
@@ -2405,6 +2461,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2438,6 +2495,7 @@
                         "scan_asset_id": 7193511573108640398,
                         "teleporter_instance_id": 917798
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Pirate Homeworld - Command",
                         "area_name": "Transit Station 2-A"
@@ -2458,7 +2516,6 @@
         },
         "Leviathan Access Portal": {
             "default_node": "Teleporter to Leviathan",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 13825059228540765135
             },
@@ -2478,6 +2535,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2541,6 +2599,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": 983248
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Pirate Homeworld - Command",
                         "area_name": "Leviathan"
@@ -2611,6 +2670,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event83",
                     "connections": {
                         "Door to Transit Station 2-B": {
@@ -2626,7 +2686,6 @@
         },
         "Flux Control": {
             "default_node": "Morph Ball Door to Command Courtyard",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 5194668821114474017
             },
@@ -2646,6 +2705,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2777,6 +2837,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -2824,6 +2885,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 91,
                     "major_location": false,
                     "connections": {
@@ -2890,6 +2952,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Morph Ball Door to Command Courtyard": {
                             "type": "and",
@@ -3092,6 +3155,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event87",
                     "connections": {
                         "Lower Level": {
@@ -3107,7 +3171,6 @@
         },
         "Transit Tunnel P70": {
             "default_node": "Door to Transit Station 0205",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 14037080802062413664
             },
@@ -3127,6 +3190,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -3175,6 +3239,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -3229,7 +3294,6 @@
         },
         "Transit Station Leviathan": {
             "default_node": "Door to Transit Tunnel P70",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 9997664456677642630
             },
@@ -3249,6 +3313,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -3377,6 +3442,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event12",
                     "connections": {
                         "Event - Destroy Door": {
@@ -3445,6 +3511,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event111",
                     "connections": {
                         "Samus Ship": {
@@ -3471,7 +3538,7 @@
                     }
                 },
                 "Samus Ship": {
-                    "node_type": "player_ship",
+                    "node_type": "teleporter_network",
                     "heal": true,
                     "coordinates": null,
                     "description": "",
@@ -3479,6 +3546,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "is_unlocked": {
                         "type": "resource",
                         "data": {
@@ -3486,6 +3554,24 @@
                             "name": "Event111",
                             "amount": 1,
                             "negate": false
+                        }
+                    },
+                    "network": "default",
+                    "requirement_to_activate": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": [
+                                {
+                                    "type": "resource",
+                                    "data": {
+                                        "type": "items",
+                                        "name": "CommandVisor",
+                                        "amount": 1,
+                                        "negate": false
+                                    }
+                                }
+                            ]
                         }
                     },
                     "connections": {
@@ -3533,7 +3619,6 @@
         },
         "Leviathan": {
             "default_node": "Teleporter to Leviathan Access Portal",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 5604040344596242484
             },
@@ -3550,6 +3635,7 @@
                         "scan_asset_id": null,
                         "teleporter_instance_id": 1245367
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Pirate Homeworld - Command",
                         "area_name": "Leviathan Access Portal"
@@ -3577,6 +3663,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event112",
                     "connections": {
                         "Teleporter to Leviathan Access Portal": {
@@ -3592,7 +3679,6 @@
         },
         "Lift Hub": {
             "default_node": "Door to Lift Hub Access",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 2807909054514352708
             },
@@ -3612,6 +3698,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -3646,6 +3733,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -3680,6 +3768,7 @@
                     "extra": {
                         "dock_index": 2
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -3903,6 +3992,7 @@
                     "extra": {
                         "dock_index": 3
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -3931,6 +4021,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "pickup_index": 92,
                     "major_location": false,
                     "connections": {
@@ -3952,6 +4043,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Lift Hub Access": {
                             "type": "and",
@@ -4087,7 +4179,7 @@
                                                 {
                                                     "type": "and",
                                                     "data": {
-                                                        "comment": null,
+                                                        "comment": "https://youtu.be/H65BqqDmvlY",
                                                         "items": [
                                                             {
                                                                 "type": "resource",
@@ -4185,6 +4277,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event100",
                     "connections": {
                         "Elevator": {
@@ -4205,6 +4298,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event135",
                     "connections": {
                         "Elevator": {
@@ -4220,7 +4314,6 @@
         },
         "Courtyard Passage": {
             "default_node": "Door to Command Courtyard",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 5574135827721005616
             },
@@ -4240,6 +4333,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4274,6 +4368,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4297,7 +4392,6 @@
         },
         "Skyway Access": {
             "default_node": "Door to Courtyard Passage",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 8444926274755356434
             },
@@ -4317,6 +4411,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4569,6 +4664,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4595,6 +4691,7 @@
                     "extra": {
                         "dock_index": 2
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4654,6 +4751,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event109",
                     "connections": {
                         "Door to Courtyard Passage": {
@@ -4674,6 +4772,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event108",
                     "connections": {
                         "Door to Courtyard Passage": {
@@ -4689,7 +4788,6 @@
         },
         "Transit Station 3-B\nLeads to Research Facility": {
             "default_node": "Train to Research Facility - Transit Station 3-A",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 10191943231769975720
             },
@@ -4709,6 +4807,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4742,6 +4841,7 @@
                         "scan_asset_id": 11245391886377035438,
                         "teleporter_instance_id": 1507642
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Pirate Homeworld - Research",
                         "area_name": "Transit Station 3-A\nLeads to Command Center"
@@ -4762,7 +4862,6 @@
         },
         "Transit Station 4-A\nLeads to Mining Site": {
             "default_node": "Train to Mining Site - Transit Station 4-B",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 12520185503864049660
             },
@@ -4782,6 +4881,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4815,6 +4915,7 @@
                         "scan_asset_id": 7888662215166705640,
                         "teleporter_instance_id": 1573178
                     },
+                    "valid_starting_location": true,
                     "destination": {
                         "world_name": "Pirate Homeworld - Mines",
                         "area_name": "Transit Station 4-B\nLeads to Command Center"
@@ -4835,7 +4936,6 @@
         },
         "Defense Access": {
             "default_node": "Morph Ball Door to Command Vault",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 3288365355139345163
             },
@@ -4855,6 +4955,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4891,6 +4992,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4927,6 +5029,7 @@
                     "extra": {
                         "dock_index": 2
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4963,6 +5066,7 @@
                     "extra": {
                         "dock_index": 3
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -4997,6 +5101,7 @@
                     "extra": {
                         "dock_index": 4
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -5031,6 +5136,7 @@
                     "extra": {
                         "dock_index": 5
                     },
+                    "valid_starting_location": false,
                     "dock_type": "morph_ball",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -5059,6 +5165,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Morph Ball Door to Command Vault": {
                             "type": "and",
@@ -5192,6 +5299,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event102",
                     "connections": {
                         "Hall Center": {
@@ -5212,6 +5320,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event103",
                     "connections": {
                         "Hall Center": {
@@ -5232,6 +5341,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "Event104",
                     "connections": {
                         "Front of Spider Tracks": {
@@ -5252,6 +5362,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Transit Station 4-A\nLeads to Mining Site": {
                             "type": "and",
@@ -5320,7 +5431,7 @@
                                                                         {
                                                                             "type": "and",
                                                                             "data": {
-                                                                                "comment": null,
+                                                                                "comment": "https://youtu.be/V6V5L6QGcC0",
                                                                                 "items": [
                                                                                     {
                                                                                         "type": "resource",
@@ -5400,7 +5511,6 @@
         },
         "Lift Hub Access": {
             "default_node": "Door to Landing Site Bravo",
-            "valid_starting_location": true,
             "extra": {
                 "asset_id": 16310261264317403600
             },
@@ -5420,6 +5530,7 @@
                     "extra": {
                         "dock_index": 0
                     },
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",
@@ -5454,6 +5565,7 @@
                     "extra": {
                         "dock_index": 1
                     },
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Pirate Homeworld - Command",

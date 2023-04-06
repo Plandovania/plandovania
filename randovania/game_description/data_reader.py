@@ -17,8 +17,7 @@ from randovania.game_description.resources.resource_database import ResourceData
 from randovania.game_description.resources.resource_info import ResourceInfo, ResourceGainTuple
 from randovania.game_description.resources.resource_type import ResourceType
 from randovania.game_description.resources.search import (
-    MissingResource, find_resource_info_with_id,
-    find_resource_info_with_long_name
+    MissingResource, find_resource_info_with_id
 )
 from randovania.game_description.resources.simple_resource_info import SimpleResourceInfo
 from randovania.game_description.resources.trick_resource_info import TrickResourceInfo
@@ -27,19 +26,19 @@ from randovania.game_description.world.area import Area
 from randovania.game_description.world.area_identifier import AreaIdentifier
 from randovania.game_description.world.configurable_node import ConfigurableNode
 from randovania.game_description.world.dock import (
-    DockRandoParams, DockWeakness, DockType, DockWeaknessDatabase, DockLockType, DockLock
+    DockRandoConfig, DockRandoParams, DockWeakness, DockType, DockWeaknessDatabase, DockLockType, DockLock
 )
 from randovania.game_description.world.dock_lock_node import DockLockNode
 from randovania.game_description.world.dock_node import DockNode
 from randovania.game_description.world.event_node import EventNode
-from randovania.game_description.world.logbook_node import LoreType, LogbookNode
+from randovania.game_description.world.hint_node import HintNodeKind, HintNode
 from randovania.game_description.world.node import (
     GenericNode, Node,
     NodeLocation
 )
 from randovania.game_description.world.node_identifier import NodeIdentifier
 from randovania.game_description.world.pickup_node import PickupNode
-from randovania.game_description.world.player_ship_node import PlayerShipNode
+from randovania.game_description.world.teleporter_network_node import TeleporterNetworkNode
 from randovania.game_description.world.teleporter_node import TeleporterNode
 from randovania.game_description.world.world import World
 from randovania.game_description.world.world_list import WorldList
@@ -251,11 +250,19 @@ def read_dock_weakness_database(data: dict,
                          if dock_type.short_name == data["default_weakness"]["type"]][0]
     default_dock_weakness = weaknesses[default_dock_type][data["default_weakness"]["name"]]
 
+    dock_rando_config = DockRandoConfig(
+        enable_one_way=data["dock_rando"]["enable_one_way"],
+        force_change_two_way=data["dock_rando"]["force_change_two_way"],
+        resolver_attempts=data["dock_rando"]["resolver_attempts"],
+        to_shuffle_proportion=data["dock_rando"]["to_shuffle_proportion"],
+    )
+
     return DockWeaknessDatabase(
         dock_types=dock_types,
         weaknesses=weaknesses,
         dock_rando_params=dock_rando,
         default_weakness=(default_dock_type, default_dock_weakness),
+        dock_rando_config=dock_rando_config
     )
 
 
@@ -278,23 +285,10 @@ class WorldReader:
         self.dock_weakness_database = dock_weakness_database
         self.next_node_index = 0
 
-    def _get_scan_visor(self) -> ItemResourceInfo:
-        try:
-            return find_resource_info_with_long_name(
-                self.resource_database.item,
-                "Scan Visor"
-            )
-        except MissingResource:
+    def _get_item(self, item_name: str | None) -> ItemResourceInfo | None:
+        if item_name is None:
             return None
-
-    def _get_command_visor(self) -> ItemResourceInfo:
-        try:
-            return find_resource_info_with_long_name(
-                self.resource_database.item,
-                "Command Visor"
-            )
-        except MissingResource:
-            return None
+        return self.resource_database.get_item(item_name)
 
     def read_node(self, name: str, data: dict) -> Node:
         try:
@@ -310,6 +304,7 @@ class WorldReader:
                 "description": data["description"],
                 "layers": tuple(data["layers"]),
                 "extra": frozen_lib.wrap(data["extra"]),
+                "valid_starting_location": data["valid_starting_location"]
             }
             self.next_node_index += 1
             node_type: int = data["node_type"]
@@ -360,33 +355,21 @@ class WorldReader:
                     **generic_args,
                 )
 
-            elif node_type == "logbook":
-                lore_type = LoreType(data["lore_type"])
+            elif node_type == "hint":
+                requirement_to_collect = read_requirement(data["requirement_to_collect"], self.resource_database)
 
-                if lore_type == LoreType.REQUIRES_ITEM:
-                    required_translator = self.resource_database.get_item(data["extra"]["translator"])
-                else:
-                    required_translator = None
-
-                if lore_type in {LoreType.SPECIFIC_PICKUP, LoreType.SKY_TEMPLE_KEY_HINT}:
-                    hint_index = data["extra"]["hint_index"]
-                else:
-                    hint_index = None
-
-                return LogbookNode(
+                return HintNode(
                     **generic_args,
-                    string_asset_id=data["string_asset_id"],
-                    scan_visor=self._get_scan_visor(),
-                    lore_type=lore_type,
-                    required_translator=required_translator,
-                    hint_index=hint_index,
+                    kind=HintNodeKind(data["kind"]),
+                    requirement_to_collect=requirement_to_collect,
                 )
 
-            elif node_type == "player_ship":
-                return PlayerShipNode(
+            elif node_type == "teleporter_network":
+                return TeleporterNetworkNode(
                     **generic_args,
                     is_unlocked=read_requirement(data["is_unlocked"], self.resource_database),
-                    item_to_summon=self._get_command_visor(),
+                    network=data["network"],
+                    requirement_to_activate=read_requirement(data["requirement_to_activate"], self.resource_database),
                 )
 
             else:
@@ -434,7 +417,6 @@ class WorldReader:
 
         try:
             return Area(area_name, data["default_node"],
-                        data["valid_starting_location"],
                         nodes, connections, data["extra"])
         except KeyError as e:
             raise KeyError(f"Missing key `{e}` for area `{area_name}`")
@@ -525,7 +507,7 @@ def decode_data_with_world_reader(data: dict) -> tuple[WorldReader, GameDescript
     world_list = world_reader.read_world_list(data["worlds"])
 
     victory_condition = read_requirement(data["victory_condition"], resource_database)
-    starting_location = AreaIdentifier.from_json(data["starting_location"])
+    starting_location = NodeIdentifier.from_json(data["starting_location"])
     initial_states = read_initial_states(data["initial_states"], resource_database)
     minimal_logic = read_minimal_logic_db(data["minimal_logic"])
 

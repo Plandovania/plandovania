@@ -4,15 +4,33 @@ import json
 
 import cryptography.fernet
 import flask
+import flask_discord.models
 import flask_socketio
 import peewee
 from oauthlib.oauth2.rfc6749.errors import InvalidTokenError
 from requests_oauthlib import OAuth2Session
 
 from randovania.network_common.error import InvalidSession, NotAuthorizedForAction, InvalidAction, UserNotAuthorized
-from randovania.server.database import User, GameSessionMembership
+from randovania.server.database import User, UserAccessToken, GameSessionMembership
 from randovania.server.lib import logger
 from randovania.server.server_app import ServerApp
+
+
+def _encrypt_session_for_user(sio: ServerApp, session: dict) -> bytes:
+    encrypted_session = sio.fernet_encrypt.encrypt(json.dumps(session).encode("utf-8"))
+    return base64.b85encode(encrypted_session)
+
+
+def _create_client_side_session_raw(sio: ServerApp, user: User) -> dict:
+    logger().info(f"Client at {sio.current_client_ip()} is user {user.name} ({user.id}).")
+
+    return {
+        "user": user.as_json,
+        "sessions": [
+            membership.session.create_list_entry()
+            for membership in GameSessionMembership.select().where(GameSessionMembership.user == user)
+        ],
+    }
 
 
 def _create_client_side_session(sio: ServerApp, user: User | None) -> dict:
@@ -22,33 +40,42 @@ def _create_client_side_session(sio: ServerApp, user: User | None) -> dict:
     :return:
     """
     session = sio.get_session()
-    encrypted_session = sio.fernet_encrypt.encrypt(json.dumps(session).encode("utf-8"))
     if user is None:
         user = User.get_by_id(session["user-id"])
     elif user.id != session["user-id"]:
-        raise RuntimeError(f"Provided user does not match the session's user")
+        raise RuntimeError("Provided user does not match the session's user")
 
-    logger().info(f"Client at {sio.current_client_ip()} is user {user.name} ({user.id}).")
+    result = _create_client_side_session_raw(sio, user)
+    result["encoded_session_b85"] = _encrypt_session_for_user(sio, session)
 
-    return {
-        "user": user.as_json,
-        "sessions": [
-            membership.session.create_list_entry()
-            for membership in GameSessionMembership.select().where(GameSessionMembership.user == user)
-        ],
-        "encoded_session_b85": base64.b85encode(encrypted_session),
-    }
+    return result
+
+
+def _create_user_from_discord(discord_user: flask_discord.models.User) -> User:
+    user: User = User.get_or_create(discord_id=discord_user.id,
+                                    defaults={"name": discord_user.name})[0]
+    if user.name != discord_user.name:
+        user.name = discord_user.name
+        user.save()
+
+    return user
+
+
+def _create_session_with_access_token(sio: ServerApp, token: UserAccessToken) -> bytes:
+    return _encrypt_session_for_user(
+        sio,
+        {
+            "user-id": token.user.id,
+            "rdv-access-token": token.name,
+        }
+    )
 
 
 def _create_session_with_discord_token(sio: ServerApp, access_token: str) -> tuple[User, dict]:
     flask.session["DISCORD_OAUTH2_TOKEN"] = access_token
     discord_user = sio.discord.fetch_user()
 
-    user: User = User.get_or_create(discord_id=discord_user.id,
-                                    defaults={"name": discord_user.name})[0]
-    if user.name != discord_user.name:
-        user.name = discord_user.name
-        user.save()
+    user = _create_user_from_discord(discord_user)
 
     if sio.enforce_role is not None:
         if not sio.enforce_role.verify_user(discord_user.id):
@@ -117,7 +144,19 @@ def restore_user_session(sio: ServerApp, encrypted_session: bytes, session_id: i
         else:
             user = User.get_by_id(session["user-id"])
             sio.save_session(session)
-            result = _create_client_side_session(sio, user)
+
+            if "rdv-access-token" in session:
+                access_token = UserAccessToken.get(
+                    user=user,
+                    name=session["rdv-access-token"],
+                )
+                access_token.last_used = datetime.datetime.now(datetime.timezone.utc)
+                access_token.save()
+
+                result = _create_client_side_session_raw(sio, user)
+
+            else:
+                result = _create_client_side_session(sio, user)
 
         if session_id is not None:
             sio.join_game_session(GameSessionMembership.get_by_ids(user.id, session_id))
@@ -125,15 +164,18 @@ def restore_user_session(sio: ServerApp, encrypted_session: bytes, session_id: i
         return result
 
     except UserNotAuthorized:
+        sio.save_session({})
         raise
 
     except (KeyError, peewee.DoesNotExist, json.JSONDecodeError, InvalidTokenError) as e:
         # InvalidTokenError: discord token expired and couldn't renew
+        sio.save_session({})
         logger().info("Client at %s was unable to restore session: (%s) %s",
                       sio.current_client_ip(), str(type(e)), str(e))
         raise InvalidSession()
 
     except Exception:
+        sio.save_session({})
         logger().exception("Error decoding user session")
         raise InvalidSession()
 
@@ -165,12 +207,46 @@ def setup_app(sio: ServerApp):
         sio.discord.callback()
         discord_user = sio.discord.fetch_user()
 
-        user: User = User.get(discord_id=discord_user.id)
-        if user is None:
-            return "Unknown user", 404
+        _create_user_from_discord(discord_user)
 
         return flask.redirect(flask.url_for("browser_me"))
 
-    @sio.admin_route("/me")
+    @sio.route_with_user("/me")
     def browser_me(user: User):
-        return f"Hello {user.name}. Admin? {user.admin}"
+        result = f"Hello {user.name}. Admin? {user.admin}<br />Access Tokens:<ul>\n"
+
+        for token in user.access_tokens:
+            delete = f' <a href="{flask.url_for("delete_token", token=token.name)}">Delete</a>'
+            result += (f"<li>{token.name} created at {token.creation_date}."
+                       f" Last used at {token.last_used}. {delete}</li>")
+
+        result += f'<li><form class="form-inline" method="POST" action="{flask.url_for("create_token")}">'
+        result += '<input id="name" placeholder="Access token name" name="name">'
+        result += '<button type="submit">Create new</button></li></ul>'
+
+        return result
+
+    @sio.route_with_user("/create_token", methods=["POST"])
+    def create_token(user: User):
+        token_name: str = flask.request.form['name']
+        go_back = f'<a href="{flask.url_for("browser_me")}">Go back</a>'
+
+        try:
+            token = UserAccessToken.create(
+                user=user,
+                name=token_name,
+            )
+            session = _create_session_with_access_token(sio, token).decode("ascii")
+            return f'Token: <pre>{session}</pre><br />{go_back}'
+
+        except peewee.IntegrityError as e:
+            return f'Unable to create token: {e}<br />{go_back}'
+
+    @sio.route_with_user("/delete_token")
+    def delete_token(user: User):
+        token_name: str = flask.request.args['token']
+        UserAccessToken.get(
+            user=user,
+            name=token_name,
+        ).delete_instance()
+        return flask.redirect(flask.url_for("browser_me"))

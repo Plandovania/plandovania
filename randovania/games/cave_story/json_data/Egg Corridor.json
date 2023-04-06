@@ -4,7 +4,6 @@
     "areas": {
         "Egg Corridor": {
             "default_node": "Teleporter to Arthur's House",
-            "valid_starting_location": true,
             "extra": {
                 "map_name": "Eggs",
                 "starting_script": "<TRA0002:0099:0005:0006"
@@ -23,6 +22,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -55,6 +55,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -94,6 +95,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "dock_type": "teleporter",
                     "default_connection": {
                         "world_name": "Mimiga Village",
@@ -159,7 +161,7 @@
                     }
                 },
                 "Hint - Blue Robot": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": {
                         "x": 91.65,
@@ -171,10 +173,18 @@
                         "default"
                     ],
                     "extra": {
-                        "event": "0200"
+                        "event": "0200",
+                        "string_asset_id": 1
                     },
-                    "string_asset_id": 1,
-                    "lore_type": "generic",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": []
+                        }
+                    },
                     "connections": {
                         "Teleporter to Arthur's House": {
                             "type": "and",
@@ -200,6 +210,7 @@
                     "extra": {
                         "event": "0403"
                     },
+                    "valid_starting_location": false,
                     "pickup_index": 0,
                     "major_location": false,
                     "connections": {
@@ -225,6 +236,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Door to Cthulhu's Abode (Lower)": {
                             "type": "and",
@@ -346,6 +358,7 @@
                     "extra": {
                         "event": "0404"
                     },
+                    "valid_starting_location": false,
                     "pickup_index": 1,
                     "major_location": false,
                     "connections": {
@@ -371,6 +384,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Outside Cthulhu's Abode": {
                             "type": "or",
@@ -446,6 +460,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "trigger",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -478,6 +493,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -510,6 +526,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "trigger",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -542,6 +559,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "eventIgor",
                     "connections": {
                         "Outside Egg No. 00": {
@@ -566,6 +584,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Outside Egg Observation Room": {
                             "type": "resource",
@@ -682,6 +701,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -727,6 +747,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -759,6 +780,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "levelMG",
                     "connections": {
                         "Teleporter to Arthur's House": {
@@ -774,7 +796,6 @@
         },
         "Cthulhu's Abode": {
             "default_node": "Save Point",
-            "valid_starting_location": true,
             "extra": {
                 "map_name": "Cthu",
                 "starting_script": "<TRA0022:0094:0006:0012"
@@ -793,6 +814,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -836,6 +858,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -853,7 +876,7 @@
                     }
                 },
                 "Hint - Cthulhu": {
-                    "node_type": "logbook",
+                    "node_type": "hint",
                     "heal": false,
                     "coordinates": {
                         "x": 200.3,
@@ -865,10 +888,18 @@
                         "default"
                     ],
                     "extra": {
-                        "event": "0200"
+                        "event": "0200",
+                        "string_asset_id": 0
                     },
-                    "string_asset_id": 0,
-                    "lore_type": "generic",
+                    "valid_starting_location": false,
+                    "kind": "generic",
+                    "requirement_to_collect": {
+                        "type": "and",
+                        "data": {
+                            "comment": null,
+                            "items": []
+                        }
+                    },
                     "connections": {
                         "Door to Egg Corridor (Lower)": {
                             "type": "and",
@@ -892,6 +923,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Door to Egg Corridor (Lower)": {
                             "type": "and",
@@ -906,7 +938,6 @@
         },
         "Egg No. 06": {
             "default_node": "Door to Egg Corridor",
-            "valid_starting_location": true,
             "extra": {
                 "map_name": "Egg6",
                 "starting_script": "<TRA0004:0094:0008:0008"
@@ -925,6 +956,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -959,6 +991,7 @@
                     "extra": {
                         "event": "0201"
                     },
+                    "valid_starting_location": false,
                     "pickup_index": 2,
                     "major_location": false,
                     "connections": {
@@ -975,7 +1008,6 @@
         },
         "Egg Observation Room": {
             "default_node": "Door to Egg Corridor",
-            "valid_starting_location": true,
             "extra": {
                 "map_name": "EggR",
                 "starting_script": "<TRA0005:0094:0017:0008"
@@ -996,6 +1028,7 @@
                     "extra": {
                         "event": "0301"
                     },
+                    "valid_starting_location": false,
                     "pickup_index": 3,
                     "major_location": false,
                     "connections": {
@@ -1021,6 +1054,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -1044,7 +1078,6 @@
         },
         "Egg No. 01": {
             "default_node": "Door to Egg Corridor",
-            "valid_starting_location": true,
             "extra": {
                 "map_name": "Egg1",
                 "starting_script": "<TRA0023:0094:0008:0008"
@@ -1063,6 +1096,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -1097,6 +1131,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "eventEggBarrier",
                     "connections": {
                         "Door to Egg Corridor": {
@@ -1112,7 +1147,6 @@
         },
         "Egg No. 00": {
             "default_node": "Door to Egg Corridor",
-            "valid_starting_location": true,
             "extra": {
                 "map_name": "EggX",
                 "starting_script": "<TRA0003:0094:0004:0010"
@@ -1131,6 +1165,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -1163,6 +1198,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "event_name": "eventSue",
                     "connections": {
                         "Door to Egg Corridor": {
@@ -1178,7 +1214,6 @@
         },
         "Side Room": {
             "default_node": "Save Point",
-            "valid_starting_location": true,
             "extra": {
                 "map_name": "EgEnd1",
                 "starting_script": "<TRA0021:0094:0011:0006"
@@ -1197,6 +1232,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "dock_type": "door",
                     "default_connection": {
                         "world_name": "Egg Corridor",
@@ -1229,6 +1265,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": true,
                     "connections": {
                         "Door to Egg Corridor": {
                             "type": "and",
@@ -1259,6 +1296,7 @@
                         "default"
                     ],
                     "extra": {},
+                    "valid_starting_location": false,
                     "connections": {
                         "Save Point": {
                             "type": "and",

@@ -1,4 +1,3 @@
-import logging
 import os
 
 from randovania.exporter import pickup_exporter, item_names
@@ -11,7 +10,7 @@ from randovania.game_description.resources.item_resource_info import ItemResourc
 from randovania.game_description.resources.pickup_entry import ConditionalResources
 from randovania.game_description.resources.resource_info import ResourceCollection
 from randovania.game_description.world.area_identifier import AreaIdentifier
-from randovania.game_description.world.logbook_node import LogbookNode
+from randovania.game_description.world.hint_node import HintNode
 from randovania.game_description.world.node import Node
 from randovania.game_description.world.node_identifier import NodeIdentifier
 from randovania.games.dread.exporter.hint_namer import DreadHintNamer
@@ -19,6 +18,7 @@ from randovania.games.dread.layout.dread_configuration import DreadConfiguration
 from randovania.games.dread.layout.dread_cosmetic_patches import DreadCosmeticPatches
 from randovania.games.game import RandovaniaGame
 from randovania.generator.item_pool import pickup_creator
+from randovania.layout.base.dock_rando_configuration import DockRandoMode
 
 _ALTERNATIVE_MODELS = {
     "Nothing": ["itemsphere"],
@@ -75,10 +75,12 @@ def get_resources_for_details(detail: ExportedPickupDetails) -> list[dict]:
 class DreadPatchDataFactory(BasePatchDataFactory):
     cosmetic_patches: DreadCosmeticPatches
     configuration: DreadConfiguration
+    spawnpoint_name_prefix = "SP_RDV_"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.memo_data = DreadAcquiredMemo.with_expansion_text()
+        self.new_spawn_points: dict[Node, dict] = {}
 
         tank = self.configuration.energy_per_tank
         self.memo_data["Energy Tank"] = f"Energy Tank acquired.\nEnergy capacity increased by {tank:g}."
@@ -98,9 +100,9 @@ class DreadPatchDataFactory(BasePatchDataFactory):
                 continue
         return result
 
-    def _starting_inventory_text(self, resources: ResourceCollection):
+    def _starting_inventory_text(self):
         result = [r"{c1}Random starting items:{c0}"]
-        items = item_names.additional_starting_items(self.configuration, self.game, resources)
+        items = item_names.additional_starting_equipment(self.configuration, self.game, self.patches)
         if not items:
             return []
         result.extend(items)
@@ -117,18 +119,51 @@ class DreadPatchDataFactory(BasePatchDataFactory):
 
     def _key_error_for_node(self, node: Node, err: KeyError):
         return KeyError(f"{self.game.world_list.node_name(node, with_world=True)} has no extra {err}")
+    
+    def _key_error_for_start_node(self, node: Node):
+        return KeyError(f"{self.game.world_list.node_name(node, with_world=True)} has neither a " + 
+                        "start_point_actor_name nor the area has a collision_camera_name for a custom start point")
+    
+    def _get_or_create_spawn_point(self, node: Node, level_name: str):
+        if node in self.new_spawn_points:
+            return self.new_spawn_points[node]["new_actor"]["actor"]
+        else:
+            try:
+                area = self.game.world_list.area_by_area_location(node.identifier.area_identifier)
+                collision_camera_name = area.extra["asset_id"]
+                new_spawnpoint_name = f"{self.spawnpoint_name_prefix}{len(self.new_spawn_points):03d}"
+                self.new_spawn_points[node] = {
+                    "new_actor": {
+                        "actor": new_spawnpoint_name,
+                        "scenario": level_name
+                    },
+                    "location": {
+                        "x": node.location.x,
+                        "y": node.location.y,
+                        "z": node.location.z
+                    },
+                    "collision_camera_name": collision_camera_name
+                }
+                return new_spawnpoint_name
+            except KeyError:
+                raise self._key_error_for_start_node(node)
+
 
     def _start_point_ref_for(self, node: Node) -> dict:
         world = self.game.world_list.nodes_to_world(node)
         level_name: str = os.path.splitext(os.path.split(world.extra["asset_id"])[1])[0]
 
-        try:
+        if "start_point_actor_name" in node.extra:
             return {
                 "scenario": level_name,
                 "actor": node.extra["start_point_actor_name"],
             }
-        except KeyError as e:
-            raise self._key_error_for_node(node, e)
+        else:
+            return {
+                "scenario": level_name,
+                "actor": self._get_or_create_spawn_point(node, level_name),
+            }
+
 
     def _level_name_for(self, node: Node) -> str:
         world = self.game.world_list.nodes_to_world(node)
@@ -229,7 +264,7 @@ class DreadPatchDataFactory(BasePatchDataFactory):
                 ),
             }
             for logbook_node in self.game.world_list.iterate_nodes()
-            if isinstance(logbook_node, LogbookNode)
+            if isinstance(logbook_node, HintNode)
         ]
 
     def _static_text_changes(self) -> dict[str, str]:
@@ -278,7 +313,12 @@ class DreadPatchDataFactory(BasePatchDataFactory):
                     "bShowEnemyDamage": c.show_enemy_damage,
                     "bShowPlayerDamage": c.show_player_damage
                 }
-            }
+            },
+            "lua": {
+                "custom_init": {
+                    "enable_death_counter": c.show_death_counter
+                },
+            },
         }
 
     def _door_patches(self):
@@ -292,6 +332,10 @@ class DreadPatchDataFactory(BasePatchDataFactory):
                 raise ValueError(
                     f"Unable to change door {wl.node_name(node)} into {weakness.name}: incompatible door weakness")
 
+            if "actor_name" not in node.extra:
+                print(f"Invalid door (no actor): {node}")
+                continue
+            
             result.append({
                 "actor": (actor := self._teleporter_ref_for(node)),
                 "door_type": (door_type := weakness.extra["type"]),
@@ -332,10 +376,19 @@ class DreadPatchDataFactory(BasePatchDataFactory):
             "hints": hint_text,
         }
 
+    def _tilegroup_patches(self):
+        return [
+            # beam blocks -> speedboost blocks in Artaria EMMI zone speedbooster puzzle to prevent softlock
+            dict(
+                actor=dict(scenario="s010_cave",layer="breakables",actor="breakabletilegroup_060"),
+                tiletype="SPEEDBOOST"
+            )
+        ]
+
     def create_data(self) -> dict:
         starting_location = self._start_point_ref_for(self._node_for(self.patches.starting_location))
-        starting_items = self._calculate_starting_inventory(self.patches.starting_items)
-        starting_text = [self._starting_inventory_text(self.patches.starting_items)]
+        starting_items = self._calculate_starting_inventory(self.patches.starting_resources())
+        starting_text = [self._starting_inventory_text()]
 
         useless_target = PickupTarget(pickup_creator.create_nothing_pickup(self.game.resource_database),
                                       self.players_config.player_index)
@@ -376,6 +429,7 @@ class DreadPatchDataFactory(BasePatchDataFactory):
             "cosmetic_patches": self._cosmetic_patch_data(),
             "energy_per_tank": energy_per_tank,
             "immediate_energy_parts": self.configuration.immediate_energy_parts,
+            "enable_remote_lua": False,
             "constant_environment_damage": {
                 "heat": self.configuration.constant_heat_damage,
                 "cold": self.configuration.constant_cold_damage,
@@ -387,7 +441,10 @@ class DreadPatchDataFactory(BasePatchDataFactory):
                 "remove_grapple_block_path_to_itorash": self.configuration.hanubia_easier_path_to_itorash,
                 "default_x_released": self.configuration.x_starts_released,
             },
+            "show_shields_on_minimap": self.configuration.dock_rando.mode == DockRandoMode.VANILLA,
             "door_patches": self._door_patches(),
+            "tile_group_patches": self._tilegroup_patches(),
+            "new_spawn_points": list(self.new_spawn_points.values()),
             "objective": self._objective_patches(),
         }
 

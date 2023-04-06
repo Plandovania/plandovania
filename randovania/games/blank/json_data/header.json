@@ -1,5 +1,5 @@
 {
-    "schema_version": 11,
+    "schema_version": 14,
     "game": "blank",
     "resource_database": {
         "items": {
@@ -85,7 +85,8 @@
     ],
     "starting_location": {
         "world_name": "Intro",
-        "area_name": "Starting Area"
+        "area_name": "Starting Area",
+        "node_name": "Spawn Point"
     },
     "initial_states": {
         "Default": []
@@ -312,6 +313,12 @@
         "default_weakness": {
             "type": "other",
             "name": "Not Determined"
+        },
+        "dock_rando": {
+            "enable_one_way": false,
+            "force_change_two_way": false,
+            "resolver_attempts": 125,
+            "to_shuffle_proportion": 1.0
         }
     },
     "worlds": [
