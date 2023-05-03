@@ -558,7 +558,7 @@
             "default_starting_count": 1,
             "ammo": [],
             "unlocks_ammo": false,
-            "hide_from_gui": true,
+            "hide_from_gui": false,
             "must_be_starting": false,
             "probability_offset": 0,
             "probability_multiplier": 1,

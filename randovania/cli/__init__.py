@@ -65,7 +65,7 @@ def run_cli(argv):
         args = argv[1:]
         from randovania.cli import gui
         if gui.has_gui and not args:
-            args = ["gui", "main"]
+            args = ["gui", "--preview", "main"]
 
         logging.debug("Creating parsers...")
         parser = _create_parser()

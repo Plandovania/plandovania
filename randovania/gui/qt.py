@@ -68,7 +68,7 @@ async def show_main_window(app: QtWidgets.QApplication, options: Options, is_pre
     network_client: QtNetworkClient = app.network_client
 
     async def attempt_login():
-        from randovania.network_client.network_client import UnableToConnect
+        """ from randovania.network_client.network_client import UnableToConnect
         from randovania.gui.lib import async_dialog
 
         try:
@@ -84,7 +84,7 @@ async def show_main_window(app: QtWidgets.QApplication, options: Options, is_pre
                 None, "Connection Error",
                 f"<b>Unable to connect to the server:</b><br /><br />{s}<br /><br />"
                 f"Logging in is required to use dev builds.")
-            return False
+            return False """
 
         return True
 
